@@ -148,6 +148,24 @@ samples/final_narration.md
 
 完整验证可以直接针对 `AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json` 执行，不需要覆盖根 `timeline.json`。`check_creator_overlay_compliance.js` 也已支持可选 timeline 路径。
 
+如果候选 timeline 需要进入主线，可使用安全 promote 流程：
+
+```text
+npm run promote:audio-master-timeline:dry-run
+npm run promote:audio-master-timeline
+```
+
+默认只允许 dry-run；`--apply` 会在四项校验全部通过后，先备份根 `timeline.json` 到 `timeline.backup.local.json`，再复制候选文件到根路径。
+
+当根 `timeline.json` 已经切到 audio master 版本后，可以用专门的预览命令做 snapshot 采样：
+
+```text
+npm run snapshot:audio-master
+npx hyperframes inspect
+```
+
+`snapshot:audio-master` 采用的是 45 秒内的固定采样点，优先服务 audio-master timeline 的预览验证，而不是旧的 60 秒样片节奏。
+
 ## 十、当前 timeline 需要支持的字段
 
 当前 `timeline.json` 已经依赖这些字段来支持 audio master clock：

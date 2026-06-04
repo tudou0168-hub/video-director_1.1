@@ -18,11 +18,14 @@
     "compile:storyboard": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs",
     "compile:audio-master-timeline": "node scripts/compile-audio-master-timeline.mjs samples/final_narration.md assets/tts_result.json",
     "validate:audio-master-timeline": "node scripts/validate-timeline.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json && node AI_VIDEO_COMPONENT_LIBRARY/scripts/validate-component-usage.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json && node scripts/validate-timeline-contract.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json",
+    "promote:audio-master-timeline:dry-run": "node scripts/promote-audio-master-timeline.mjs --dry-run",
+    "promote:audio-master-timeline": "node scripts/promote-audio-master-timeline.mjs --apply",
     "compile:creator30": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_30s creator_overlay_30s",
     "compile:creator60": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_60s creator_overlay_60s",
     "render": "npx hyperframes render --quality high --workers 1",
     "lint": "npx hyperframes lint",
     "snapshot:creator30": "npx hyperframes snapshot --at 1,6,14,22,29 --describe false",
-    "snapshot:creator60": "npx hyperframes snapshot --at 1,6,14,24,32,40,48,56 --describe false"
+    "snapshot:creator60": "npx hyperframes snapshot --at 1,6,14,24,32,40,48,56 --describe false",
+    "snapshot:audio-master": "npx hyperframes snapshot --at 1,8,15,21,29,36,43 --describe false"
   }
 }

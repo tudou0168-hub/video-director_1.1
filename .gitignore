@@ -24,6 +24,7 @@ QA/
 # Render scratch output
 renders/
 work-*/
+timeline.backup.local.json
 
 # Dependencies
 node_modules/
