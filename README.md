@@ -1,9 +1,13 @@
-# Video Director
+# Creator Overlay Pro
 
-AI 科技感口播视频包装系统。当前版本以 HyperFrames + HTML/CSS/GSAP 为底座，支持把真人口播视频包装成 Creator Overlay 样片。
+`video-director_1.1` 是口播稿 / TTS / 真人口播音频驱动的 Creator Overlay 系统，也是 Creator Overlay Pro 的本地主干。
+
+它的目标不是做通用文案生成视频系统，而是稳定把口播音频驱动的内容包装成可复用、可验证、可交付的中文 Creator Overlay 样片。
 
 ## 当前能力
 
+- 文案 / 口播稿输入
+- 已有真人口播视频输入
 - 真人口播视频标准化为 30fps 横版素材
 - 中文底部字幕
 - 透明线框 HUD
@@ -11,7 +15,48 @@ AI 科技感口播视频包装系统。当前版本以 HyperFrames + HTML/CSS/GS
 - 30 秒 / 60 秒 Creator Overlay recipe
 - 证据截图位 `ProofScreenshotOverlay`
 - Snapshot 优先验收
-- 60 秒样片 render
+- 音频主时钟约束下的样片 render
+
+## 项目主线
+
+```text
+文案 / 口播稿
+→ 口播稿
+→ 男声 TTS
+→ 读取真实 TTS 音频时长
+→ timeline.duration = 真实音频时长
+→ 根据口播稿生成 caption beats
+→ 根据 caption / semantic beats 生成 HUD segments
+→ snapshot_at 从 segments 自动或一致生成
+→ snapshot
+→ inspect
+→ render
+```
+
+兼容入口：
+
+```text
+已有真人口播视频
+→ prepare:talking-head
+→ 提取 / 标准化 audio master
+→ 同样进入 audio master clock timeline
+```
+
+这两条入口最终都必须进入 audio master clock。`render` 必须在 `snapshot` 和 `inspect` 之后执行。
+
+## 边界声明
+
+- 这不是 `video-director-script` 那种完整多平台文案生成视频系统。
+- 这不是复杂纯视觉短视频生成器。
+- 这不是 V3 大 pipeline 的本地搬运版。
+- 这也不是“只支持已有真人视频包装”的窄化系统。
+
+## 方向说明
+
+- `timeline.duration` 必须来自最终口播音频或 TTS 音频的真实时长。
+- 字幕、HUD segments、`snapshot_at` 必须围绕真实音频时长生成。
+- 当前阶段尚未完整实现 TTS 生成链路，TTS 是下一阶段能力。
+- 现阶段已有真人口播视频只是兼容入口，不是项目唯一入口。
 
 ## 快速验证
 
@@ -48,6 +93,7 @@ npx hyperframes render --quality standard --workers 1 --output outputs/samples/c
 ## 关键文档
 
 - `.codex/project-rules.md`
+- `docs/NARRATION_AUDIO_PIPELINE.md`
 - `docs/ai-workflow/codex-usage.md`
 - `docs/ai-workflow/verification-checklist.md`
 - `docs/ai-workflow/hyperframes-hud-standard.md`

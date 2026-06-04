@@ -16,6 +16,7 @@ assets/**/*.m4a
 assets/**/*.mp3
 assets/**/*.wav
 assets/**/*.png
+assets/tts_result.json
 outputs/
 snapshots/
 QA/

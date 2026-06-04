@@ -1,0 +1,8 @@
+{
+  "source_text_path": "samples/final_narration.md",
+  "audio_path": "assets/narration-master.wav",
+  "duration": 45.048,
+  "voice": "zh-CN-YunyangNeural",
+  "provider": "edge-tts",
+  "generated_at": "2026-06-04T14:07:04.571Z"
+}

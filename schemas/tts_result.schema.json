@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TTS Result",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "source_text_path",
+    "audio_path",
+    "duration",
+    "voice",
+    "provider",
+    "generated_at"
+  ],
+  "properties": {
+    "source_text_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audio_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "voice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
