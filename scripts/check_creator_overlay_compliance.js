@@ -3,6 +3,8 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const root = process.cwd();
+const timelineArg = process.argv[2] || "timeline.json";
+const timelineFile = path.isAbsolute(timelineArg) ? timelineArg : path.join(root, timelineArg);
 const results = [];
 
 function read(file) {
@@ -21,7 +23,7 @@ const registry = read("AI_VIDEO_COMPONENT_LIBRARY/registry/component-registry.js
 const recipes = read("AI_VIDEO_COMPONENT_LIBRARY/registry/scene-recipes.json");
 const index = read("index.html");
 const packageJson = read("package.json");
-const timelineSource = read("timeline.json");
+const timelineSource = fs.existsSync(timelineFile) ? fs.readFileSync(timelineFile, "utf8") : "";
 let registryJson = null;
 let timelineJson = null;
 

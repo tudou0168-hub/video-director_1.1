@@ -146,6 +146,8 @@ samples/final_narration.md
 
 这个编译器只负责把 narration 音频结果转换成可验证 timeline，不负责 caption beats 之后的更复杂模板选择。
 
+完整验证可以直接针对 `AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json` 执行，不需要覆盖根 `timeline.json`。`check_creator_overlay_compliance.js` 也已支持可选 timeline 路径。
+
 ## 十、当前 timeline 需要支持的字段
 
 当前 `timeline.json` 已经依赖这些字段来支持 audio master clock：
