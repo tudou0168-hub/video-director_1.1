@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Caption Beats",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+      "beat_id",
+      "start",
+      "end",
+      "text",
+      "caption_line",
+      "semantic_role"
+    ],
+    "properties": {
+      "beat_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "start": {
+        "type": "number",
+        "minimum": 0
+      },
+      "end": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "text": {
+        "type": "string",
+        "minLength": 1
+      },
+      "caption_line": {
+        "type": "string",
+        "minLength": 1
+      },
+      "semantic_role": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

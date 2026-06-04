@@ -16,6 +16,7 @@
     "tts:narration": "node scripts/generate-narration-tts.mjs samples/final_narration.md",
     "validate:tts-result": "node scripts/validate-tts-result.mjs assets/tts_result.json",
     "compile:storyboard": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs",
+    "compile:audio-master-timeline": "node scripts/compile-audio-master-timeline.mjs samples/final_narration.md assets/tts_result.json",
     "compile:creator30": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_30s creator_overlay_30s",
     "compile:creator60": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_60s creator_overlay_60s",
     "render": "npx hyperframes render --quality high --workers 1",

@@ -124,7 +124,29 @@ npm run validate:tts-result
 
 这个契约只负责约束 TTS 结果文件，不负责 timeline 重排。
 
-## 九、当前 timeline 需要支持的字段
+## 九、P4 最小 audio-master timeline compiler
+
+最小 audio-master timeline compiler 已定义为：
+
+```text
+samples/final_narration.md
+-> assets/tts_result.json
+-> scripts/compile-audio-master-timeline.mjs
+-> AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/caption_beats.json
+-> AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master/compiled.timeline.json
+```
+
+当前约定：
+
+- `compiled.timeline.json` 使用 `tts_result.duration` 作为总时长。
+- `segments` 来源于 `caption_beats.json`。
+- `snapshot_at` 从 `segments[].snapshotAt` 自动生成。
+- `media.audio` 使用 `tts_result.audio_path`。
+- `media.video` 在这个最小 TTS 路径里暂时设为 `null`，因为它不是真人口播视频编排链路。
+
+这个编译器只负责把 narration 音频结果转换成可验证 timeline，不负责 caption beats 之后的更复杂模板选择。
+
+## 十、当前 timeline 需要支持的字段
 
 当前 `timeline.json` 已经依赖这些字段来支持 audio master clock：
 
@@ -149,7 +171,7 @@ npm run validate:tts-result
 
 但这些都属于下一阶段，不在本次实现范围内。
 
-## 十、禁止事项
+## 十一、禁止事项
 
 - 不实现 TTS provider。
 - 不改 `index.html`。
@@ -161,7 +183,7 @@ npm run validate:tts-result
 - 不迁移 V3 大 pipeline。
 - 不提交媒体产物。
 
-## 十一、验收标准
+## 十二、验收标准
 
 当未来链路完成时，至少应该满足：
 

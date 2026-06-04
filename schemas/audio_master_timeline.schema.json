@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audio Master Timeline",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "mode",
+    "width",
+    "height",
+    "duration",
+    "media",
+    "product_id",
+    "recipe",
+    "snapshot_at",
+    "segments"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "article_tts",
+        "talking_head_overlay"
+      ]
+    },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "media": {
+      "type": "object",
+      "required": [
+        "audio",
+        "video"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "audio": {
+          "type": "string",
+          "minLength": 1
+        },
+        "video": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipe": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_at": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "start",
+          "end",
+          "text",
+          "caption_line",
+          "visual_module",
+          "component",
+          "component_props",
+          "layout_slot",
+          "safe_zone",
+          "animation",
+          "emphasis_keyword",
+          "density",
+          "semantic_role",
+          "proof_point",
+          "cta_type",
+          "template",
+          "components",
+          "primaryText",
+          "subtitleCN",
+          "snapshotAt"
+        ],
+        "properties": {
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "caption_line": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visual_module": {
+            "type": "string",
+            "minLength": 1
+          },
+          "component": {
+            "type": "string",
+            "minLength": 1
+          },
+          "component_props": {
+            "type": "object"
+          },
+          "layout_slot": {
+            "type": "string",
+            "minLength": 1
+          },
+          "safe_zone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "animation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "emphasis_keyword": {
+            "type": "string",
+            "minLength": 1
+          },
+          "density": {
+            "type": "string",
+            "minLength": 1
+          },
+          "semantic_role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proof_point": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cta_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "template": {
+            "type": "string",
+            "minLength": 1
+          },
+          "components": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "primaryText": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subtitleCN": {
+            "type": "string",
+            "minLength": 1
+          },
+          "snapshotAt": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}
