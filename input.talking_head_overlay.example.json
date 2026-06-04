@@ -1,0 +1,20 @@
+{
+  "mode": "talking_head_overlay",
+  "title": "真人口播加 HUD 动画",
+  "video_path": "assets/talking-head.mp4",
+  "subtitle_source": "whisper_zh_with_optional_script",
+  "product_id": "P008",
+  "lead_magnet": "LM-008-科技感口播视频分镜检查清单",
+  "comment_keyword": "视频模板",
+  "safe_zones": {
+    "face": "manual_or_detected",
+    "hands": "manual_or_detected",
+    "caption": "bottom_160px",
+    "preferred_hud_side": "opposite_of_face"
+  },
+  "rules": {
+    "caption_language": "zh",
+    "no_english_subtitle": true,
+    "master_clock": "video_audio"
+  }
+}

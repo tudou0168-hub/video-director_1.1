@@ -1,0 +1,4 @@
+.vf-alert { border-color: rgba(251, 191, 36, .55); }
+.vf-alert-label { color: var(--vf-amber); font-family: var(--vf-mono); font-size: 22px; }
+.vf-alert-title { margin-top: 14px; font-size: 44px; font-weight: 900; }
+.vf-alert-loss { margin-top: 16px; font-size: 28px; color: var(--vf-muted); }

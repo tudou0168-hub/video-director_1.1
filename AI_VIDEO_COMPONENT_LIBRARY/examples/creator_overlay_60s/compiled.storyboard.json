@@ -1,0 +1,150 @@
+{
+  "mode": "creator_overlay_60s",
+  "duration": 60,
+  "storyboard": [
+    {
+      "beat_id": "B01",
+      "time": "0-5",
+      "template": "BIG_TITLE_HOOK",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "BigKineticTitle",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "工具越多，越累",
+      "narration": "为什么你学了很多 AI 工具，还是没有真正提高效率？",
+      "subtitleCN": "你学了很多 AI 工具",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "kinetic_title_in",
+      "snapshotAt": 1
+    },
+    {
+      "beat_id": "B02",
+      "time": "5-12",
+      "template": "OPTION_SPLIT_CARD",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "OptionSplitCard",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "手动刷热点 vs Hermes 自动采集",
+      "narration": "你现在不是缺工具，而是在手动刷热点和系统采集之间没有做选择。",
+      "subtitleCN": "不是你不努力，是流程太散",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "split_slide_in",
+      "snapshotAt": 6
+    },
+    {
+      "beat_id": "B03",
+      "time": "12-20",
+      "template": "THREE_STEP_PIPELINE",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "ThreeStepPipeline",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "Hermes -> Obsidian -> llm-wiki",
+      "narration": "我的做法是 Hermes 采集，Obsidian 沉淀，llm-wiki 编译。",
+      "subtitleCN": "先采集，再沉淀，再编译",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "node_cascade",
+      "snapshotAt": 14
+    },
+    {
+      "beat_id": "B04",
+      "time": "20-28",
+      "template": "DETAILS_TABLE_OVERLAY",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "DetailsTableOverlay",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "选题库打分",
+      "narration": "每条素材都要进入选题库，用痛点、复用、转化三个字段打分。",
+      "subtitleCN": "每条素材都要有判断标准",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "table_reveal",
+      "snapshotAt": 24
+    },
+    {
+      "beat_id": "B05",
+      "time": "28-36",
+      "template": "MULTI_AGENT_COLLABORATION",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "MultiAgentPanel",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "一套系统，多 Agent 协作",
+      "narration": "后面不是一个助手在干活，而是 Hermes、Codex、Claude Code 一起分工。",
+      "subtitleCN": "不是一个助手，是一支队伍",
+      "colorTheme": "purple-agent",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "agent_stack",
+      "snapshotAt": 32
+    },
+    {
+      "beat_id": "B06",
+      "time": "36-44",
+      "template": "MULTI_AGENT_COLLABORATION",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "MultiAgentPanel",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "AI 团队开始分工",
+      "narration": "一个负责采集，一个负责编译，一个负责产出，一个负责视频包装。",
+      "subtitleCN": "一个负责采集，一个负责产出",
+      "colorTheme": "purple-agent",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "agent_stack",
+      "snapshotAt": 40
+    },
+    {
+      "beat_id": "B07",
+      "time": "44-52",
+      "template": "PROOF_SCREENSHOT_OVERLAY",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "ProofScreenshotOverlay",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "真实输出证明",
+      "narration": "这一段后面要接真实截图，不够素材时只放抽象占位，不伪造平台界面。",
+      "subtitleCN": "后面要接真实截图资产",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "proof_drop",
+      "snapshotAt": 48
+    },
+    {
+      "beat_id": "B08",
+      "time": "52-60",
+      "template": "CTA_BIG_ENDING",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "CTABigEnding",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "回复 系统",
+      "narration": "你可以先回复系统，领取一张流程图，照着把第一版搭起来。",
+      "subtitleCN": "先领流程图，照着搭起来",
+      "colorTheme": "yellow-value",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "cta_focus",
+      "snapshotAt": 56
+    }
+  ]
+}

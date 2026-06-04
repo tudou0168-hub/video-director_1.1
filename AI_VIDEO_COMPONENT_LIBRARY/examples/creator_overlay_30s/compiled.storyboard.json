@@ -1,0 +1,96 @@
+{
+  "mode": "creator_overlay_30s",
+  "duration": 30,
+  "storyboard": [
+    {
+      "beat_id": "B01",
+      "time": "0-5",
+      "template": "BIG_TITLE_HOOK",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "BigKineticTitle",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "工具越多，越累",
+      "narration": "为什么你学了很多 AI 工具，还是没有真正提高效率？",
+      "subtitleCN": "你学了很多 AI 工具",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "kinetic_title_in",
+      "snapshotAt": 30
+    },
+    {
+      "beat_id": "B02",
+      "time": "5-12",
+      "template": "OPTION_SPLIT_CARD",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "OptionSplitCard",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "手动刷热点 vs Hermes 自动采集",
+      "narration": "你现在不是缺工具，而是在手动刷热点和系统采集之间没有做选择。",
+      "subtitleCN": "不是你不努力，是流程太散",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "split_slide_in",
+      "snapshotAt": 180
+    },
+    {
+      "beat_id": "B03",
+      "time": "12-20",
+      "template": "THREE_STEP_PIPELINE",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "ThreeStepPipeline",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "Hermes -> Obsidian -> llm-wiki",
+      "narration": "我的做法是 Hermes 采集，Obsidian 沉淀，llm-wiki 编译。",
+      "subtitleCN": "先采集，再沉淀，再编译",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "node_cascade",
+      "snapshotAt": 420
+    },
+    {
+      "beat_id": "B04",
+      "time": "20-27",
+      "template": "DETAILS_TABLE_OVERLAY",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "DetailsTableOverlay",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "选题库打分",
+      "narration": "每条素材都要进入选题库，用痛点、复用、转化三个字段打分。",
+      "subtitleCN": "每条素材都要有判断标准",
+      "colorTheme": "yellow-value",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "table_reveal",
+      "snapshotAt": 660
+    },
+    {
+      "beat_id": "B05",
+      "time": "27-30",
+      "template": "CTA_BIG_ENDING",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "CTABigEnding",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "回复 系统",
+      "narration": "你可以先回复系统，领取一张流程图，照着把第一版搭起来。",
+      "subtitleCN": "先领一张流程图，照着搭",
+      "colorTheme": "blue-info",
+      "safeZone": "right_overlay_when_face_left",
+      "motion": "cta_focus",
+      "snapshotAt": 870
+    }
+  ]
+}

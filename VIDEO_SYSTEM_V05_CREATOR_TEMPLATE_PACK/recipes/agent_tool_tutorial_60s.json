@@ -1,0 +1,14 @@
+{
+  "id": "AI_Tool_Tutorial_60s",
+  "mode": "talking_head_overlay",
+  "duration": 60,
+  "snapshotAt": [1, 6, 14, 24, 36, 46, 56],
+  "segments": [
+    {"start": 0, "end": 6, "template": "TERM_EXPLAINER", "components": ["TopSectionLabel", "StepBadge", "BigKineticTitle", "BottomChineseSubtitle"], "primaryText": "别卡在安装第一步", "subtitleCN": "很多人不是不会用，是装不上", "colorTheme": "red-warning", "safeZone": "LEFT_HERO_ZONE", "motion": "kinetic_title_in", "snapshotAt": 1},
+    {"start": 6, "end": 16, "template": "API_HANDOFF_CARD", "components": ["APIHandoffCard", "StepBadge", "BottomChineseSubtitle"], "primaryText": "下载安装到配置", "subtitleCN": "先把环境跑通", "colorTheme": "blue-info", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "handoff_slide", "snapshotAt": 6},
+    {"start": 16, "end": 28, "template": "THREE_STEP_PIPELINE", "components": ["ThreeStepPipeline", "BottomChineseSubtitle"], "primaryText": "下载 -> 配置 -> 验证", "subtitleCN": "每一步都要能验证", "colorTheme": "green-success", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "node_cascade", "snapshotAt": 24},
+    {"start": 28, "end": 42, "template": "PHONE_INTEGRATION_CARDS", "components": ["PhoneIntegrationCards", "BottomChineseSubtitle"], "primaryText": "接到手机和私域", "subtitleCN": "系统要能被你随手调用", "colorTheme": "yellow-value", "safeZone": "LEFT_HERO_ZONE", "motion": "card_stagger", "snapshotAt": 36},
+    {"start": 42, "end": 52, "template": "PROOF_SCREENSHOT_OVERLAY", "components": ["ProofScreenshotOverlay", "BottomChineseSubtitle"], "primaryText": "真实配置截图", "subtitleCN": "不要伪造平台界面", "colorTheme": "blue-info", "safeZone": "RIGHT_PROOF_ZONE", "motion": "proof_drop", "snapshotAt": 46},
+    {"start": 52, "end": 60, "template": "COMPLETION_SCORE_ENDING", "components": ["MegaNumber", "CTABigEnding", "BottomChineseSubtitle"], "primaryText": "跑通 1 次", "subtitleCN": "先跑通，再优化", "colorTheme": "green-success", "safeZone": "LEFT_HERO_ZONE", "motion": "score_pop", "snapshotAt": 56}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": "0.4",
+  "purpose": "Annotated reference images feed rules, not direct visual copying.",
+  "classes": [
+    {
+      "id": "big_word_impact",
+      "name": "Big Word Impact",
+      "representative_count": "3-5",
+      "upgrade_targets": ["BigKineticTitle", "TopSectionLabel"]
+    },
+    {
+      "id": "chart_explanation",
+      "name": "Chart Explanation",
+      "representative_count": "3-5",
+      "upgrade_targets": ["KPIBigNumberOverlay", "ScoringDimensionPanel"]
+    },
+    {
+      "id": "comparison_card",
+      "name": "Comparison Card",
+      "representative_count": "3-5",
+      "upgrade_targets": ["OptionSplitCard"]
+    },
+    {
+      "id": "comment_evidence",
+      "name": "Comment / Evidence",
+      "representative_count": "3-5",
+      "upgrade_targets": ["ProofScreenshotOverlay", "TermExplainerPanel"]
+    },
+    {
+      "id": "product_case_proof",
+      "name": "Product / Case Proof",
+      "representative_count": "3-5",
+      "upgrade_targets": ["DetailsTableOverlay", "ViralSourceCarousel"]
+    }
+  ]
+}

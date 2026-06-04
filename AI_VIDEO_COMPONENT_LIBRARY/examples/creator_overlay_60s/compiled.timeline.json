@@ -1,0 +1,349 @@
+{
+  "mode": "talking_head_overlay",
+  "width": 1920,
+  "height": 1080,
+  "duration": 60,
+  "media": {
+    "audio": "assets/talking-head-audio-master.wav",
+    "video": "assets/talking-head-input.mp4"
+  },
+  "product_id": "P008",
+  "recipe": "AI_Content_System_60s",
+  "snapshot_at": [
+    1,
+    6,
+    14,
+    24,
+    32,
+    40,
+    48,
+    56
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "end": 5,
+      "text": "为什么你学了很多 AI 工具，还是没有真正提高效率？",
+      "caption_line": "你学了很多 AI 工具",
+      "visual_module": "BigKineticTitle",
+      "component": "BigKineticTitle",
+      "component_props": {
+        "headline": "工具越多，越累",
+        "subline": "不是你不努力，是没有内容系统",
+        "label_en": "AI TOOLS",
+        "label_cn": "工具焦虑",
+        "step": "01",
+        "step_label": "PROBLEM"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "kinetic_title_in",
+      "emphasis_keyword": "工具越多，越累",
+      "density": "high",
+      "semantic_role": "pain_hook",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "BIG_TITLE_HOOK",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "BigKineticTitle",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "工具越多，越累",
+      "subtitleCN": "你学了很多 AI 工具",
+      "snapshotAt": 1
+    },
+    {
+      "start": 5,
+      "end": 12,
+      "text": "你现在不是缺工具，而是在手动刷热点和系统采集之间没有做选择。",
+      "caption_line": "不是你不努力，是流程太散",
+      "visual_module": "OptionSplitCard",
+      "component": "OptionSplitCard",
+      "component_props": {
+        "left": "手动刷热点",
+        "right": "Hermes 自动采集",
+        "label_en": "CHOICE",
+        "label_cn": "两种路径",
+        "step": "01",
+        "step_label": "采集"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "split_slide_in",
+      "emphasis_keyword": "手动刷热点 vs Hermes 自动采集",
+      "density": "medium",
+      "semantic_role": "option_compare",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "OPTION_SPLIT_CARD",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "OptionSplitCard",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "手动刷热点 vs Hermes 自动采集",
+      "subtitleCN": "不是你不努力，是流程太散",
+      "snapshotAt": 6
+    },
+    {
+      "start": 12,
+      "end": 20,
+      "text": "我的做法是 Hermes 采集，Obsidian 沉淀，llm-wiki 编译。",
+      "caption_line": "先采集，再沉淀，再编译",
+      "visual_module": "ThreeStepPipeline",
+      "component": "ThreeStepPipeline",
+      "component_props": {
+        "steps": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki"
+        ],
+        "label_en": "SYSTEM FLOW",
+        "label_cn": "系统流程",
+        "step": "02",
+        "step_label": "编译"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "node_cascade",
+      "emphasis_keyword": "Hermes -> Obsidian -> llm-wiki",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "THREE_STEP_PIPELINE",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "ThreeStepPipeline",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "Hermes -> Obsidian -> llm-wiki",
+      "subtitleCN": "先采集，再沉淀，再编译",
+      "snapshotAt": 14
+    },
+    {
+      "start": 20,
+      "end": 28,
+      "text": "每条素材都要进入选题库，用痛点、复用、转化三个字段打分。",
+      "caption_line": "每条素材都要有判断标准",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
+      "component_props": {
+        "title": "选题库打分",
+        "rows": [
+          [
+            "痛点",
+            "9.2"
+          ],
+          [
+            "复用",
+            "8.8"
+          ],
+          [
+            "转化",
+            "8.5"
+          ]
+        ],
+        "label_en": "SCORING",
+        "label_cn": "判断标准",
+        "step": "03",
+        "step_label": "评分"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "table_reveal",
+      "emphasis_keyword": "选题库打分",
+      "density": "medium",
+      "semantic_role": "proof",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "DETAILS_TABLE_OVERLAY",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "DetailsTableOverlay",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "选题库打分",
+      "subtitleCN": "每条素材都要有判断标准",
+      "snapshotAt": 24
+    },
+    {
+      "start": 28,
+      "end": 36,
+      "text": "后面不是一个助手在干活，而是 Hermes、Codex、Claude Code 一起分工。",
+      "caption_line": "不是一个助手，是一支队伍",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
+      "component_props": {
+        "title": "多 Agent 协作",
+        "agents": [
+          [
+            "Hermes",
+            "采集"
+          ],
+          [
+            "Codex",
+            "产出"
+          ],
+          [
+            "Claude Code",
+            "执行"
+          ],
+          [
+            "HyperFrames",
+            "包装"
+          ]
+        ],
+        "label_en": "MULTI AGENT",
+        "label_cn": "协作分工",
+        "step": "04",
+        "step_label": "协作"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "agent_stack",
+      "emphasis_keyword": "一套系统，多 Agent 协作",
+      "density": "medium",
+      "semantic_role": "multi_agent",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "MULTI_AGENT_COLLABORATION",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "MultiAgentPanel",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "一套系统，多 Agent 协作",
+      "subtitleCN": "不是一个助手，是一支队伍",
+      "snapshotAt": 32
+    },
+    {
+      "start": 36,
+      "end": 44,
+      "text": "一个负责采集，一个负责编译，一个负责产出，一个负责视频包装。",
+      "caption_line": "一个负责采集，一个负责产出",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
+      "component_props": {
+        "title": "AI 团队分工",
+        "agents": [
+          [
+            "Hermes",
+            "情报"
+          ],
+          [
+            "llm-wiki",
+            "编译"
+          ],
+          [
+            "Codex",
+            "内容"
+          ],
+          [
+            "HyperFrames",
+            "视频"
+          ]
+        ],
+        "label_en": "AI TEAM",
+        "label_cn": "分工",
+        "step": "05",
+        "step_label": "团队"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "agent_stack",
+      "emphasis_keyword": "AI 团队开始分工",
+      "density": "medium",
+      "semantic_role": "multi_agent",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none",
+      "template": "MULTI_AGENT_COLLABORATION",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "MultiAgentPanel",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "AI 团队开始分工",
+      "subtitleCN": "一个负责采集，一个负责产出",
+      "snapshotAt": 40
+    },
+    {
+      "start": 44,
+      "end": 52,
+      "text": "这一段后面要接真实截图，不够素材时只放抽象占位，不伪造平台界面。",
+      "caption_line": "后面要接真实截图资产",
+      "visual_module": "ProofScreenshotOverlay",
+      "component": "ProofScreenshotOverlay",
+      "component_props": {
+        "title": "真实输出证明",
+        "asset_path": "assets/proof/demo-proof-output.png",
+        "asset_label": "演示截图，正式发版请替换",
+        "asset_alt": "P008 60 秒小样关键帧截图",
+        "asset_status": "DEMO_RENDER_SNAPSHOT",
+        "label_en": "PROOF",
+        "label_cn": "证据资产",
+        "step": "06",
+        "step_label": "证明"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "proof_drop",
+      "emphasis_keyword": "真实输出证明",
+      "density": "medium",
+      "semantic_role": "screenshot_proof",
+      "proof_point": "TODO_ASSET_REQUIRED",
+      "cta_type": "none",
+      "template": "PROOF_SCREENSHOT_OVERLAY",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "ProofScreenshotOverlay",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "真实输出证明",
+      "subtitleCN": "后面要接真实截图资产",
+      "snapshotAt": 48
+    },
+    {
+      "start": 52,
+      "end": 60,
+      "text": "你可以先回复系统，领取一张流程图，照着把第一版搭起来。",
+      "caption_line": "先领流程图，照着搭起来",
+      "visual_module": "CTABigEnding",
+      "component": "CTABigEnding",
+      "component_props": {
+        "keyword": "系统",
+        "result": "领取一张流程图，先照着搭起来",
+        "label_en": "NEXT STEP",
+        "label_cn": "领取资料",
+        "step": "OK",
+        "step_label": "领取"
+      },
+      "layout_slot": "right",
+      "safe_zone": "right_overlay_when_face_left",
+      "animation": "cta_focus",
+      "emphasis_keyword": "回复 系统",
+      "density": "high",
+      "semantic_role": "cta",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "comment_keyword",
+      "template": "CTA_BIG_ENDING",
+      "components": [
+        "TopSectionLabel",
+        "StepBadge",
+        "CTABigEnding",
+        "BottomChineseSubtitle"
+      ],
+      "primaryText": "回复 系统",
+      "subtitleCN": "先领流程图，照着搭起来",
+      "snapshotAt": 56
+    }
+  ]
+}

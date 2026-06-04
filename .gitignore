@@ -1,0 +1,40 @@
+# Large media files
+test-assets/
+*.mp4
+*.mov
+*.m4a
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+assets/**/*.mp4
+assets/**/*.mov
+assets/**/*.m4a
+assets/**/*.mp3
+assets/**/*.wav
+assets/**/*.png
+outputs/
+snapshots/
+QA/
+
+# Render scratch output
+renders/
+work-*/
+
+# Dependencies
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log

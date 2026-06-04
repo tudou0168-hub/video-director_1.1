@@ -1,0 +1,415 @@
+{
+  "mode": "article_tts",
+  "width": 1920,
+  "height": 1080,
+  "duration": 60,
+  "media": {
+    "audio": "assets/narration.mp3",
+    "video": null
+  },
+  "product_id": "P008",
+  "recipe": "TTS_60s_Explainer",
+  "segments": [
+    {
+      "start": 0,
+      "end": 3.33,
+      "text": "为什么你学了很多 AI 工具",
+      "caption_line": "为什么你学了很多 AI 工具",
+      "visual_module": "HookScene",
+      "component": "HookScene",
+      "component_props": {
+        "kicker": "问题命中",
+        "headline": "为什么你学了很多 AI 工具",
+        "subline": "先看问题，再看工具"
+      },
+      "layout_slot": "center",
+      "safe_zone": "default",
+      "animation": "scale_blur_in",
+      "emphasis_keyword": " AI 工具",
+      "density": "high",
+      "semantic_role": "pain_hook",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 3.33,
+      "end": 6.66,
+      "text": "还是没有真正提高效率",
+      "caption_line": "还是没有真正提高效率",
+      "visual_module": "HookScene",
+      "component": "HookScene",
+      "component_props": {
+        "kicker": "问题命中",
+        "headline": "还是没有真正提高效率",
+        "subline": "先看问题，再看工具"
+      },
+      "layout_slot": "center",
+      "safe_zone": "default",
+      "animation": "scale_blur_in",
+      "emphasis_keyword": "真正提高效率",
+      "density": "high",
+      "semantic_role": "pain_hook",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 6.66,
+      "end": 9.99,
+      "text": "不是你不努力",
+      "caption_line": "不是你不努力",
+      "visual_module": "HookScene",
+      "component": "HookScene",
+      "component_props": {
+        "kicker": "问题命中",
+        "headline": "不是你不努力",
+        "subline": "先看问题，再看工具"
+      },
+      "layout_slot": "center",
+      "safe_zone": "default",
+      "animation": "scale_blur_in",
+      "emphasis_keyword": "不是你不努力",
+      "density": "high",
+      "semantic_role": "pain_hook",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 9.99,
+      "end": 13.32,
+      "text": "是你一直在学看起来很有用的东西",
+      "caption_line": "是你一直在学看起来很有用的东西",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "是你一直在学看起来很有用的东西"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": "很有用的东西",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 13.32,
+      "end": 16.65,
+      "text": "真正的问题",
+      "caption_line": "真正的问题",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "真正的问题"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": "真正的问题",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 16.65,
+      "end": 19.98,
+      "text": "是你的工作没有变成流程",
+      "caption_line": "是你的工作没有变成流程",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": "没有变成流程",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 19.98,
+      "end": 23.31,
+      "text": "每天收藏教程",
+      "caption_line": "每天收藏教程",
+      "visual_module": "KPIWidget",
+      "component": "KPIWidget",
+      "component_props": {
+        "value": "3步",
+        "label": "把抽象努力变成可检查结果",
+        "unit": ""
+      },
+      "layout_slot": "left",
+      "safe_zone": "default",
+      "animation": "count_up",
+      "emphasis_keyword": "每天收藏教程",
+      "density": "medium",
+      "semantic_role": "kpi",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 23.31,
+      "end": 26.64,
+      "text": "时间被消耗",
+      "caption_line": "时间被消耗",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "时间被消耗"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": "时间被消耗",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 26.64,
+      "end": 29.97,
+      "text": "结果没有沉淀",
+      "caption_line": "结果没有沉淀",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "结果没有沉淀"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": "结果没有沉淀",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 29.97,
+      "end": 33.3,
+      "text": "我现在只看 3 个节点",
+      "caption_line": "我现在只看 3 个节点",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "我现在只看 3 个节点"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": " 3 个节点",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 33.3,
+      "end": 36.63,
+      "text": "输入、处理、输出",
+      "caption_line": "输入 处理 输出",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "正确做法",
+        "body": "输入 处理 输出"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "panel_expand",
+      "emphasis_keyword": " 处理 输出",
+      "density": "medium",
+      "semantic_role": "explain",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 36.63,
+      "end": 39.96,
+      "text": "Hermes 负责捞素材",
+      "caption_line": "Hermes 负责捞素材",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": " 负责捞素材",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 39.96,
+      "end": 43.29,
+      "text": "Obsidian 负责沉淀",
+      "caption_line": "Obsidian 负责沉淀",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": "n 负责沉淀",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 43.29,
+      "end": 46.62,
+      "text": "llm-wiki 负责检索",
+      "caption_line": "llm-wiki 负责检索",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": "i 负责检索",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 46.62,
+      "end": 49.95,
+      "text": "Codex 负责改写",
+      "caption_line": "Codex 负责改写",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": "x 负责改写",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 49.95,
+      "end": 53.28,
+      "text": "HyperFrames 负责生成视频",
+      "caption_line": "HyperFrames 负责生成视频",
+      "visual_module": "AgentDashboard",
+      "component": "AgentDashboard",
+      "component_props": {
+        "nodes": [
+          "Hermes",
+          "Obsidian",
+          "llm-wiki",
+          "Codex",
+          "HyperFrames"
+        ],
+        "status": "running"
+      },
+      "layout_slot": "wide",
+      "safe_zone": "default",
+      "animation": "node_cascade",
+      "emphasis_keyword": "负责生成视频",
+      "density": "medium",
+      "semantic_role": "workflow",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 53.28,
+      "end": 56.61,
+      "text": "判断标准很简单",
+      "caption_line": "判断标准很简单",
+      "visual_module": "KPIWidget",
+      "component": "KPIWidget",
+      "component_props": {
+        "value": "3步",
+        "label": "把抽象努力变成可检查结果",
+        "unit": ""
+      },
+      "layout_slot": "left",
+      "safe_zone": "default",
+      "animation": "count_up",
+      "emphasis_keyword": "断标准很简单",
+      "density": "medium",
+      "semantic_role": "kpi",
+      "proof_point": "给出一个可执行判断",
+      "cta_type": "none"
+    },
+    {
+      "start": 56.61,
+      "end": 60,
+      "text": "回复视频模板",
+      "caption_line": "回复视频模板",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
+      "component_props": {
+        "title": "下一步",
+        "body": "回复视频模板"
+      },
+      "layout_slot": "right",
+      "safe_zone": "default",
+      "animation": "pulse_in",
+      "emphasis_keyword": "回复视频模板",
+      "density": "high",
+      "semantic_role": "cta",
+      "proof_point": "评论关键词领取清单",
+      "cta_type": "comment_keyword"
+    }
+  ]
+}

@@ -1,0 +1,346 @@
+{
+  "version": "0.2",
+  "components": {
+    "TopSectionLabel": {
+      "purpose": "左上角栏目标签，定义视频段落上下文",
+      "required_props": [
+        "label_en",
+        "label_cn"
+      ],
+      "default_layout_slot": "top_left",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "low"
+    },
+    "StepBadge": {
+      "purpose": "右上角步骤、状态或进度徽章",
+      "required_props": [
+        "step",
+        "label"
+      ],
+      "default_layout_slot": "top_right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "low"
+    },
+    "BigKineticTitle": {
+      "purpose": "知识博主口播主视觉大中文标题",
+      "required_props": [
+        "headline"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "MegaNumber": {
+      "purpose": "大数字、大结果、大评分",
+      "required_props": [
+        "value",
+        "label"
+      ],
+      "default_layout_slot": "left",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "OptionSplitCard": {
+      "purpose": "两种路径对比，突出错误努力与系统化方案",
+      "required_props": [
+        "left",
+        "right"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "ThreeStepPipeline": {
+      "purpose": "三步流程或工具链流转",
+      "required_props": [
+        "steps"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "DetailsTableOverlay": {
+      "purpose": "字段表、选题库、评分表、证明材料",
+      "required_props": [
+        "title",
+        "rows"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "ScoringQuestionPanel": {
+      "purpose": "大字号筛选问题 checklist，用于把判断标准变成第一眼答案",
+      "required_props": [
+        "title",
+        "questions"
+      ],
+      "default_layout_slot": "impact-checklist",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "MultiAgentPanel": {
+      "purpose": "多 Agent 协作、角色分工、并行能力",
+      "required_props": [
+        "agents"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "ProofScreenshotOverlay": {
+      "purpose": "真实截图或截图占位证明",
+      "required_props": [
+        "title",
+        "asset_status"
+      ],
+      "optional_props": [
+        "asset_path",
+        "asset_label",
+        "asset_alt"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "CTABigEnding": {
+      "purpose": "结果型 CTA 结尾",
+      "required_props": [
+        "keyword",
+        "result"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "BottomChineseSubtitle": {
+      "purpose": "全片纯中文字幕",
+      "required_props": [
+        "caption_line"
+      ],
+      "default_layout_slot": "caption",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "required"
+    },
+    "HookScene": {
+      "purpose": "前 3 秒痛点或结果钩子",
+      "required_props": [
+        "headline",
+        "subline"
+      ],
+      "default_layout_slot": "center",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "ProblemAlert": {
+      "purpose": "放大痛点、损失和错误努力",
+      "required_props": [
+        "problem",
+        "loss"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "TopicCard": {
+      "purpose": "解释核心观点、方法或判断标准",
+      "required_props": [
+        "title",
+        "body"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "KPIWidget": {
+      "purpose": "展示数字、时间、效率和结果",
+      "required_props": [
+        "value",
+        "label"
+      ],
+      "default_layout_slot": "left",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "AgentDashboard": {
+      "purpose": "展示工具链、流程、系统运行状态",
+      "required_props": [
+        "nodes"
+      ],
+      "default_layout_slot": "wide",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "SubtitleSystem": {
+      "purpose": "全片中文字幕",
+      "required_props": [
+        "caption_line"
+      ],
+      "default_layout_slot": "caption",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "required"
+    },
+    "DebugWindowOverlay": {
+      "purpose": "调试窗口、终端、安装状态",
+      "required_props": [
+        "title",
+        "lines"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "KPIBigNumberOverlay": {
+      "purpose": "大数字 KPI、倍率、价格、效率变化",
+      "required_props": [
+        "value",
+        "label"
+      ],
+      "default_layout_slot": "left",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "ScoringDimensionPanel": {
+      "purpose": "维度评分、字段筛选、诊断清单",
+      "required_props": [
+        "dimensions"
+      ],
+      "default_layout_slot": "left",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "TermExplainerPanel": {
+      "purpose": "术语解释、系列编号、概念教学",
+      "required_props": [
+        "term",
+        "definition"
+      ],
+      "default_layout_slot": "right",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "ViralSourceCarousel": {
+      "purpose": "爆款信源、案例封面横排、热点扫描",
+      "required_props": [
+        "sources"
+      ],
+      "default_layout_slot": "wide",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "high"
+    },
+    "APIHandoffCard": {
+      "purpose": "API Key、配置交接、工具部署",
+      "required_props": [
+        "from",
+        "to",
+        "status"
+      ],
+      "default_layout_slot": "center",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    },
+    "PhoneIntegrationCards": {
+      "purpose": "手机端、多平台、私域承接",
+      "required_props": [
+        "apps"
+      ],
+      "default_layout_slot": "center",
+      "allowed_modes": [
+        "article_tts",
+        "talking_head_overlay"
+      ],
+      "density": "medium"
+    }
+  },
+  "legacy_visual_module_map": {
+    "hero_kpi": "HookScene",
+    "comparison_cards": "ProblemAlert",
+    "hud_panel": "TopicCard",
+    "workflow_steps": "AgentDashboard",
+    "cta_card": "TopicCard",
+    "creator_big_title": "BigKineticTitle",
+    "creator_option_split": "OptionSplitCard",
+    "creator_pipeline": "ThreeStepPipeline",
+    "creator_details_table": "DetailsTableOverlay",
+    "creator_cta": "CTABigEnding",
+    "kpi_big_number": "KPIBigNumberOverlay",
+    "debug_window": "DebugWindowOverlay",
+    "scoring_dimensions": "ScoringDimensionPanel",
+    "term_explainer": "TermExplainerPanel",
+    "viral_sources": "ViralSourceCarousel",
+    "api_handoff": "APIHandoffCard",
+    "phone_integration": "PhoneIntegrationCards"
+  }
+}

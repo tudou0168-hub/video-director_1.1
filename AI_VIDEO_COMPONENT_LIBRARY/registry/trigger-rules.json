@@ -1,0 +1,66 @@
+{
+  "version": "0.3",
+  "rules": [
+    {
+      "semantic_role": "pain_hook",
+      "keywords": ["为什么", "不是", "卡住", "赚不到", "时间不够", "学了很多", "还是没有", "越多越累"],
+      "component": "BigKineticTitle",
+      "density": "high",
+      "animation": "kinetic_title_in"
+    },
+    {
+      "semantic_role": "option_compare",
+      "keywords": ["两个选择", "手动", "自动", "vs", "VS", "或者", "还是"],
+      "component": "OptionSplitCard",
+      "density": "high",
+      "animation": "split_slide_in"
+    },
+    {
+      "semantic_role": "workflow",
+      "keywords": ["Hermes", "Obsidian", "llm-wiki", "Codex", "Claude Code", "HyperFrames", "流程", "系统", "自动化"],
+      "component": "ThreeStepPipeline",
+      "density": "medium",
+      "animation": "node_cascade"
+    },
+    {
+      "semantic_role": "proof",
+      "keywords": ["选题库", "评分", "字段", "表格", "证明", "复盘", "判断标准"],
+      "component": "DetailsTableOverlay",
+      "density": "medium",
+      "animation": "table_reveal"
+    },
+    {
+      "semantic_role": "multi_agent",
+      "keywords": ["多 Agent", "并行", "协作", "团队", "分工"],
+      "component": "MultiAgentPanel",
+      "density": "medium",
+      "animation": "agent_stack"
+    },
+    {
+      "semantic_role": "screenshot_proof",
+      "keywords": ["截图", "真实输出", "后台", "页面", "案例"],
+      "component": "ProofScreenshotOverlay",
+      "density": "medium",
+      "animation": "proof_drop"
+    },
+    {
+      "semantic_role": "kpi",
+      "keywords": ["分钟", "小时", "天", "倍", "%", "％", "收入", "播放", "下载", "购买", "单"],
+      "component": "MegaNumber",
+      "density": "high",
+      "animation": "count_up"
+    },
+    {
+      "semantic_role": "cta",
+      "keywords": ["回复", "领取", "下载", "购买", "资料包", "模板", "关键词"],
+      "component": "CTABigEnding",
+      "density": "high",
+      "animation": "cta_focus"
+    }
+  ],
+  "fallback": {
+    "component": "BigKineticTitle",
+    "density": "medium",
+    "animation": "kinetic_title_in"
+  }
+}

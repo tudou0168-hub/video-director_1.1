@@ -1,0 +1,3 @@
+.vf-agent-title { font-family: var(--vf-mono); color: var(--vf-cyan); font-size: 22px; }
+.vf-agent-nodes { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.vf-agent-node { padding: 20px; border: 1.5px solid rgba(103,232,249,.62); background: rgba(8,12,20,.04); box-shadow: 0 0 22px rgba(103,232,249,.12); font-size: 28px; font-weight: 850; }

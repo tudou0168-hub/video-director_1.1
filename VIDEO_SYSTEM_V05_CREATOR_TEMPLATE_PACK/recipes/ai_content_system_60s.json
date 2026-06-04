@@ -1,0 +1,15 @@
+{
+  "id": "AI_Content_System_60s",
+  "mode": "talking_head_overlay",
+  "duration": 60,
+  "snapshotAt": [1, 6, 14, 24, 36, 46, 56],
+  "segments": [
+    {"start": 0, "end": 5, "template": "BIG_TITLE_HOOK", "components": ["TopSectionLabel", "StepBadge", "BigKineticTitle", "BottomChineseSubtitle"], "primaryText": "工具越多，越累", "subtitleCN": "你学了很多 AI 工具", "colorTheme": "blue-info", "safeZone": "LEFT_HERO_ZONE", "motion": "kinetic_title_in", "snapshotAt": 1},
+    {"start": 5, "end": 12, "template": "OPTION_SPLIT_CARD", "components": ["OptionSplitCard", "StepBadge", "BottomChineseSubtitle"], "primaryText": "手动刷热点 vs Hermes 自动采集", "subtitleCN": "不是你不努力，是流程太散", "colorTheme": "blue-green", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "split_slide_in", "snapshotAt": 6},
+    {"start": 12, "end": 22, "template": "THREE_STEP_PIPELINE", "components": ["ThreeStepPipeline", "StepBadge", "BottomChineseSubtitle"], "primaryText": "Hermes -> Obsidian -> llm-wiki", "subtitleCN": "先采集，再沉淀，再编译", "colorTheme": "blue-info", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "node_cascade", "snapshotAt": 14},
+    {"start": 22, "end": 32, "template": "DETAILS_TABLE_OVERLAY", "components": ["DetailsTableOverlay", "ScoringDimensionPanel", "BottomChineseSubtitle"], "primaryText": "选题库打分", "subtitleCN": "每条素材都要有判断标准", "colorTheme": "green-success", "safeZone": "RIGHT_PROOF_ZONE", "motion": "table_reveal", "snapshotAt": 24},
+    {"start": 32, "end": 42, "template": "MULTI_AGENT_COLLABORATION", "components": ["MultiAgentPanel", "MegaNumber", "BottomChineseSubtitle"], "primaryText": "多 Agent 协作", "subtitleCN": "不是一个助手，是一支队伍", "colorTheme": "purple-agent", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "agent_stack", "snapshotAt": 36},
+    {"start": 42, "end": 52, "template": "PROOF_SCREENSHOT_OVERLAY", "components": ["ProofScreenshotOverlay", "TopSectionLabel", "BottomChineseSubtitle"], "primaryText": "真实输出证明", "subtitleCN": "这里要接真实截图资产", "colorTheme": "yellow-value", "safeZone": "RIGHT_PROOF_ZONE", "motion": "proof_drop", "snapshotAt": 46},
+    {"start": 52, "end": 60, "template": "CTA_BIG_ENDING", "components": ["CTABigEnding", "BottomChineseSubtitle"], "primaryText": "回复 系统", "subtitleCN": "先领流程图，照着搭起来", "colorTheme": "yellow-value", "safeZone": "RIGHT_PROOF_ZONE", "motion": "cta_focus", "snapshotAt": 56}
+  ]
+}

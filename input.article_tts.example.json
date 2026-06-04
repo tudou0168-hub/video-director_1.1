@@ -1,0 +1,16 @@
+{
+  "mode": "article_tts",
+  "title": "普通口播视频为什么看起来像 PPT",
+  "script_path": "script.txt",
+  "audio_path": "assets/narration.mp3",
+  "subtitle_source": "tts_timestamp_or_whisper_zh",
+  "product_id": "P008",
+  "lead_magnet": "LM-008-科技感口播视频分镜检查清单",
+  "comment_keyword": "视频模板",
+  "rules": {
+    "caption_language": "zh",
+    "no_english_subtitle": true,
+    "caption_line_length": "8-16 Chinese characters",
+    "master_clock": "audio"
+  }
+}

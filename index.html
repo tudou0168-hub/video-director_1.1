@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=1080" />
+  <title>P008 HyperFrames HUD Component Runtime</title>
+  <script src="assets/gsap.min.js"></script>
+  <script>
+    if (!window.gsap) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --vf-bg: #05070b;
+      --vf-surface: rgba(9, 16, 30, 0.08);
+      --vf-surface-strong: rgba(15, 23, 42, 0.12);
+      --vf-text: #f8fafc;
+      --vf-muted: #94a3b8;
+      --vf-cyan: #67e8f9;
+      --vf-green: #35f59a;
+      --vf-amber: #fbbf24;
+      --vf-danger: #fb7185;
+      --vf-purple: #c084fc;
+      --creator-hud-bg: rgba(8, 12, 20, 0.03);
+      --creator-hud-bg-light: rgba(8, 12, 20, 0.018);
+      --creator-line: rgba(103, 232, 249, 0.72);
+      --creator-line-green: rgba(53, 245, 154, 0.72);
+      --creator-line-yellow: rgba(251, 191, 36, 0.76);
+      --creator-line-red: rgba(251, 113, 133, 0.72);
+      --vf-mono: monospace;
+    }
+    html, body {
+      margin: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: var(--vf-bg);
+      color: var(--vf-text);
+      font-family: sans-serif;
+    }
+    #root {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 30%, rgba(26, 214, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 78% 25%, rgba(53, 245, 154, 0.10), transparent 26%),
+        linear-gradient(135deg, #05070b 0%, #0b1220 52%, #07090f 100%);
+    }
+    #talkingFrame {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      display: none;
+    }
+    #talkingVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.74;
+      filter: contrast(1.08) saturate(0.92);
+    }
+    .mode-v07 #talkingFrame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(3, 5, 10, 0.10) 0%, rgba(3, 5, 10, 0.04) 34%, transparent 62%);
+    }
+    .mode-v07 #talkingVideo {
+      transform: translateX(900px) scale(1.28);
+      transform-origin: center center;
+    }
+    .vf-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background-image:
+        linear-gradient(rgba(103, 232, 249, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(103, 232, 249, 0.08) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 82%);
+      opacity: 0.62;
+    }
+    #vfStage {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+    .vf-module {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      border: 1px solid rgba(125, 211, 252, 0.3);
+      background: rgba(8, 12, 20, 0.06);
+      box-shadow: 0 0 34px rgba(34, 211, 238, 0.12), inset 0 0 22px rgba(103, 232, 249, 0.04);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      padding: 34px;
+      overflow: hidden;
+    }
+    .vf-module::after {
+      content: "";
+      position: absolute;
+      left: -30%;
+      top: 0;
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(103, 232, 249, .14), transparent);
+      transform: skewX(-12deg);
+    }
+    .slot-center { left: 220px; top: 150px; width: 1060px; min-height: 360px; }
+    .slot-left { left: 110px; top: 170px; width: 690px; min-height: 330px; }
+    .slot-right { right: 110px; top: 160px; width: 650px; min-height: 330px; }
+    .slot-wide { left: 120px; right: 120px; top: 245px; min-height: 330px; }
+    .slot-top_left { left: 110px; top: 88px; width: 620px; min-height: 250px; }
+    .slot-top_right { right: 110px; top: 88px; width: 620px; min-height: 250px; }
+    .mode-talking .slot-right {
+      right: 92px;
+      top: 150px;
+      width: 600px;
+      min-height: 320px;
+    }
+    .mode-talking .slot-center {
+      left: auto;
+      right: 96px;
+      top: 140px;
+      width: 620px;
+      min-height: 300px;
+    }
+    .mode-talking .slot-wide {
+      left: auto;
+      right: 92px;
+      top: 160px;
+      width: 620px;
+      min-height: 430px;
+    }
+    .mode-talking #root {
+      background: transparent;
+    }
+    .mode-talking #talkingVideo {
+      opacity: 1;
+      filter: none;
+    }
+    .mode-talking .vf-grid {
+      opacity: 0.14;
+    }
+    .mode-talking .vf-module {
+      background: rgba(8, 12, 20, 0.045);
+      box-shadow: 0 0 32px rgba(103, 232, 249, 0.12), inset 0 0 22px rgba(103, 232, 249, 0.04);
+      backdrop-filter: blur(8px) saturate(150%);
+      -webkit-backdrop-filter: blur(8px) saturate(150%);
+      border-color: rgba(103, 232, 249, 0.56);
+    }
+    .vf-kicker, .vf-label, .vf-agent-title {
+      font-family: monospace;
+      color: var(--vf-cyan);
+      font-size: 22px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .vf-hook h1 {
+      margin: 16px 0 0;
+      font-size: 84px;
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+    .vf-hook p {
+      margin: 22px 0 0;
+      color: var(--vf-muted);
+      font-size: 34px;
+      line-height: 1.3;
+      font-weight: 760;
+    }
+    .vf-alert { border-color: rgba(251, 191, 36, .56); }
+    .vf-alert .vf-label { color: var(--vf-amber); }
+    .vf-alert-title {
+      margin-top: 16px;
+      font-size: 46px;
+      line-height: 1.22;
+      font-weight: 930;
+    }
+    .vf-alert-loss {
+      margin-top: 18px;
+      color: var(--vf-muted);
+      font-size: 30px;
+      line-height: 1.38;
+      font-weight: 760;
+    }
+    .vf-topic-title {
+      color: var(--vf-cyan);
+      font-size: 30px;
+      font-weight: 900;
+    }
+    .vf-topic-body {
+      margin-top: 24px;
+      font-size: 46px;
+      line-height: 1.28;
+      font-weight: 900;
+    }
+    .vf-kpi-value {
+      font-size: 112px;
+      line-height: 1;
+      color: var(--vf-green);
+      font-weight: 950;
+      text-shadow: 0 0 28px rgba(53, 245, 154, 0.45);
+      font-variant-numeric: tabular-nums;
+    }
+    .vf-kpi-label {
+      margin-top: 18px;
+      font-size: 34px;
+      line-height: 1.3;
+      font-weight: 850;
+    }
+    .vf-kpi-bar {
+      margin-top: 28px;
+      height: 10px;
+      background: rgba(255,255,255,.12);
+      overflow: hidden;
+      border-radius: 999px;
+    }
+    .vf-kpi-bar span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--vf-cyan), var(--vf-green));
+      transform-origin: left center;
+    }
+    .vf-agent-nodes {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+    .vf-agent-node {
+      min-height: 108px;
+      padding: 20px;
+      border: 1px solid rgba(103,232,249,.28);
+      background: rgba(8, 12, 20, 0.045);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 860;
+      text-align: center;
+      position: relative;
+    }
+    .vf-agent-node::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--vf-green);
+      box-shadow: 0 0 18px rgba(53,245,154,.8);
+    }
+    .mode-talking .vf-agent-nodes {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .mode-talking .vf-agent-node {
+      min-height: 92px;
+      padding: 16px;
+      font-size: 24px;
+    }
+    .mode-talking .vf-topic-body {
+      font-size: 38px;
+      line-height: 1.24;
+    }
+    .mode-talking .vf-proof {
+      font-size: 22px;
+    }
+    .creator-scene {
+      position: absolute;
+      inset: 0;
+      z-index: 24;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .creator-top-label {
+      position: absolute;
+      left: 54px;
+      top: 58px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-family: monospace;
+      color: var(--vf-cyan);
+      text-shadow: 0 0 20px rgba(103, 232, 249, 0.35);
+    }
+    .creator-top-label::before {
+      content: "";
+      width: 4px;
+      height: 54px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--vf-cyan), var(--vf-green));
+      box-shadow: 0 0 18px rgba(103, 232, 249, 0.5);
+    }
+    .creator-label-en {
+      font-size: 28px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .creator-label-cn {
+      margin-top: 8px;
+      color: rgba(248, 250, 252, 0.78);
+      font-size: 24px;
+      letter-spacing: 0;
+      font-family: sans-serif;
+      font-weight: 800;
+    }
+    .creator-step-badge {
+      position: absolute;
+      right: 80px;
+      top: 62px;
+      min-width: 250px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 0 26px;
+      border: 2px solid rgba(103, 232, 249, 0.68);
+      border-radius: 999px;
+      background: rgba(8, 12, 20, 0.035);
+      backdrop-filter: blur(7px) saturate(150%);
+      -webkit-backdrop-filter: blur(7px) saturate(150%);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(103, 232, 249, 0.14), inset 0 0 18px rgba(103, 232, 249, 0.07);
+      font-family: monospace;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+    }
+    .creator-step-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--vf-cyan);
+      color: #031018;
+      font-size: 22px;
+      font-weight: 950;
+      box-shadow: 0 0 22px rgba(103, 232, 249, 0.62);
+    }
+    .creator-step-text {
+      font-size: 23px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .creator-main {
+      position: absolute;
+      right: 84px;
+      top: 168px;
+      width: 660px;
+      min-height: 410px;
+      padding: 38px;
+      border: 0;
+      border-radius: 18px;
+      background: var(--creator-hud-bg);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      overflow: hidden;
+    }
+    .creator-main::before {
+      content: none;
+    }
+    .creator-main.left {
+      left: 72px;
+      right: auto;
+      width: 710px;
+    }
+    .creator-main.layout-left {
+      left: 72px;
+      right: auto;
+      width: 710px;
+    }
+    .creator-main.layout-right {
+      right: 84px;
+      left: auto;
+      width: 660px;
+    }
+    .creator-main.wide {
+      left: 360px;
+      right: 180px;
+      width: auto;
+    }
+    .creator-main.layout-wide {
+      left: 360px;
+      right: 180px;
+      width: auto;
+    }
+    .mode-talking .creator-main.wide {
+      left: auto;
+      right: 84px;
+      width: 660px;
+    }
+    .mode-talking .creator-main.layout-wide {
+      left: auto;
+      right: 84px;
+      width: 660px;
+    }
+    .mode-v07 .creator-main {
+      top: 152px;
+      min-height: 500px;
+      background: rgba(8, 12, 20, 0.03);
+      border: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      overflow: visible;
+    }
+    .mode-v07 .creator-main.layout-impact-left {
+      left: 78px;
+      right: auto;
+      width: 780px;
+    }
+    .mode-v07 .creator-main.layout-impact-wide {
+      left: 70px;
+      right: auto;
+      width: 1120px;
+      min-height: 520px;
+    }
+    .mode-v07 .creator-main.layout-impact-table {
+      left: 76px;
+      right: auto;
+      width: 980px;
+      min-height: 560px;
+    }
+    .mode-v07 .creator-main.layout-impact-checklist {
+      left: 76px;
+      right: auto;
+      width: 1000px;
+      min-height: 560px;
+    }
+    .mode-v07 .creator-main.layout-impact-cta {
+      left: 76px;
+      right: auto;
+      width: 980px;
+      min-height: 560px;
+    }
+    .creator-mega-title {
+      margin: 10px 0 0;
+      font-size: 116px;
+      line-height: 1.02;
+      font-weight: 950;
+      letter-spacing: 0;
+      color: #fff;
+      text-shadow: 0 8px 28px rgba(0, 0, 0, 0.58), 0 0 22px rgba(103, 232, 249, 0.22);
+    }
+    .creator-mega-title mark {
+      color: var(--vf-amber);
+      background: transparent;
+      text-shadow: 0 0 24px rgba(251, 191, 36, 0.35);
+    }
+    .creator-subline {
+      margin-top: 22px;
+      font-size: 34px;
+      line-height: 1.28;
+      color: rgba(226, 232, 240, 0.78);
+      font-weight: 850;
+    }
+    .creator-emphasis {
+      color: var(--vf-amber);
+      text-shadow: 0 0 24px rgba(251, 191, 36, 0.34);
+    }
+    .creator-emphasis.tool {
+      color: var(--vf-cyan);
+      text-shadow: 0 0 24px rgba(103, 232, 249, 0.34);
+    }
+    .creator-emphasis.result {
+      color: var(--vf-green);
+      text-shadow: 0 0 24px rgba(53, 245, 154, 0.32);
+    }
+    .creator-emphasis.loss {
+      color: var(--vf-danger);
+      text-shadow: 0 0 22px rgba(251, 113, 133, 0.30);
+    }
+    .creator-split {
+      display: grid;
+      grid-template-columns: 1fr 78px 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 14px;
+    }
+    .creator-option {
+      min-height: 214px;
+      padding: 28px;
+      border: 1px solid rgba(251, 113, 133, 0.36);
+      border-left: 5px solid var(--creator-line-red);
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(251, 113, 133, 0.026), rgba(8, 12, 20, 0.012));
+      box-shadow: 0 0 24px rgba(251, 113, 133, 0.10);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .creator-option.good {
+      border-color: rgba(53, 245, 154, 0.42);
+      border-left-color: var(--creator-line-green);
+      background: linear-gradient(135deg, rgba(53, 245, 154, 0.026), rgba(8, 12, 20, 0.012));
+      box-shadow: 0 0 30px rgba(53, 245, 154, 0.14);
+    }
+    .creator-option-title {
+      font-size: 28px;
+      color: var(--vf-muted);
+      font-family: monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .creator-option-body {
+      margin-top: 18px;
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 920;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .creator-or {
+      align-self: center;
+      justify-self: center;
+      width: 68px;
+      height: 68px;
+      border-radius: 6px;
+      border: 1px solid rgba(251, 191, 36, 0.76);
+      display: grid;
+      place-items: center;
+      color: var(--vf-amber);
+      font-family: monospace;
+      font-size: 22px;
+      font-weight: 950;
+      box-shadow: 0 0 22px rgba(251, 191, 36, 0.20);
+    }
+    .creator-pipeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+      position: relative;
+    }
+    .creator-step-card {
+      min-height: 170px;
+      padding: 24px;
+      border: 1px solid rgba(103, 232, 249, 0.46);
+      border-top: 5px solid var(--creator-line);
+      border-radius: 6px;
+      background: linear-gradient(180deg, rgba(103, 232, 249, 0.026), rgba(8, 12, 20, 0.012));
+    }
+    .creator-step-card.active {
+      border-color: rgba(53, 245, 154, 0.55);
+      border-top-color: var(--creator-line-green);
+      box-shadow: 0 0 30px rgba(53, 245, 154, 0.18);
+    }
+    .creator-step-num {
+      color: var(--vf-cyan);
+      font-family: monospace;
+      font-size: 24px;
+      font-weight: 900;
+    }
+    .creator-step-name {
+      margin-top: 18px;
+      font-size: 31px;
+      line-height: 1.16;
+      font-weight: 920;
+      word-break: keep-all;
+    }
+    .creator-table-title {
+      font-size: 60px;
+      line-height: 1.05;
+      font-weight: 950;
+      text-shadow: 0 0 24px rgba(103, 232, 249, 0.22);
+    }
+    .creator-table-title::after {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 5px;
+      margin-top: 18px;
+      background: linear-gradient(90deg, var(--vf-amber), var(--vf-cyan), transparent);
+      box-shadow: 0 0 18px rgba(103, 232, 249, 0.35);
+    }
+    .creator-table {
+      margin-top: 24px;
+      display: grid;
+      gap: 12px;
+    }
+    .creator-row {
+      display: grid;
+      grid-template-columns: 1fr 84px;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 4px solid rgba(103, 232, 249, 0.62);
+      border-radius: 6px;
+      background: rgba(8, 12, 20, 0.018);
+      font-size: 28px;
+      font-weight: 820;
+    }
+    .creator-score {
+      color: var(--vf-green);
+      font-family: monospace;
+      font-weight: 950;
+      text-align: right;
+    }
+    .creator-agent-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .creator-agent-card {
+      min-height: 118px;
+      padding: 20px;
+      border: 1px solid rgba(192, 132, 252, 0.54);
+      border-left: 5px solid rgba(192, 132, 252, 0.78);
+      border-radius: 6px;
+      background: rgba(8, 12, 20, 0.022);
+      box-shadow: 0 0 22px rgba(192, 132, 252, 0.10);
+    }
+    .creator-agent-role {
+      color: var(--vf-purple);
+      font-family: monospace;
+      font-size: 22px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+    }
+    .creator-agent-name {
+      margin-top: 14px;
+      font-size: 32px;
+      line-height: 1.12;
+      font-weight: 920;
+    }
+    .creator-proof-shell {
+      margin-top: 22px;
+      min-height: 236px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-left: 5px solid rgba(251, 191, 36, 0.72);
+      border-radius: 6px;
+      background: rgba(8, 12, 20, 0.026);
+      box-shadow: 0 0 30px rgba(103, 232, 249, 0.14), inset 0 0 20px rgba(255, 255, 255, 0.025);
+      padding: 24px;
+      transform: rotate(-1.2deg);
+      overflow: hidden;
+      position: relative;
+    }
+    .creator-proof-shell.has-asset {
+      min-height: 292px;
+      padding: 0;
+      background: rgba(8, 12, 20, 0.026);
+      transform: rotate(-0.8deg);
+    }
+    .creator-proof-image {
+      display: block;
+      width: 100%;
+      height: 292px;
+      object-fit: cover;
+      filter: saturate(1.08) contrast(1.03);
+    }
+    .creator-proof-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: rgba(9, 12, 18, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+    .creator-proof-bar {
+      height: 18px;
+      width: 48%;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.32);
+      margin-bottom: 22px;
+    }
+    .creator-proof-line {
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      margin-top: 16px;
+    }
+    .creator-proof-tag {
+      margin-top: 24px;
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(251, 191, 36, 0.62);
+      color: var(--vf-amber);
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+    }
+    .creator-cta-keyword {
+      font-size: 124px;
+      line-height: 1;
+      color: var(--vf-amber);
+      font-weight: 950;
+      text-shadow: 0 0 34px rgba(251, 191, 36, 0.35), 0 8px 28px rgba(0, 0, 0, 0.6);
+    }
+    .creator-cta-result {
+      margin-top: 24px;
+      font-size: 42px;
+      line-height: 1.2;
+      color: #fff;
+      font-weight: 900;
+    }
+    .creator-cta-button {
+      margin-top: 34px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 76px;
+      padding: 0 34px;
+      border: 2px solid rgba(251, 191, 36, 0.82);
+      border-radius: 8px;
+      background: rgba(251, 191, 36, 0.10);
+      color: #fff7cc;
+      font-size: 36px;
+      line-height: 1.15;
+      font-weight: 950;
+      box-shadow: 0 0 34px rgba(251, 191, 36, 0.22);
+    }
+    .creator-question-list {
+      margin-top: 30px;
+      display: grid;
+      gap: 18px;
+    }
+    .creator-question-row {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      align-items: center;
+      min-height: 86px;
+      padding: 18px 24px;
+      border: 1px solid rgba(53, 245, 154, 0.42);
+      border-left: 6px solid var(--creator-line-green);
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(53, 245, 154, 0.026), rgba(8, 12, 20, 0.012));
+      color: #f8fafc;
+      font-size: 42px;
+      line-height: 1.18;
+      font-weight: 920;
+      box-shadow: 0 0 28px rgba(53, 245, 154, 0.10);
+    }
+    .creator-checkmark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--vf-green);
+      color: #031018;
+      font-size: 30px;
+      font-weight: 950;
+      box-shadow: 0 0 22px rgba(53, 245, 154, 0.45);
+    }
+    .mode-v07 .creator-mega-title {
+      font-size: 174px;
+      line-height: 0.94;
+      letter-spacing: 0;
+      text-shadow: 0 10px 32px rgba(0, 0, 0, 0.72), 0 0 28px rgba(103, 232, 249, 0.30);
+    }
+    .mode-v07 .creator-bigkinetictitle .creator-subline {
+      margin-top: 28px;
+      font-size: 48px;
+      line-height: 1.22;
+      color: rgba(248, 250, 252, 0.90);
+      font-weight: 900;
+    }
+    .mode-v07 .creator-meganumber .creator-cta-keyword {
+      font-size: 192px;
+      color: var(--vf-green);
+      text-shadow: 0 0 46px rgba(53, 245, 154, 0.42), 0 10px 32px rgba(0,0,0,0.72);
+    }
+    .mode-v07 .creator-meganumber .creator-cta-result {
+      font-size: 56px;
+      line-height: 1.18;
+      max-width: 720px;
+    }
+    .mode-v07 .creator-optionsplitcard .creator-split {
+      grid-template-columns: 1fr 106px 1fr;
+      gap: 24px;
+      min-height: 420px;
+    }
+    .mode-v07 .creator-optionsplitcard .creator-option {
+      min-height: 400px;
+      padding: 38px;
+      border-left-width: 8px;
+    }
+    .mode-v07 .creator-optionsplitcard .creator-option-title {
+      font-size: 30px;
+    }
+    .mode-v07 .creator-optionsplitcard .creator-option-body {
+      margin-top: 34px;
+      font-size: 72px;
+      line-height: 1.06;
+      font-weight: 950;
+    }
+    .mode-v07 .creator-optionsplitcard .creator-or {
+      width: 92px;
+      height: 92px;
+      font-size: 28px;
+      align-self: center;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-pipeline {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      min-height: 430px;
+      align-items: stretch;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-pipeline::before,
+    .mode-v07 .creator-threesteppipeline .creator-pipeline::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--vf-amber);
+      font-size: 66px;
+      font-weight: 950;
+      text-shadow: 0 0 26px rgba(251, 191, 36, 0.35);
+      z-index: 2;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-pipeline::before {
+      left: 31.5%;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-pipeline::after {
+      left: 64.5%;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-step-card {
+      min-height: 390px;
+      padding: 32px 26px;
+      border-top-width: 8px;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-step-num {
+      font-size: 34px;
+    }
+    .mode-v07 .creator-threesteppipeline .creator-step-name {
+      margin-top: 54px;
+      font-size: 56px;
+      line-height: 1.12;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .mode-v07 .creator-detailstableoverlay .creator-table-title,
+    .mode-v07 .creator-scoringquestionpanel .creator-table-title {
+      font-size: 104px;
+      line-height: 0.98;
+    }
+    .mode-v07 .creator-detailstableoverlay .creator-table {
+      margin-top: 34px;
+      gap: 16px;
+    }
+    .mode-v07 .creator-detailstableoverlay .creator-row {
+      grid-template-columns: 1fr 160px;
+      min-height: 92px;
+      padding: 20px 28px;
+      font-size: 52px;
+      border-left-width: 6px;
+    }
+    .mode-v07 .creator-detailstableoverlay .creator-row.field-only {
+      grid-template-columns: 1fr;
+    }
+    .mode-v07 .creator-detailstableoverlay .creator-score {
+      font-size: 36px;
+    }
+    .mode-v07 .creator-ctabigending .creator-cta-keyword {
+      font-size: 166px;
+      line-height: 0.96;
+    }
+    .mode-v07 .creator-ctabigending .creator-cta-result {
+      font-size: 54px;
+      max-width: 840px;
+    }
+    .mode-v07 .creator-ctabigending .creator-cta-button {
+      min-height: 92px;
+      font-size: 44px;
+    }
+    .mode-v07 .creator-scoringquestionpanel .creator-question-list {
+      margin-top: 42px;
+      gap: 22px;
+    }
+    .mode-v07 .creator-scoringquestionpanel .creator-question-row {
+      min-height: 108px;
+      grid-template-columns: 72px 1fr;
+      padding: 22px 30px;
+      font-size: 52px;
+      border-left-width: 8px;
+    }
+    .mode-v07 .creator-scoringquestionpanel .creator-checkmark {
+      width: 52px;
+      height: 52px;
+      font-size: 36px;
+    }
+    .vf-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 74px;
+      z-index: 30;
+      transform: translateX(-50%);
+      max-width: 1320px;
+      padding: 16px 34px;
+      border-radius: 20px;
+      background: rgba(17, 17, 20, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(26px) saturate(180%);
+      -webkit-backdrop-filter: blur(26px) saturate(180%);
+      color: #ffffff;
+      font-size: 52px;
+      line-height: 1.25;
+      font-weight: 850;
+      letter-spacing: 0;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.04);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .vf-proof {
+      margin-top: 20px;
+      color: var(--vf-green);
+      font-size: 24px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="97.825669" data-width="1920" data-height="1080">
+    <div id="talkingFrame">
+      <video id="talkingVideo" src="assets/talking-head-input.mp4" data-start="0" data-duration="97.825669" data-track-index="0" data-layout-allow-overflow muted playsinline preload="auto"></video>
+    </div>
+    <div class="vf-grid"></div>
+    <div id="vfStage"></div>
+    <div id="caption" class="vf-caption"></div>
+  </div>
+
+  <audio id="narration" data-start="0" data-duration="97.825669" data-track-index="1" src="assets/talking-head-audio-master.wav" preload="auto"></audio>
+
+  <script>
+    const legacyMap = {
+      hero_kpi: "HookScene",
+      comparison_cards: "ProblemAlert",
+      hud_panel: "TopicCard",
+      workflow_steps: "AgentDashboard",
+      cta_card: "TopicCard",
+      creator_big_title: "BigKineticTitle",
+      creator_option_split: "OptionSplitCard",
+      creator_pipeline: "ThreeStepPipeline",
+      creator_details_table: "DetailsTableOverlay",
+      creator_cta: "CTABigEnding"
+    };
+
+    const creatorComponents = new Set([
+      "BigKineticTitle",
+      "MegaNumber",
+      "OptionSplitCard",
+      "ThreeStepPipeline",
+      "DetailsTableOverlay",
+      "ScoringQuestionPanel",
+      "MultiAgentPanel",
+      "ProofScreenshotOverlay",
+      "CTABigEnding"
+    ]);
+
+    async function loadTimeline() {
+      try {
+        const response = await fetch("./timeline.json");
+        if (response.ok) return response.json();
+      } catch (error) {
+        console.warn("timeline.json not found, using example timeline");
+      }
+      const response = await fetch("./timeline.example.json");
+      return response.json();
+    }
+
+    function componentName(segment) {
+      return segment.component || legacyMap[segment.visual_module] || segment.visual_module || "TopicCard";
+    }
+
+    function safeText(value) {
+      return String(value || "").replace(/[<>]/g, "");
+    }
+
+    function richText(value) {
+      let text = safeText(value);
+      const rules = [
+        { pattern: /(5小时|40分钟|30分钟|10分钟|1条|3条|4个字段|3个问题|3到5源)/g, cls: "result" },
+        { pattern: /(刷热点|假装工作|执行力|空白|损耗)/g, cls: "loss" },
+        { pattern: /(Hermes|Obsidian|llm-wiki|Codex|HyperFrames|AI)/g, cls: "tool" },
+        { pattern: /(情报|筛选|痛点|产品|系统|复用|判断|清单)/g, cls: "" }
+      ];
+      rules.forEach(({ pattern, cls }) => {
+        text = text.replace(pattern, `<span class="creator-emphasis ${cls}">$1</span>`);
+      });
+      text = text.replace(/\n/g, "<br>");
+      return text;
+    }
+
+    function safeAssetPath(value) {
+      const assetPath = String(value || "").trim().replace(/["'<>\\]/g, "");
+      if (!assetPath) return "";
+      if (assetPath.startsWith("assets/") || assetPath.startsWith("./assets/")) return assetPath;
+      return "";
+    }
+
+    function safeList(value, fallback = []) {
+      return Array.isArray(value) ? value : fallback;
+    }
+
+    function defaultProps(component, segment) {
+      const caption = segment.caption_line || segment.text || "";
+      if (component === "HookScene") return { kicker: "问题命中", headline: caption, subline: "先看问题，再看工具" };
+      if (component === "ProblemAlert") return { problem: caption, loss: "时间被消耗，结果没沉淀" };
+      if (component === "KPIWidget") return { value: segment.emphasis_keyword || "3步", label: caption };
+      if (component === "AgentDashboard") return { nodes: ["Hermes", "Obsidian", "llm-wiki", "Codex", "HyperFrames"] };
+      if (component === "BigKineticTitle") return { headline: caption, subline: "不是工具不够多，是没有系统", label_en: "AI TOOLS", label_cn: "工具焦虑", step: "01", step_label: "PROBLEM" };
+      if (component === "MegaNumber") return { value: segment.emphasis_keyword || "3步", label: caption, label_en: "RESULT", label_cn: "结果数字", step: "02", step_label: "KPI" };
+      if (component === "OptionSplitCard") return { left: "手动刷热点", right: "Hermes 自动采集", label_en: "CHOICE", label_cn: "两种路径", step: "01", step_label: "采集" };
+      if (component === "ThreeStepPipeline") return { steps: ["Hermes", "Obsidian", "llm-wiki"], label_en: "SYSTEM FLOW", label_cn: "系统流程", step: "02", step_label: "编译" };
+      if (component === "DetailsTableOverlay") return { title: "选题库打分", rows: [["痛点", "9.2"], ["复用", "8.8"], ["转化", "8.5"]], label_en: "SCORING", label_cn: "判断标准", step: "03", step_label: "评分" };
+      if (component === "ScoringQuestionPanel") return { title: "3个筛选问题", questions: ["能解释痛点？", "能绑定产品？", "能带来回复？"], label_en: "FILTER", label_cn: "筛选标准", step: "03", step_label: "判断" };
+      if (component === "MultiAgentPanel") return { agents: ["Hermes", "Codex", "Claude Code"], label_en: "MULTI AGENT", label_cn: "协作", step: "04", step_label: "协作" };
+      if (component === "ProofScreenshotOverlay") return { title: "真实输出证明", asset_path: "", asset_status: "TODO_ASSET_REQUIRED", asset_label: "替换为真实截图", label_en: "PROOF", label_cn: "证据", step: "05", step_label: "证明" };
+      if (component === "CTABigEnding") return { keyword: "系统", result: "领取一张流程图，先照着搭起来", label_en: "NEXT STEP", label_cn: "领取资料", step: "DONE", step_label: "领取" };
+      return { title: segment.semantic_role === "cta" ? "下一步" : "正确做法", body: caption };
+    }
+
+    function slotFor(component, segment) {
+      if (segment.layout_slot) return segment.layout_slot;
+      if (component === "AgentDashboard") return "wide";
+      if (component === "KPIWidget") return "left";
+      if (component === "HookScene") return "center";
+      if (creatorComponents.has(component)) return "right";
+      return "right";
+    }
+
+    function renderCreatorSegment(segment, index, component, props) {
+      const el = document.createElement("section");
+      el.id = `vf-segment-${index}`;
+      el.className = `creator-scene creator-${component.toLowerCase()} density-${segment.density || "medium"}`;
+      el.dataset.component = component;
+      el.dataset.start = String(segment.start);
+      el.dataset.duration = String(segment.end - segment.start);
+
+      const labelEn = props.label_en || segment.label_en || "AI CONTENT";
+      const labelCn = props.label_cn || segment.label_cn || "内容系统";
+      const step = props.step || segment.step || String(index + 1).padStart(2, "0");
+      const stepLabel = props.step_label || segment.step_label || "STEP";
+      const layout = props.layout || segment.layout_slot || (component === "ThreeStepPipeline" ? "wide" : "right");
+      const mainClass = `layout-${layout}`;
+
+      let main = "";
+      if (component === "BigKineticTitle") {
+        const headline = richText(props.headline);
+        main = `<div class="creator-mega-title">${headline}</div><div class="creator-subline">${richText(props.subline)}</div>`;
+      } else if (component === "MegaNumber") {
+        main = `<div class="creator-cta-keyword">${richText(props.value)}</div><div class="creator-cta-result">${richText(props.label)}</div>`;
+      } else if (component === "OptionSplitCard") {
+        main = `<div class="creator-split"><div class="creator-option"><div class="creator-option-title">${safeText(props.left_label || "OLD WAY")}</div><div class="creator-option-body">${richText(props.left)}</div></div><div class="creator-or">${safeText(props.divider || "OR")}</div><div class="creator-option good"><div class="creator-option-title">${safeText(props.right_label || "SYSTEM")}</div><div class="creator-option-body">${richText(props.right)}</div></div></div>`;
+      } else if (component === "ThreeStepPipeline") {
+        const steps = safeList(props.steps, ["Hermes", "Obsidian", "llm-wiki"]);
+        main = `<div class="creator-pipeline">${steps.slice(0, 3).map((stepName, stepIndex) => `<div class="creator-step-card ${stepIndex === 1 ? "active" : ""}"><div class="creator-step-num">0${stepIndex + 1}</div><div class="creator-step-name">${richText(stepName)}</div></div>`).join("")}</div>`;
+      } else if (component === "DetailsTableOverlay") {
+        const rows = safeList(props.rows, [["痛点", "9.2"], ["复用", "8.8"], ["转化", "8.5"]]);
+        main = `<div class="creator-table-title">${richText(props.title)}</div><div class="creator-table">${rows.slice(0, 4).map((row) => {
+          const score = safeText(row[1]);
+          return `<div class="creator-row ${score ? "" : "field-only"}"><span>${richText(row[0])}</span>${score ? `<span class="creator-score">${richText(row[1])}</span>` : ""}</div>`;
+        }).join("")}</div>`;
+      } else if (component === "ScoringQuestionPanel") {
+        const questions = safeList(props.questions, ["能解释痛点？", "能绑定产品？", "能带来回复？"]);
+        main = `<div class="creator-table-title">${richText(props.title || "3个筛选问题")}</div><div class="creator-question-list">${questions.slice(0, 3).map((question) => `<div class="creator-question-row"><span class="creator-checkmark">✓</span><span>${richText(question)}</span></div>`).join("")}</div>`;
+      } else if (component === "MultiAgentPanel") {
+        const agents = safeList(props.agents, [["Hermes", "采集"], ["Codex", "产出"], ["Claude Code", "执行"], ["HyperFrames", "包装"]]);
+        main = `<div class="creator-table-title">${richText(props.title || "多 Agent 协作")}</div><div class="creator-agent-grid">${agents.slice(0, 4).map((agent, agentIndex) => `<div class="creator-agent-card"><div class="creator-agent-role">A${agentIndex + 1} · ${richText(Array.isArray(agent) ? agent[1] : "AGENT")}</div><div class="creator-agent-name">${richText(Array.isArray(agent) ? agent[0] : agent)}</div></div>`).join("")}</div>`;
+      } else if (component === "ProofScreenshotOverlay") {
+        const assetPath = safeAssetPath(props.asset_path);
+        const proofShell = assetPath
+          ? `<div class="creator-proof-shell has-asset"><img class="creator-proof-image" src="${assetPath}" alt="${safeText(props.asset_alt || props.title || "真实输出截图")}"><div class="creator-proof-caption"><span>${safeText(props.asset_label || "真实截图")}</span><span>${safeText(props.asset_status || "ASSET_READY")}</span></div></div>`
+          : `<div class="creator-proof-shell"><div class="creator-proof-bar"></div><div class="creator-proof-line" style="width:92%"></div><div class="creator-proof-line" style="width:78%"></div><div class="creator-proof-line" style="width:86%"></div><div class="creator-proof-tag">${safeText(props.asset_status || "TODO_ASSET_REQUIRED")}</div></div>`;
+        main = `<div class="creator-table-title">${richText(props.title || "真实输出证明")}</div>${proofShell}`;
+      } else if (component === "CTABigEnding") {
+        main = `<div class="creator-cta-keyword">${richText(props.keyword)}</div><div class="creator-cta-result">${richText(props.result)}</div>${props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : ""}`;
+      } else {
+        main = `<div class="creator-table-title">${richText(props.title || props.label || "系统证明")}</div><div class="creator-subline">${richText(props.asset_status || props.result || "TODO_ASSET_REQUIRED")}</div>`;
+      }
+
+      el.innerHTML = `<div class="creator-top-label"><div><div class="creator-label-en">${safeText(labelEn)}</div><div class="creator-label-cn">${safeText(labelCn)}</div></div></div><div class="creator-step-badge"><div class="creator-step-dot">${safeText(step).slice(0, 2)}</div><div class="creator-step-text">${safeText(stepLabel)}</div></div><div class="creator-main ${mainClass} component-${component}">${main}</div>`;
+      document.getElementById("vfStage").appendChild(el);
+      return el;
+    }
+
+    function renderSegment(segment, index) {
+      const component = componentName(segment);
+      const props = Object.assign(defaultProps(component, segment), segment.component_props || {});
+      if (creatorComponents.has(component)) {
+        return renderCreatorSegment(segment, index, component, props);
+      }
+      const slot = slotFor(component, segment);
+      const el = document.createElement("section");
+      el.id = `vf-segment-${index}`;
+      el.className = `vf-module slot-${slot} vf-${component.toLowerCase()} density-${segment.density || "medium"}`;
+      el.dataset.component = component;
+      el.dataset.start = String(segment.start);
+      el.dataset.duration = String(segment.end - segment.start);
+
+      if (component === "HookScene") {
+        el.innerHTML = `<div class="vf-kicker">${safeText(props.kicker || "问题命中")}</div><div class="vf-hook"><h1>${safeText(props.headline)}</h1><p>${safeText(props.subline)}</p></div>`;
+      } else if (component === "ProblemAlert") {
+        el.innerHTML = `<div class="vf-label">PROBLEM</div><div class="vf-alert-title">${safeText(props.problem)}</div><div class="vf-alert-loss">${safeText(props.loss)}</div>`;
+      } else if (component === "KPIWidget") {
+        el.innerHTML = `<div class="vf-kpi-value">${safeText(props.value)}</div><div class="vf-kpi-label">${safeText(props.label)}</div><div class="vf-kpi-bar"><span></span></div>`;
+      } else if (component === "AgentDashboard") {
+        const nodes = Array.isArray(props.nodes) ? props.nodes : ["Hermes", "Obsidian", "llm-wiki", "Codex", "HyperFrames"];
+        el.innerHTML = `<div class="vf-agent-title">AI CONTENT SYSTEM</div><div class="vf-agent-nodes">${nodes.slice(0, 6).map((node) => `<div class="vf-agent-node">${safeText(node)}</div>`).join("")}</div>`;
+      } else {
+        el.innerHTML = `<div class="vf-topic-title">${safeText(props.title)}</div><div class="vf-topic-body">${safeText(props.body)}</div>${segment.proof_point ? `<div class="vf-proof">${safeText(segment.proof_point)}</div>` : ""}`;
+      }
+      document.getElementById("vfStage").appendChild(el);
+      return el;
+    }
+
+    function animateSegment(tl, el, segment) {
+      const start = Number(segment.start);
+      const end = Number(segment.end);
+      const inAt = Math.max(0, start + 0.12);
+      const outAt = Math.max(inAt + 0.9, end - 0.38);
+      const component = el.dataset.component;
+
+      if (creatorComponents.has(component)) {
+        const creatorInAt = Math.max(0, start - 0.45);
+        const main = el.querySelector(".creator-main");
+        const top = el.querySelector(".creator-top-label");
+        const badge = el.querySelector(".creator-step-badge");
+        const detailItems = el.querySelectorAll(".creator-option, .creator-step-card, .creator-row");
+
+        tl.set(el, { opacity: 1 }, start);
+        tl.fromTo(top, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out" }, creatorInAt);
+        tl.fromTo(badge, { opacity: 0, scale: 0.88, y: -12 }, { opacity: 1, scale: 1, y: 0, duration: 0.34, ease: "back.out(1.5)" }, creatorInAt + 0.04);
+        tl.fromTo(main, { opacity: 0, y: 32, scale: 0.95, filter: "blur(12px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.48, ease: "power3.out" }, creatorInAt);
+        if (detailItems.length) {
+          tl.fromTo(detailItems, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.28, stagger: 0.08, ease: "power2.out" }, creatorInAt + 0.22);
+        }
+        tl.to(main, { boxShadow: "0 0 52px rgba(103, 232, 249, 0.18)", duration: 0.36, yoyo: true, repeat: 1, ease: "power2.inOut" }, creatorInAt + 0.68);
+        tl.to([main, top, badge], { opacity: 0, y: -18, duration: 0.28, ease: "power2.in" }, outAt);
+        tl.set(el, { opacity: 0 }, end);
+        return;
+      }
+
+      tl.fromTo(el, { opacity: 0, y: 30, scale: 0.97, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, inAt);
+      tl.to(el, { "--scan-x": "130%", duration: 0.85, ease: "power2.out" }, inAt + 0.1);
+
+      if (component === "KPIWidget") {
+        tl.fromTo(el.querySelector(".vf-kpi-bar span"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power2.out" }, inAt + 0.32);
+        tl.to(el, { scale: 1.025, duration: 0.28, yoyo: true, repeat: 1, ease: "power2.inOut" }, inAt + 0.7);
+      }
+
+      if (component === "ProblemAlert") {
+        tl.to(el, { boxShadow: "0 0 64px rgba(251,191,36,.24)", duration: 0.26, yoyo: true, repeat: 1 }, inAt + 0.28);
+      }
+
+      if (component === "AgentDashboard") {
+        tl.fromTo(el.querySelectorAll(".vf-agent-node"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.28, stagger: 0.08, ease: "power2.out" }, inAt + 0.22);
+      }
+
+      if (component === "HookScene" || segment.animation === "pulse_in") {
+        tl.to(el, { scale: 1.018, duration: 0.35, yoyo: true, repeat: 1, ease: "power2.inOut" }, inAt + 0.55);
+      }
+
+      tl.to(el, { opacity: 0, y: -18, scale: 0.985, duration: 0.32, ease: "power2.in" }, outAt);
+    }
+
+    function animateCaption(tl, text, start, end) {
+      const caption = document.getElementById("caption");
+      tl.call(() => { caption.textContent = safeText(text); }, null, Math.max(0, start - 0.12));
+      tl.to(caption, { opacity: 1, y: 0, duration: 0.16 }, Math.max(0, start - 0.1));
+      tl.to(caption, { opacity: 0, duration: 0.16 }, Math.max(start + 0.2, end - 0.12));
+    }
+
+    function setupMedia(timeline) {
+      const root = document.getElementById("root");
+      const frame = document.getElementById("talkingFrame");
+      const audio = document.getElementById("narration");
+      const video = document.getElementById("talkingVideo");
+
+      root.dataset.duration = String(timeline.duration);
+      root.classList.toggle("mode-talking", timeline.mode === "talking_head_overlay");
+      root.classList.toggle("mode-v07", timeline.visual_pass === "V07_VISUAL_IMPACT_PASS");
+      audio.dataset.duration = String(timeline.duration);
+      video.dataset.duration = String(timeline.duration);
+
+      if (timeline.mode === "talking_head_overlay" && timeline.media.video) {
+        frame.style.display = "block";
+        video.src = timeline.media.video;
+        video.load();
+        if (timeline.media.audio) {
+          audio.src = timeline.media.audio;
+        }
+        audio.load();
+      } else {
+        frame.style.display = "none";
+        if (timeline.media.audio) audio.src = timeline.media.audio;
+        audio.load();
+      }
+    }
+
+    loadTimeline().then((timeline) => {
+      setupMedia(timeline);
+
+      const tl = gsap.timeline({ paused: true });
+
+      timeline.segments.forEach((segment, index) => {
+        const el = renderSegment(segment, index);
+        animateSegment(tl, el, segment);
+        animateCaption(tl, segment.caption_line, segment.start, segment.end);
+      });
+
+      tl.set({}, {}, timeline.duration);
+      window.__timelines = window.__timelines || {};
+      window.__timelines.main = tl;
+    });
+  </script>
+</body>
+</html>

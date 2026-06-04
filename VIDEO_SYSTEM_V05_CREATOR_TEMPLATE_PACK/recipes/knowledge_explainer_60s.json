@@ -1,0 +1,13 @@
+{
+  "id": "Knowledge_Explainer_60s",
+  "mode": "talking_head_overlay",
+  "duration": 60,
+  "snapshotAt": [1, 6, 14, 24, 36, 46, 56],
+  "segments": [
+    {"start": 0, "end": 8, "template": "TERM_EXPLAINER", "components": ["TermExplainerPanel", "TopSectionLabel", "BottomChineseSubtitle"], "primaryText": "Agent 到底是什么", "subtitleCN": "不要先背术语", "colorTheme": "blue-info", "safeZone": "LEFT_HERO_ZONE", "motion": "term_reveal", "snapshotAt": 1},
+    {"start": 8, "end": 20, "template": "OPTION_SPLIT_CARD", "components": ["OptionSplitCard", "BottomChineseSubtitle"], "primaryText": "聊天工具 vs 做事系统", "subtitleCN": "区别在于能不能闭环", "colorTheme": "blue-green", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "split_slide_in", "snapshotAt": 14},
+    {"start": 20, "end": 34, "template": "DIMENSION_SCORING_LIST", "components": ["MegaNumber", "ScoringDimensionPanel", "BottomChineseSubtitle"], "primaryText": "3 个判断标准", "subtitleCN": "能执行，能反馈，能复用", "colorTheme": "green-success", "safeZone": "LEFT_HERO_ZONE", "motion": "score_list_reveal", "snapshotAt": 24},
+    {"start": 34, "end": 48, "template": "MULTI_AGENT_COLLABORATION", "components": ["MultiAgentPanel", "BottomChineseSubtitle"], "primaryText": "单 Agent 到团队", "subtitleCN": "分工之后才像系统", "colorTheme": "purple-agent", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "agent_stack", "snapshotAt": 36},
+    {"start": 48, "end": 60, "template": "FINAL_AGENT_CHART", "components": ["KPIBigNumberOverlay", "CTABigEnding", "BottomChineseSubtitle"], "primaryText": "从聊天到打工", "subtitleCN": "普通人要买结果", "colorTheme": "yellow-value", "safeZone": "RIGHT_PROOF_ZONE", "motion": "chart_rise", "snapshotAt": 56}
+  ]
+}

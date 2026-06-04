@@ -1,0 +1,13 @@
+{
+  "id": "Product_Proof_60s",
+  "mode": "talking_head_overlay",
+  "duration": 60,
+  "snapshotAt": [1, 6, 14, 24, 36, 46, 56],
+  "segments": [
+    {"start": 0, "end": 6, "template": "BIG_TITLE_HOOK", "components": ["BigKineticTitle", "TopSectionLabel", "BottomChineseSubtitle"], "primaryText": "别卖模板，卖结果", "subtitleCN": "用户为少走弯路付费", "colorTheme": "yellow-value", "safeZone": "LEFT_HERO_ZONE", "motion": "kinetic_title_in", "snapshotAt": 1},
+    {"start": 6, "end": 18, "template": "SOURCE_SCORING_DASHBOARD", "components": ["ScoringDimensionPanel", "DetailsTableOverlay", "BottomChineseSubtitle"], "primaryText": "下载、收藏、购买", "subtitleCN": "只看真实行为", "colorTheme": "green-success", "safeZone": "CENTER_OVERLAY_ZONE", "motion": "table_reveal", "snapshotAt": 14},
+    {"start": 18, "end": 32, "template": "DETAILS_TABLE_OVERLAY", "components": ["DetailsTableOverlay", "BottomChineseSubtitle"], "primaryText": "产品反馈表", "subtitleCN": "反馈才是升级方向", "colorTheme": "blue-info", "safeZone": "RIGHT_PROOF_ZONE", "motion": "table_reveal", "snapshotAt": 24},
+    {"start": 32, "end": 46, "template": "PROOF_SCREENSHOT_OVERLAY", "components": ["ProofScreenshotOverlay", "BottomChineseSubtitle"], "primaryText": "真实交付截图", "subtitleCN": "没有截图就标记待补", "colorTheme": "yellow-value", "safeZone": "RIGHT_PROOF_ZONE", "motion": "proof_drop", "snapshotAt": 46},
+    {"start": 46, "end": 60, "template": "COMPLETION_SCORE_ENDING", "components": ["MegaNumber", "CTABigEnding", "BottomChineseSubtitle"], "primaryText": "先拿 1 个订单", "subtitleCN": "先验证，再放大", "colorTheme": "green-success", "safeZone": "LEFT_HERO_ZONE", "motion": "score_pop", "snapshotAt": 56}
+  ]
+}

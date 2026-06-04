@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HyperFrames HUD Dual Mode Timeline",
+  "type": "object",
+  "required": ["mode", "width", "height", "duration", "media", "segments"],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": ["article_tts", "talking_head_overlay"]
+    },
+    "width": { "type": "number" },
+    "height": { "type": "number" },
+    "duration": { "type": "number", "exclusiveMinimum": 0 },
+    "media": {
+      "type": "object",
+      "properties": {
+        "audio": { "type": ["string", "null"] },
+        "video": { "type": ["string", "null"] }
+      }
+    },
+    "product_id": { "type": "string" },
+    "recipe": { "type": "string" },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["start", "end", "text", "caption_line", "visual_module", "animation", "emphasis_keyword"],
+        "properties": {
+          "start": { "type": "number", "minimum": 0 },
+          "end": { "type": "number", "exclusiveMinimum": 0 },
+          "text": { "type": "string" },
+          "caption_line": { "type": "string" },
+          "visual_module": { "type": "string" },
+          "component": { "type": "string" },
+          "component_props": { "type": "object" },
+          "layout_slot": {
+            "type": "string",
+            "enum": ["center", "left", "right", "wide", "top_left", "top_right", "caption", "default"]
+          },
+          "safe_zone": { "type": "string" },
+          "animation": { "type": "string" },
+          "emphasis_keyword": { "type": "string" },
+          "density": { "type": "string", "enum": ["high", "medium", "low"] },
+          "position": { "type": "string" },
+          "transition": { "type": "string" },
+          "semantic_role": { "type": "string" },
+          "proof_point": { "type": "string" },
+          "cta_type": { "type": "string" }
+        }
+      }
+    }
+  }
+}

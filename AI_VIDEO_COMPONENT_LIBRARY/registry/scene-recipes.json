@@ -1,0 +1,506 @@
+{
+  "version": "0.3",
+  "recipes": {
+    "AI_Content_System_30s_Snapshot": {
+      "mode": "talking_head_overlay",
+      "duration_target": 30,
+      "snapshot_frames": [
+        30,
+        180,
+        420,
+        660,
+        870
+      ],
+      "beats": [
+        {
+          "range": "0-5",
+          "template": "BIG_TITLE_HOOK",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "BigKineticTitle",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "工具越多，越累",
+          "subtitleCN": "你学了很多 AI 工具",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "5-12",
+          "template": "OPTION_SPLIT_CARD",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "OptionSplitCard",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "手动刷热点 vs Hermes 自动采集",
+          "subtitleCN": "不是你不努力，是流程太散",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "12-20",
+          "template": "THREE_STEP_PIPELINE",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "ThreeStepPipeline",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "Hermes -> Obsidian -> llm-wiki",
+          "subtitleCN": "先采集，再沉淀，再编译",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "20-27",
+          "template": "DETAILS_TABLE_OVERLAY",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "DetailsTableOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "选题库打分",
+          "subtitleCN": "每条素材都要有判断标准",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "27-30",
+          "template": "CTA_BIG_ENDING",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "CTABigEnding",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "回复 系统",
+          "subtitleCN": "先领一张流程图，照着搭",
+          "safeZone": "right_overlay_when_face_left"
+        }
+      ]
+    },
+    "AI_Content_System_60s": {
+      "mode": "talking_head_overlay",
+      "duration_target": 60,
+      "snapshot_at": [
+        1,
+        6,
+        14,
+        24,
+        32,
+        40,
+        48,
+        56
+      ],
+      "beats": [
+        {
+          "range": "0-5",
+          "template": "BIG_TITLE_HOOK",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "BigKineticTitle",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "工具越多，越累",
+          "subtitleCN": "你学了很多 AI 工具",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "5-12",
+          "template": "OPTION_SPLIT_CARD",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "OptionSplitCard",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "手动刷热点 vs Hermes 自动采集",
+          "subtitleCN": "不是你不努力，是流程太散",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "12-20",
+          "template": "THREE_STEP_PIPELINE",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "ThreeStepPipeline",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "Hermes -> Obsidian -> llm-wiki",
+          "subtitleCN": "先采集，再沉淀，再编译",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "20-28",
+          "template": "DETAILS_TABLE_OVERLAY",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "DetailsTableOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "选题库打分",
+          "subtitleCN": "每条素材都要有判断标准",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "28-36",
+          "template": "MULTI_AGENT_COLLABORATION",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "MultiAgentPanel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "一套系统，多 Agent 协作",
+          "subtitleCN": "不是一个助手，是一支队伍",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "36-44",
+          "template": "MULTI_AGENT_COLLABORATION",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "MultiAgentPanel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "AI 团队开始分工",
+          "subtitleCN": "一个负责采集，一个负责产出",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "44-52",
+          "template": "PROOF_SCREENSHOT_OVERLAY",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "ProofScreenshotOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "真实输出证明",
+          "subtitleCN": "后面要接真实截图资产",
+          "safeZone": "right_overlay_when_face_left"
+        },
+        {
+          "range": "52-60",
+          "template": "CTA_BIG_ENDING",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "CTABigEnding",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "回复 系统",
+          "subtitleCN": "先领一张流程图，照着搭",
+          "safeZone": "right_overlay_when_face_left"
+        }
+      ]
+    },
+    "AI_Tool_Tutorial_60s": {
+      "mode": "talking_head_overlay",
+      "duration_target": 60,
+      "snapshot_at": [
+        1,
+        6,
+        14,
+        24,
+        36,
+        46,
+        56
+      ],
+      "beats": [
+        {
+          "range": "0-6",
+          "template": "TERM_EXPLAINER",
+          "components": [
+            "TopSectionLabel",
+            "StepBadge",
+            "BigKineticTitle",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "别卡在安装第一步",
+          "subtitleCN": "很多人不是不会用，是装不上",
+          "colorTheme": "red-warning",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "kinetic_title_in",
+          "snapshotAt": 1
+        },
+        {
+          "range": "6-16",
+          "template": "API_HANDOFF_CARD",
+          "components": [
+            "APIHandoffCard",
+            "StepBadge",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "下载安装到配置",
+          "subtitleCN": "先把环境跑通",
+          "colorTheme": "blue-info",
+          "safeZone": "CENTER_OVERLAY_ZONE",
+          "motion": "handoff_slide",
+          "snapshotAt": 6
+        },
+        {
+          "range": "16-28",
+          "template": "THREE_STEP_PIPELINE",
+          "components": [
+            "ThreeStepPipeline",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "下载 -> 配置 -> 验证",
+          "subtitleCN": "每一步都要能验证",
+          "colorTheme": "green-success",
+          "safeZone": "CENTER_OVERLAY_ZONE",
+          "motion": "node_cascade",
+          "snapshotAt": 24
+        },
+        {
+          "range": "28-42",
+          "template": "PHONE_INTEGRATION_CARDS",
+          "components": [
+            "PhoneIntegrationCards",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "接到手机和私域",
+          "subtitleCN": "系统要能被你随手调用",
+          "colorTheme": "yellow-value",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "card_stagger",
+          "snapshotAt": 36
+        },
+        {
+          "range": "42-52",
+          "template": "PROOF_SCREENSHOT_OVERLAY",
+          "components": [
+            "ProofScreenshotOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "真实配置截图",
+          "subtitleCN": "不要伪造平台界面",
+          "colorTheme": "blue-info",
+          "safeZone": "RIGHT_PROOF_ZONE",
+          "motion": "proof_drop",
+          "snapshotAt": 46
+        },
+        {
+          "range": "52-60",
+          "template": "COMPLETION_SCORE_ENDING",
+          "components": [
+            "MegaNumber",
+            "CTABigEnding",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "跑通 1 次",
+          "subtitleCN": "先跑通，再优化",
+          "colorTheme": "green-success",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "score_pop",
+          "snapshotAt": 56
+        }
+      ]
+    },
+    "Knowledge_Explainer_60s": {
+      "mode": "talking_head_overlay",
+      "duration_target": 60,
+      "snapshot_at": [
+        1,
+        6,
+        14,
+        24,
+        36,
+        46,
+        56
+      ],
+      "beats": [
+        {
+          "range": "0-8",
+          "template": "TERM_EXPLAINER",
+          "components": [
+            "TermExplainerPanel",
+            "TopSectionLabel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "Agent 到底是什么",
+          "subtitleCN": "不要先背术语",
+          "colorTheme": "blue-info",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "term_reveal",
+          "snapshotAt": 1
+        },
+        {
+          "range": "8-20",
+          "template": "OPTION_SPLIT_CARD",
+          "components": [
+            "OptionSplitCard",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "聊天工具 vs 做事系统",
+          "subtitleCN": "区别在于能不能闭环",
+          "colorTheme": "blue-green",
+          "safeZone": "CENTER_OVERLAY_ZONE",
+          "motion": "split_slide_in",
+          "snapshotAt": 14
+        },
+        {
+          "range": "20-34",
+          "template": "DIMENSION_SCORING_LIST",
+          "components": [
+            "MegaNumber",
+            "ScoringDimensionPanel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "3 个判断标准",
+          "subtitleCN": "能执行，能反馈，能复用",
+          "colorTheme": "green-success",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "score_list_reveal",
+          "snapshotAt": 24
+        },
+        {
+          "range": "34-48",
+          "template": "MULTI_AGENT_COLLABORATION",
+          "components": [
+            "MultiAgentPanel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "单 Agent 到团队",
+          "subtitleCN": "分工之后才像系统",
+          "colorTheme": "purple-agent",
+          "safeZone": "CENTER_OVERLAY_ZONE",
+          "motion": "agent_stack",
+          "snapshotAt": 36
+        },
+        {
+          "range": "48-60",
+          "template": "FINAL_AGENT_CHART",
+          "components": [
+            "KPIBigNumberOverlay",
+            "CTABigEnding",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "从聊天到打工",
+          "subtitleCN": "普通人要买结果",
+          "colorTheme": "yellow-value",
+          "safeZone": "RIGHT_PROOF_ZONE",
+          "motion": "chart_rise",
+          "snapshotAt": 56
+        }
+      ]
+    },
+    "Product_Proof_60s": {
+      "mode": "talking_head_overlay",
+      "duration_target": 60,
+      "snapshot_at": [
+        1,
+        6,
+        14,
+        24,
+        36,
+        46,
+        56
+      ],
+      "beats": [
+        {
+          "range": "0-6",
+          "template": "BIG_TITLE_HOOK",
+          "components": [
+            "BigKineticTitle",
+            "TopSectionLabel",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "别卖模板，卖结果",
+          "subtitleCN": "用户为少走弯路付费",
+          "colorTheme": "yellow-value",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "kinetic_title_in",
+          "snapshotAt": 1
+        },
+        {
+          "range": "6-18",
+          "template": "SOURCE_SCORING_DASHBOARD",
+          "components": [
+            "ScoringDimensionPanel",
+            "DetailsTableOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "下载、收藏、购买",
+          "subtitleCN": "只看真实行为",
+          "colorTheme": "green-success",
+          "safeZone": "CENTER_OVERLAY_ZONE",
+          "motion": "table_reveal",
+          "snapshotAt": 14
+        },
+        {
+          "range": "18-32",
+          "template": "DETAILS_TABLE_OVERLAY",
+          "components": [
+            "DetailsTableOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "产品反馈表",
+          "subtitleCN": "反馈才是升级方向",
+          "colorTheme": "blue-info",
+          "safeZone": "RIGHT_PROOF_ZONE",
+          "motion": "table_reveal",
+          "snapshotAt": 24
+        },
+        {
+          "range": "32-46",
+          "template": "PROOF_SCREENSHOT_OVERLAY",
+          "components": [
+            "ProofScreenshotOverlay",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "真实交付截图",
+          "subtitleCN": "没有截图就标记待补",
+          "colorTheme": "yellow-value",
+          "safeZone": "RIGHT_PROOF_ZONE",
+          "motion": "proof_drop",
+          "snapshotAt": 46
+        },
+        {
+          "range": "46-60",
+          "template": "COMPLETION_SCORE_ENDING",
+          "components": [
+            "MegaNumber",
+            "CTABigEnding",
+            "BottomChineseSubtitle"
+          ],
+          "primaryText": "先拿 1 个订单",
+          "subtitleCN": "先验证，再放大",
+          "colorTheme": "green-success",
+          "safeZone": "LEFT_HERO_ZONE",
+          "motion": "score_pop",
+          "snapshotAt": 56
+        }
+      ]
+    },
+    "TTS_60s_Explainer": {
+      "mode": "article_tts",
+      "duration_target": 60,
+      "preferred_components": [
+        "HookScene",
+        "ProblemAlert",
+        "KPIWidget",
+        "AgentDashboard",
+        "TopicCard",
+        "SubtitleSystem"
+      ]
+    },
+    "TalkingHead_HUD_60s": {
+      "mode": "talking_head_overlay",
+      "duration_target": 60,
+      "preferred_components": [
+        "HookScene",
+        "ProblemAlert",
+        "TopicCard",
+        "KPIWidget",
+        "AgentDashboard",
+        "SubtitleSystem"
+      ]
+    }
+  }
+}

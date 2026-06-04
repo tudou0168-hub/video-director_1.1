@@ -1,0 +1,23 @@
+{
+  "name": "hyperframes-hud-dualmode-template",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-timeline.mjs timeline.json",
+    "validate:example": "node scripts/validate-timeline.mjs timeline.example.json",
+    "validate:components": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/validate-component-usage.mjs timeline.json",
+    "validate:proof-assets": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/validate-proof-assets.mjs timeline.json",
+    "validate:media-sync": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/validate-media-sync.mjs timeline.json",
+    "sync:duration": "node scripts/sync-html-duration.mjs timeline.json index.html",
+    "check:creator-overlay": "node scripts/check_creator_overlay_compliance.js",
+    "prepare:talking-head": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/prepare-talking-head-media.mjs",
+    "compile:storyboard": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs",
+    "compile:creator30": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_30s creator_overlay_30s",
+    "compile:creator60": "node AI_VIDEO_COMPONENT_LIBRARY/scripts/compile-storyboard.mjs AI_VIDEO_COMPONENT_LIBRARY/examples/talking_head_sample_input.md AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_60s creator_overlay_60s",
+    "render": "npx hyperframes render --quality high --workers 1",
+    "lint": "npx hyperframes lint",
+    "snapshot:creator30": "npx hyperframes snapshot --at 1,6,14,22,29 --describe false",
+    "snapshot:creator60": "npx hyperframes snapshot --at 1,6,14,24,32,40,48,56 --describe false"
+  }
+}
