@@ -13,9 +13,10 @@
       "label_en": "HOOK",
       "label_cn": "判断",
       "step_label": "HOOK",
-      "layout": "impact-left"
+      "layout": "side_hero_overlay",
+      "layout_family": "side_hero_overlay"
     },
-    "layout_slot": "impact-left",
+    "layout_slot": "side_hero_overlay",
     "animation": "kinetic_title_in",
     "density": "high",
     "template": "BIG_TITLE_HOOK",
@@ -62,14 +63,18 @@
     "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
     "component_props": {
       "title": "内容生产闭环",
-      "rows": [
-        ["采集", "素材"],
-        ["沉淀", "要点"],
-        ["编译", "结构"],
-        ["包装", "成片"]
+      "layout_family": "side_process_panel",
+      "label_en": "FLOW",
+      "label_cn": "流程",
+      "step_label": "FLOW",
+      "flow_steps": [
+        { "label": "采集", "subline": "素材" },
+        { "label": "沉淀", "subline": "要点" },
+        { "label": "编译", "subline": "结构" },
+        { "label": "包装", "subline": "成片" }
       ]
     },
-    "layout_slot": "impact-wide",
+    "layout_slot": "side_process_panel",
     "animation": "node_cascade",
     "density": "medium",
     "template": "CONTENT_FLOW_TABLE",
@@ -82,6 +87,7 @@
     "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames / Codex 编排",
     "component_props": {
       "title": "工具链分工",
+      "layout_family": "side_tool_stack_panel",
       "agents": [
         ["Hermes", "采集"],
         ["Obsidian", "沉淀"],
@@ -90,7 +96,7 @@
         ["Codex", "编排"]
       ]
     },
-    "layout_slot": "impact-wide",
+    "layout_slot": "side_tool_stack_panel",
     "animation": "node_cascade",
     "density": "medium",
     "template": "TOOL_STACK_PANEL",
@@ -103,13 +109,17 @@
     "subtitleCN": "先看输入、处理、输出",
     "component_props": {
       "title": "30分钟成片检查",
+      "layout_family": "side_scorecard_panel",
+      "label_en": "CHECK",
+      "label_cn": "判断标准",
+      "step_label": "CHECK",
       "rows": [
         ["输入", "文案"],
         ["处理", "TTS+字幕"],
         ["输出", "预览"]
       ]
     },
-    "layout_slot": "impact-wide",
+    "layout_slot": "side_scorecard_panel",
     "animation": "line_scan",
     "density": "medium",
     "template": "PROOF_TABLE",
@@ -138,9 +148,10 @@
     "component_props": {
       "keyword": "先跑通 1 条",
       "result": "再优化模板和视觉",
-      "button": "检查：音频、字幕、HUD、预览"
+      "button": "检查：音频、字幕、HUD、预览",
+      "layout_family": "side_result_panel"
     },
-    "layout_slot": "impact-cta",
+    "layout_slot": "side_result_panel",
     "animation": "cta_focus",
     "density": "high",
     "template": "CTA_BIG_ENDING",
@@ -161,9 +172,10 @@
       "label_en": "HOOK",
       "label_cn": "判断",
       "step_label": "HOOK",
-      "layout": "right"
+      "layout": "side_hero_overlay",
+      "layout_family": "side_hero_overlay"
     },
-    "layout_slot": "right",
+    "layout_slot": "side_hero_overlay",
     "animation": "kinetic_title_in",
     "density": "high",
     "template": "BIG_TITLE_HOOK",
@@ -176,9 +188,13 @@
     "subtitleCN": "没有输入、处理、输出的连续链路",
     "component_props": {
       "problem": "问题不在工具",
-      "loss": "没有输入、处理、输出的连续链路"
+      "loss": "没有输入、处理、输出的连续链路",
+      "layout_family": "side_topic_card",
+      "label_en": "ROOT CAUSE",
+      "label_cn": "根因",
+      "step_label": "ROOT"
     },
-    "layout_slot": "right",
+    "layout_slot": "side_topic_card",
     "animation": "alert_flash",
     "density": "medium",
     "template": "PROBLEM_ALERT",
@@ -191,6 +207,7 @@
     "subtitleCN": "先看输入、处理、输出",
     "component_props": {
       "title": "30分钟成片检查",
+      "layout_family": "side_scorecard_panel",
       "rows": [
         [
           "输入",
@@ -206,7 +223,7 @@
         ]
       ]
     },
-    "layout_slot": "right",
+    "layout_slot": "side_scorecard_panel",
     "animation": "line_scan",
     "density": "medium",
     "template": "PROOF_TABLE",
@@ -224,9 +241,11 @@
     "component_props": {
       "keyword": "先跑通 1 条",
       "result": "可发布口播视频",
-      "button": "音频 / 字幕 / HUD / 预览"
+      "button": "音频 / 字幕 / HUD / 预览",
+      "layout_family": "side_result_panel",
+      "status": "READY"
     },
-    "layout_slot": "right",
+    "layout_slot": "side_result_panel",
     "animation": "cta_focus",
     "density": "high",
     "template": "CTA_BIG_ENDING",

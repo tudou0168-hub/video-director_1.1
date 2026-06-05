@@ -1,6 +1,30 @@
 {
   "default_overlay_side": "right",
   "default_face_position": "center",
+  "layout_modes": {
+    "creator_overlay": {
+      "mode": "overlay",
+      "audio_mode": "tts_preview",
+      "default_overlay_side": "right",
+      "default_face_position": "center",
+      "group_layout_families": {
+        "hook_problem": "side_hero_overlay",
+        "root_cause": "side_topic_card",
+        "workflow": "side_process_panel",
+        "tool_stack": "side_tool_stack_panel",
+        "proof_standard": "side_scorecard_panel",
+        "result_next_step": "side_result_panel"
+      }
+    },
+    "talking_head": {
+      "mode": "overlay",
+      "face_position_side_map": {
+        "left": "right",
+        "right": "left",
+        "center": "right"
+      }
+    }
+  },
   "min_hud_segment_seconds": 5,
   "recommended_tool_segment_seconds": [
     8,

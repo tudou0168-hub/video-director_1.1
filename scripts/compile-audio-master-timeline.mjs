@@ -14,6 +14,8 @@ const captionBeatsPath = path.join(outputDir, "caption_beats.json");
 const compiledTimelinePath = path.join(outputDir, "compiled.timeline.json");
 const hudCopyRulesPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-hud-copy-rules.json");
 const layoutRulesPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-layout-rules.json");
+const overlayVariantsPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-overlay-variants.json");
+const visualTokensPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-visual-tokens.json");
 
 function fail(message) {
   console.error("audio master timeline compile failed:");
@@ -150,6 +152,69 @@ function loadLayoutRules() {
 }
 
 const layoutRules = loadLayoutRules();
+const defaultCreatorOverlayLayoutFamilies = {
+  hook_problem: "side_hero_overlay",
+  root_cause: "side_topic_card",
+  workflow: "side_process_panel",
+  tool_stack: "side_tool_stack_panel",
+  proof_standard: "side_scorecard_panel",
+  result_next_step: "side_result_panel"
+};
+
+function layoutModeConfig() {
+  return layoutRules.layout_modes?.creator_overlay || {};
+}
+
+function layoutFamilyForGroup(groupKey) {
+  return layoutModeConfig().group_layout_families?.[groupKey] || defaultCreatorOverlayLayoutFamilies[groupKey] || "side_card";
+}
+
+function loadVisualTokens() {
+  if (!fs.existsSync(visualTokensPath)) {
+    return {
+      groups: {},
+      components: {}
+    };
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(visualTokensPath, "utf8"));
+    return {
+      groups: parsed.groups && typeof parsed.groups === "object" ? parsed.groups : {},
+      components: parsed.components && typeof parsed.components === "object" ? parsed.components : {}
+    };
+  } catch (error) {
+    fail(`visual tokens are not valid JSON: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+const visualTokens = loadVisualTokens();
+
+function loadOverlayVariants() {
+  if (!fs.existsSync(overlayVariantsPath)) {
+    return { default_variant: "v3_overlay_topic", variants: {} };
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(overlayVariantsPath, "utf8"));
+    return {
+      default_variant: parsed.default_variant || "v3_overlay_topic",
+      variants: parsed.variants && typeof parsed.variants === "object" ? parsed.variants : {}
+    };
+  } catch (error) {
+    fail(`overlay variants are not valid JSON: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+const overlayVariants = loadOverlayVariants();
+
+function visualThemeFor(groupKey) {
+  const fallback = visualTokens.groups?.result_next_step || {};
+  return visualTokens.groups?.[groupKey] || fallback;
+}
+
+function overlayVariantForGroup(groupKey) {
+  const fallback = overlayVariants.variants?.root_cause || {};
+  return overlayVariants.variants?.[groupKey] || fallback;
+}
 
 function semanticRoleFor(text, index, total) {
   if (index === 0) return "pain_hook";
@@ -169,6 +234,8 @@ function buildRoleCopy(role, index, sentence) {
     fail(`missing HUD copy rule for role: ${role}`);
   }
   const merged = clone(rule);
+  const layoutFamily = layoutFamilyForGroup(role);
+  const overlayVariant = overlayVariantForGroup(role);
   const step = String(index + 1).padStart(2, "0");
   const componentProps = Object.assign({}, merged.component_props || {}, { step });
 
@@ -214,9 +281,25 @@ function buildRoleCopy(role, index, sentence) {
     componentProps.result = displayLines[1] || componentProps.result;
   }
 
+  const theme = visualThemeFor(role);
+  const variant = overlayVariant.variant || overlayVariants.default_variant || "v3_overlay_topic";
+  componentProps.theme = role;
+  componentProps.accent = theme.accent;
+  componentProps.accent_2 = theme.accent_2;
+  componentProps.panel_bg = theme.panel_bg;
+  componentProps.border = theme.border;
+  componentProps.glow = theme.glow;
+  componentProps.variant = variant;
+  componentProps.variant_class = `variant-${variant}`;
+  componentProps.layout_family = componentProps.layout_family || layoutFamily;
+  componentProps.layout = componentProps.layout || layoutFamily;
+  componentProps.layout_mode = componentProps.layout_mode || "creator_overlay";
+  componentProps.motion_preset = componentProps.motion_preset || overlayVariant.motion_preset || "panel_stagger_in";
+
   return {
     ...merged,
     component_props: componentProps,
+    variant,
     step,
     sentence
   };
@@ -246,6 +329,7 @@ function buildGroupCopy(groupKey, index, sentence) {
     fail(`missing HUD copy rule for group: ${groupKey}`);
   }
   const merged = clone(rule);
+  const layoutFamily = layoutFamilyForGroup(groupKey);
   const step = String(index + 1).padStart(2, "0");
   const componentProps = Object.assign({}, merged.component_props || {}, { step });
 
@@ -262,6 +346,12 @@ function buildGroupCopy(groupKey, index, sentence) {
   if (merged.component === "DetailsTableOverlay") {
     componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
     componentProps.rows = merged.component_props?.rows || [[merged.primaryText || sentence, merged.subtitleCN || sentence]];
+    if (groupKey === "workflow") {
+      componentProps.flow_steps = merged.component_props?.flow_steps || componentProps.rows.map((row) => ({
+        label: row[0],
+        subline: row[1]
+      }));
+    }
   }
 
   if (merged.component === "TopicCard") {
@@ -296,6 +386,17 @@ function buildGroupCopy(groupKey, index, sentence) {
     componentProps.result = displayLines[1] || componentProps.result;
   }
 
+  const theme = visualThemeFor(groupKey);
+  componentProps.theme = groupKey;
+  componentProps.accent = theme.accent;
+  componentProps.accent_2 = theme.accent_2;
+  componentProps.panel_bg = theme.panel_bg;
+  componentProps.border = theme.border;
+  componentProps.glow = theme.glow;
+  componentProps.layout_family = componentProps.layout_family || layoutFamily;
+  componentProps.layout = componentProps.layout || layoutFamily;
+  componentProps.layout_mode = componentProps.layout_mode || "creator_overlay";
+
   return {
     ...merged,
     component_props: componentProps,
@@ -307,7 +408,7 @@ function buildGroupCopy(groupKey, index, sentence) {
 function buildHudSegments(beats, duration) {
   const groups = [];
   const groupConfigs = layoutRules.hud_groups || [];
-
+  const ttsLayoutMode = layoutModeConfig();
   beats.forEach((beat, index) => {
     const groupKey = hudGroupForBeat(beat);
     const captionItem = {
@@ -334,8 +435,13 @@ function buildHudSegments(beats, duration) {
 
   const overlaySide = layoutRules.default_overlay_side || "right";
   const facePosition = layoutRules.default_face_position || "center";
+  const audioMode = ttsLayoutMode.audio_mode || "tts_preview";
 
   return groups.map((group, index) => {
+    const layoutFamily = layoutFamilyForGroup(group.groupKey);
+    const overlayVariant = overlayVariantForGroup(group.groupKey);
+    const variant = overlayVariant.variant || overlayVariants.default_variant || "v3_overlay_topic";
+    const layoutSlot = layoutFamily;
     const start = typeof group.start === "number" ? group.start : group.captionItems[0].start;
     const end = typeof group.end === "number" ? group.end : group.captionItems[group.captionItems.length - 1].end;
     const durationSeconds = end - start;
@@ -357,11 +463,19 @@ function buildHudSegments(beats, duration) {
       component,
       component_props: {
         ...hudCopy.component_props,
-        layout: overlaySide,
+        layout: layoutFamily,
+        layout_family: layoutFamily,
+        layout_mode: "creator_overlay",
+        audio_mode: audioMode,
         overlay_side: overlaySide,
-        face_position: facePosition
+        face_position: facePosition,
+        variant,
+        variant_class: `variant-${variant}`,
+        motion_preset: overlayVariant.motion_preset || hudCopy.component_props?.motion_preset || "panel_stagger_in"
       },
-      layout_slot: overlaySide === "right" ? "right" : overlaySide,
+      layout_slot: layoutSlot,
+      layout_family: layoutFamily,
+      variant,
       overlay_side: overlaySide,
       safe_zone: overlaySide === "right" ? "default" : overlaySide,
       animation: hudCopy.animation || "panel_expand",
@@ -377,6 +491,7 @@ function buildHudSegments(beats, duration) {
       subtitleCN: hudCopy.subtitleCN,
       hud_theme: group.groupKey,
       caption_count: group.captionItems.length,
+      motion_preset: overlayVariant.motion_preset || "panel_stagger_in",
       snapshotAt
     };
   });
@@ -433,9 +548,12 @@ function buildTimeline(beats, ttsResult, duration) {
     duration,
     overlay_side: layoutRules.default_overlay_side || "right",
     layout_policy: {
-      mode: "tts_only",
+      mode: "creator_overlay",
+      audio_mode: layoutModeConfig().audio_mode || "tts_preview",
+      view_mode: layoutModeConfig().mode || "overlay",
       overlay_side: layoutRules.default_overlay_side || "right",
-      face_position: layoutRules.default_face_position || "center"
+      face_position: layoutRules.default_face_position || "center",
+      variant_mode: "v3_overlay_variants"
     },
     media: {
       audio: ttsResult.audio_path,

@@ -148,7 +148,10 @@ samples/final_narration.md
 - `media.audio` 使用 `tts_result.audio_path`。
 - `media.video` 在这个最小 TTS 路径里可以设为 `null`，也可以由占位背景承担；它不要求真人口播视频一定存在。
 - talking-head 只是一条兼容入口，不是这条最小 TTS 主线的必需资产。
-- TTS-only 模式默认 `overlay_side = "right"`，所有 HUD 段位共享同一侧，不再左右切换。
+- `creator_overlay` 是当前视觉主线，依然采用侧边 HUD Overlay 叠层，不做全画布信息视频。
+- `tts_preview` 只是没有真人视频时的预览模式，仍然按侧边 HUD Overlay 组织画面。
+- talking-head 模式仍然按 `face_position -> overlay_side` 锁定左右，不允许在同一条视频里来回跳侧。
+- overlay 结构变体由 `AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-overlay-variants.json` 管理，按语义组映射到 side hero / process / tool stack / scorecard / result 等面板族。
 
 这个编译器只负责把 narration 音频结果转换成可验证 timeline，不负责 caption beats 之后的更复杂模板选择。
 
@@ -178,7 +181,9 @@ npx hyperframes inspect
 - HUD 段位按语义主题粗分，建议控制在 5-7 段。
 - 单个 HUD segment 不低于 5 秒。
 - 工具链和 workflow 段应尽量保持 8-14 秒，避免同一主题频繁切换。
-- 同一条视频里 HUD 的 `overlay_side` 默认固定为右侧，不再左右跳动。
+- `creator_overlay` 模式下 `overlay_side` 仍然有效，默认右侧；它和 `layout_family` 一起决定侧边 HUD 的落点。
+- `tts_preview` 只是没有真人视频时的预览入口，不改变 creator overlay 的侧边叠层逻辑。
+- talking-head 模式下 `overlay_side` 仍然受 `face_position` 约束，保持稳定侧边。
 
 如果 snapshot / inspect 都通过，并且希望输出第一条样片，可以直接执行：
 
@@ -253,6 +258,31 @@ HUD 不再直接复制字幕，而是通过 `AI_VIDEO_COMPONENT_LIBRARY/registry
 - `MultiAgentPanel` 会优先显示短职责词，工具名与职责分层展示，避免中文被挤成竖排。
 
 这样做的目标是让字幕讲原话，HUD 讲结构，不再让两者重复。
+
+## 十四、P13 轻量视觉资产迁移
+
+audio-master 的视觉增强只吸收 V3 的轻资产，不迁 V3 主线：
+
+- `语义色 token` 迁入 `AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-visual-tokens.json`
+- `glass card / HUD panel` 迁入 `index.html` 的 creator-scene / creator-main 皮肤
+- `中文标题层级` 迁入 `BigKineticTitle`、`CTABigEnding`、`DetailsTableOverlay`
+- `tool_stack` 迁入 `MultiAgentPanel` 的 badge + role/name 分层
+- `proof / table` 迁入更稳的表格、结果 pill、绿色判断锚点
+- `CTA / result` 迁入更轻的结果色和下一步标签
+- `字幕安全区` 继续由 bottom subtitle 区域独立承担，不和 HUD 互相覆盖
+
+这一步的原则是：
+
+- 只迁成熟视觉资产，不迁 `studio_native_project_builder.py`、`scene_pack` 主线或 `publish_templates` 主线。
+- 只增强 creator overlay 的质感，不改 TTS、ffprobe、caption / HUD 分离、promote、render 主线。
+- 让 `display_lines`、`accent`、`panel_bg`、`border`、`glow` 这类视觉 token 可在后续继续复用。
+
+当前已经分成两条布局路径：
+
+- `creator_overlay`：当前主线，HUD 作为辅助信息层，固定为侧边叠层，避免遮脸、遮手势、遮字幕。
+- `tts_preview`：没有真人头像时的预览模式，仍然按侧边 HUD Overlay 组织画面，不改成全画布信息视频。
+- `talking_head`：有人脸时的正式兼容入口，HUD 继续按 face position 锁侧。
+- overlay variants 负责把同一条 creator_overlay 的 HUD 语义组，映射成更具体的 side_hero_overlay / side_process_panel / side_tool_stack_panel / side_scorecard_panel / side_result_panel 结构。
 
 当未来链路完成时，至少应该满足：
 

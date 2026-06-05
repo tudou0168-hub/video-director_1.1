@@ -1,14 +1,14 @@
 # Creator Overlay Pro
 
-`video-director_1.1` 是 audio-master clock 驱动的 Creator Overlay 系统，也是 Creator Overlay Pro 的本地主干。
+`video-director_1.1` 是 `creator_overlay` 驱动的 Creator Overlay 系统，也是 `Creator Overlay Pro` 的本地主干。
 
-它的目标不是做通用文案生成视频系统，而是稳定把口播稿 / TTS / 真人口播音频驱动的内容包装成可复用、可验证、可交付的中文 Creator Overlay 样片。
+它的目标不是做通用文案生成视频系统，而是稳定把口播稿 / TTS / 真人口播音频驱动的内容包装成可复用、可验证、可交付的中文 Creator Overlay 样片。当前主线是 `creator_overlay / tts_preview`，`talking_head` 只是兼容入口，不是主线。
 
 ## 当前能力
 
 - 文案 / 口播稿输入
 - 已有真人口播视频输入
-- 文案 / 口播稿 / TTS 音频主时钟
+- 文案 / 口播稿 / TTS 音频主时钟 / 真人口播音频主时钟
 - 真人口播视频标准化为 30fps 横版素材
 - 中文底部字幕
 - 透明线框 HUD
@@ -41,12 +41,13 @@ final_narration.md
 → 同样进入 audio master clock timeline
 ```
 
-这两条入口最终都必须进入 audio master clock。`render` 必须在 `snapshot` 和 `inspect` 之后执行。`talking-head` 只是兼容入口，不是必需资产；在 TTS-only 模式下，`media.video` 可以为空或由占位背景承担。
+这两条入口最终都必须进入 audio master clock。`render` 必须在 `snapshot` 和 `inspect` 之后执行。`talking-head` 只是兼容入口，不是必需资产；在 `tts_preview` 模式下，`media.video` 可以为空或由占位背景承担，但视觉逻辑仍然保持 Creator Overlay 侧边叠层，而不是全屏信息视频。
 
 ## 边界声明
 
 - 这不是 `video-director-script` 那种完整多平台文案生成视频系统。
 - 这不是复杂纯视觉短视频生成器。
+- 这不是 `video-director-script` 的全画布信息视频主线。
 - 这不是 V3 大 pipeline 的本地搬运版。
 - 这也不是“只支持已有真人视频包装”的窄化系统。
 
@@ -54,8 +55,8 @@ final_narration.md
 
 - `timeline.duration` 必须来自最终口播音频或 TTS 音频的真实时长。
 - 字幕、HUD segments、`snapshot_at` 必须围绕真实音频时长生成。
-- 当前阶段尚未完整实现通用口播改写到最终口播稿的完整内容工厂，但 TTS 音频主线已经具备最小接入能力。
-- 现阶段已有真人口播视频只是兼容入口，不是项目唯一入口。
+- 当前阶段尚未完整实现通用口播改写到最终口播稿的完整内容工厂，但 TTS 音频主线已经具备最小接入能力。视觉主线始终是 `creator_overlay`，不是全屏信息视频。
+- 现阶段已有真人口播视频只是兼容入口，不是项目唯一入口；`tts_preview` 只是无真人视频时的预览壳，不是新的全画布主线。
 
 ## 快速验证
 

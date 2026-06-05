@@ -285,6 +285,11 @@
       z-index: 24;
       opacity: 0;
       pointer-events: none;
+      --hud-accent: var(--vf-cyan);
+      --hud-accent-2: var(--vf-green);
+      --hud-panel-bg: rgba(8, 12, 20, 0.34);
+      --hud-border: rgba(103, 232, 249, 0.20);
+      --hud-glow: rgba(103, 232, 249, 0.14);
     }
     .creator-top-label {
       position: absolute;
@@ -294,16 +299,16 @@
       align-items: center;
       gap: 18px;
       font-family: monospace;
-      color: var(--vf-cyan);
-      text-shadow: 0 0 20px rgba(103, 232, 249, 0.35);
+      color: var(--hud-accent);
+      text-shadow: 0 0 20px var(--hud-glow);
     }
     .creator-top-label::before {
       content: "";
       width: 4px;
       height: 54px;
       border-radius: 99px;
-      background: linear-gradient(180deg, var(--vf-cyan), var(--vf-green));
-      box-shadow: 0 0 18px rgba(103, 232, 249, 0.5);
+      background: linear-gradient(180deg, var(--hud-accent), var(--hud-accent-2));
+      box-shadow: 0 0 18px var(--hud-glow);
     }
     .creator-label-en {
       font-size: 28px;
@@ -330,13 +335,13 @@
       justify-content: center;
       gap: 16px;
       padding: 0 26px;
-      border: 2px solid rgba(103, 232, 249, 0.68);
+      border: 2px solid var(--hud-border);
       border-radius: 999px;
-      background: rgba(8, 12, 20, 0.035);
-      backdrop-filter: blur(7px) saturate(150%);
-      -webkit-backdrop-filter: blur(7px) saturate(150%);
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.28), rgba(8, 12, 20, 0.10));
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
       color: #fff;
-      box-shadow: 0 0 30px rgba(103, 232, 249, 0.14), inset 0 0 18px rgba(103, 232, 249, 0.07);
+      box-shadow: 0 0 30px var(--hud-glow), inset 0 0 18px rgba(255, 255, 255, 0.05);
       font-family: monospace;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
     }
@@ -346,11 +351,11 @@
       border-radius: 999px;
       display: grid;
       place-items: center;
-      background: var(--vf-cyan);
+      background: var(--hud-accent);
       color: #031018;
       font-size: 22px;
       font-weight: 950;
-      box-shadow: 0 0 22px rgba(103, 232, 249, 0.62);
+      box-shadow: 0 0 22px var(--hud-glow);
     }
     .creator-step-text {
       font-size: 23px;
@@ -365,16 +370,21 @@
       width: 660px;
       min-height: 410px;
       padding: 38px;
-      border: 0;
-      border-radius: 18px;
-      background: var(--creator-hud-bg);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      box-shadow: none;
+      border: 1px solid var(--hud-border);
+      border-radius: 20px;
+      background: linear-gradient(180deg, var(--hud-panel-bg), rgba(8, 12, 20, 0.20));
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      box-shadow: 0 0 38px var(--hud-glow), inset 0 0 20px rgba(255, 255, 255, 0.03);
       overflow: hidden;
     }
     .creator-main::before {
-      content: none;
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--hud-glow), transparent 44%, rgba(255, 255, 255, 0.02) 72%);
+      pointer-events: none;
     }
     .creator-main.left {
       left: 72px;
@@ -414,11 +424,11 @@
     .mode-v07 .creator-main {
       top: 152px;
       min-height: 500px;
-      background: rgba(8, 12, 20, 0.03);
-      border: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
+      background: linear-gradient(180deg, var(--hud-panel-bg), rgba(8, 12, 20, 0.18));
+      border: 1px solid var(--hud-border);
+      box-shadow: 0 0 42px var(--hud-glow), inset 0 0 18px rgba(255,255,255,0.025);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
       overflow: visible;
     }
     .mode-v07 .creator-main.layout-impact-left {
@@ -584,7 +594,7 @@
       font-size: 60px;
       line-height: 1.05;
       font-weight: 950;
-      text-shadow: 0 0 24px rgba(103, 232, 249, 0.22);
+      text-shadow: 0 0 24px var(--hud-glow);
     }
     .creator-table-title::after {
       content: "";
@@ -592,8 +602,8 @@
       width: 128px;
       height: 5px;
       margin-top: 18px;
-      background: linear-gradient(90deg, var(--vf-amber), var(--vf-cyan), transparent);
-      box-shadow: 0 0 18px rgba(103, 232, 249, 0.35);
+      background: linear-gradient(90deg, var(--hud-accent), var(--hud-accent-2), transparent);
+      box-shadow: 0 0 18px var(--hud-glow);
     }
     .creator-table {
       margin-top: 24px;
@@ -606,10 +616,10 @@
       gap: 14px;
       align-items: center;
       padding: 14px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-left: 4px solid rgba(103, 232, 249, 0.62);
-      border-radius: 6px;
-      background: rgba(8, 12, 20, 0.018);
+      border: 1px solid var(--hud-border);
+      border-left: 4px solid var(--hud-accent);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.24), rgba(8, 12, 20, 0.12));
       font-size: 28px;
       font-weight: 820;
     }
@@ -628,18 +638,21 @@
     .creator-agent-card {
       min-height: 118px;
       padding: 20px;
-      border: 1px solid rgba(192, 132, 252, 0.54);
-      border-left: 5px solid rgba(192, 132, 252, 0.78);
-      border-radius: 6px;
-      background: rgba(8, 12, 20, 0.022);
-      box-shadow: 0 0 22px rgba(192, 132, 252, 0.10);
+      border: 1px solid var(--hud-border);
+      border-left: 5px solid var(--hud-accent);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.28), rgba(8, 12, 20, 0.14));
+      box-shadow: 0 0 22px var(--hud-glow);
     }
     .creator-agent-role {
-      color: var(--vf-purple);
+      color: var(--hud-accent);
       font-family: monospace;
       font-size: 22px;
       font-weight: 950;
       letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .creator-agent-name {
       margin-top: 14px;
@@ -647,24 +660,37 @@
       line-height: 1.12;
       font-weight: 920;
     }
+    .creator-mini-badge {
+      display: inline-flex;
+      align-items: center;
+      min-width: 42px;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: rgba(248, 250, 252, 0.9);
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      font-weight: 900;
+    }
     .creator-proof-shell {
       margin-top: 22px;
       min-height: 236px;
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      border-left: 5px solid rgba(251, 191, 36, 0.72);
-      border-radius: 6px;
-      background: rgba(8, 12, 20, 0.026);
-      box-shadow: 0 0 30px rgba(103, 232, 249, 0.14), inset 0 0 20px rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--hud-border);
+      border-left: 5px solid var(--hud-accent);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.30), rgba(8, 12, 20, 0.16));
+      box-shadow: 0 0 30px var(--hud-glow), inset 0 0 20px rgba(255, 255, 255, 0.025);
       padding: 24px;
-      transform: rotate(-1.2deg);
       overflow: hidden;
       position: relative;
     }
     .creator-proof-shell.has-asset {
       min-height: 292px;
       padding: 0;
-      background: rgba(8, 12, 20, 0.026);
-      transform: rotate(-0.8deg);
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.30), rgba(8, 12, 20, 0.18));
     }
     .creator-proof-image {
       display: block;
@@ -683,8 +709,8 @@
       gap: 18px;
       padding: 11px 14px;
       border-radius: 14px;
-      background: rgba(9, 12, 18, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(9, 12, 18, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.10);
       backdrop-filter: blur(18px) saturate(170%);
       -webkit-backdrop-filter: blur(18px) saturate(170%);
       color: rgba(255, 255, 255, 0.92);
@@ -718,15 +744,15 @@
       letter-spacing: 0.06em;
     }
     .creator-cta-keyword {
-      font-size: 96px;
+      font-size: 92px;
       line-height: 1;
-      color: var(--vf-amber);
+      color: var(--hud-accent);
       font-weight: 950;
-      text-shadow: 0 0 34px rgba(251, 191, 36, 0.35), 0 8px 28px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 0 34px var(--hud-glow), 0 8px 28px rgba(0, 0, 0, 0.6);
     }
     .creator-cta-result {
       margin-top: 18px;
-      font-size: 38px;
+      font-size: 36px;
       line-height: 1.18;
       color: #fff;
       font-weight: 900;
@@ -737,14 +763,14 @@
       align-items: center;
       min-height: 64px;
       padding: 0 24px;
-      border: 2px solid rgba(251, 191, 36, 0.82);
+      border: 1px solid var(--hud-border);
       border-radius: 8px;
-      background: rgba(251, 191, 36, 0.10);
+      background: linear-gradient(180deg, rgba(251, 191, 36, 0.12), rgba(8, 12, 20, 0.14));
       color: #fff7cc;
       font-size: 30px;
       line-height: 1.15;
       font-weight: 950;
-      box-shadow: 0 0 34px rgba(251, 191, 36, 0.22);
+      box-shadow: 0 0 34px var(--hud-glow);
     }
     .creator-cta-tags {
       margin-top: 26px;
@@ -759,7 +785,7 @@
       min-height: 44px;
       padding: 0 16px;
       border-radius: 999px;
-      border: 1px solid rgba(103, 232, 249, 0.44);
+      border: 1px solid var(--hud-border);
       background: rgba(103, 232, 249, 0.08);
       color: rgba(236, 253, 255, 0.94);
       font-size: 22px;
@@ -945,12 +971,17 @@
       white-space: nowrap;
       justify-self: end;
     }
+    .mode-v07 .creator-scene[data-group="workflow"] .creator-row,
+    .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row {
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.30), rgba(8, 12, 20, 0.16));
+      border-color: var(--hud-border);
+    }
     .mode-v07 .creator-scene[data-group="workflow"] .creator-table-title {
-      color: var(--vf-cyan);
+      color: var(--hud-accent);
     }
     .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-card {
-      border-color: rgba(103, 232, 249, 0.42);
-      box-shadow: 0 0 22px rgba(103, 232, 249, 0.08);
+      border-color: var(--hud-border);
+      box-shadow: 0 0 22px var(--hud-glow);
     }
     .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-grid {
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -961,7 +992,7 @@
       padding: 14px 14px 12px;
     }
     .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-role {
-      color: var(--vf-cyan);
+      color: var(--hud-accent);
       font-size: 18px;
     }
     .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-name {
@@ -972,35 +1003,62 @@
       overflow-wrap: anywhere;
     }
     .mode-v07 .creator-scene[data-group="proof_standard"] .creator-table-title {
-      color: var(--vf-green);
-      text-shadow: 0 0 24px rgba(53, 245, 154, 0.16);
+      color: var(--hud-accent);
+      text-shadow: 0 0 24px var(--hud-glow);
     }
     .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row {
-      border-left-color: rgba(53, 245, 154, 0.76);
+      border-left-color: var(--hud-accent);
     }
     .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row span:first-child {
       color: rgba(248, 250, 252, 0.96);
     }
+    .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row span:last-child {
+      justify-self: end;
+      min-width: 96px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(46, 232, 116, 0.10);
+      border: 1px solid rgba(46, 232, 116, 0.24);
+      color: var(--vf-green);
+      text-align: center;
+      font-size: 24px;
+      line-height: 1;
+      font-family: var(--vf-mono);
+      font-weight: 900;
+    }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword {
-      color: var(--vf-amber);
-      text-shadow: 0 0 34px rgba(251, 191, 36, 0.32), 0 8px 28px rgba(0, 0, 0, 0.6);
+      color: var(--hud-accent);
+      text-shadow: 0 0 34px var(--hud-glow), 0 8px 28px rgba(0, 0, 0, 0.6);
     }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-result {
       color: rgba(248, 250, 252, 0.92);
     }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-button {
-      border-color: rgba(53, 245, 154, 0.72);
+      border-color: var(--hud-border);
       color: #ecfff7;
-      background: rgba(53, 245, 154, 0.08);
-      box-shadow: 0 0 34px rgba(53, 245, 154, 0.12);
+      background: linear-gradient(180deg, rgba(53, 245, 154, 0.10), rgba(8, 12, 20, 0.14));
+      box-shadow: 0 0 34px var(--hud-glow);
     }
     .mode-v07 .creator-scene[data-group="hook_problem"] .creator-mega-title {
+      position: relative;
+      padding-left: 20px;
       max-width: none;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
       white-space: normal;
+    }
+    .mode-v07 .creator-scene[data-group="hook_problem"] .creator-mega-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      bottom: 12px;
+      width: 4px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--hud-accent), var(--hud-accent-2));
+      box-shadow: 0 0 18px var(--hud-glow);
     }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword-line {
       display: block;
@@ -1010,7 +1068,7 @@
       text-shadow: 0 0 28px rgba(53, 245, 154, 0.32);
     }
     .mode-v07 .creator-ctabigending .creator-cta-keyword {
-      font-size: 96px;
+      font-size: 92px;
       line-height: 0.98;
       white-space: pre-line;
       max-width: 680px;
@@ -1023,7 +1081,7 @@
       margin-bottom: 0;
     }
     .mode-v07 .creator-ctabigending .creator-cta-result {
-      font-size: 36px;
+      font-size: 34px;
       max-width: 760px;
     }
     .mode-v07 .creator-ctabigending .creator-cta-button {
@@ -1035,8 +1093,8 @@
       display: block;
     }
     .creator-cta-keyword-line.accent {
-      color: var(--vf-amber);
-      text-shadow: 0 0 28px rgba(251, 191, 36, 0.34);
+      color: var(--hud-accent-2);
+      text-shadow: 0 0 28px var(--hud-glow);
     }
     .mode-v07 .creator-scoringquestionpanel .creator-question-list {
       margin-top: 42px;
@@ -1053,6 +1111,181 @@
       width: 52px;
       height: 52px;
       font-size: 36px;
+    }
+    .mode-creator-overlay .creator-main {
+      left: auto;
+      right: 84px;
+      top: 160px;
+      width: 660px;
+      min-height: 420px;
+      padding: 38px 38px 34px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_hero_overlay,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_hero {
+      right: 78px;
+      top: 148px;
+      width: 700px;
+      min-height: 420px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_topic_card,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_topic {
+      right: 84px;
+      top: 176px;
+      width: 620px;
+      min-height: 360px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_process_panel,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_process {
+      right: 84px;
+      top: 164px;
+      width: 700px;
+      min-height: 430px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_tool_stack_panel,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_tool_stack {
+      right: 80px;
+      top: 154px;
+      width: 730px;
+      min-height: 500px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_scorecard_panel,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_scorecard {
+      right: 84px;
+      top: 164px;
+      width: 690px;
+      min-height: 440px;
+    }
+    .mode-creator-overlay .creator-main.layout-side_result_panel,
+    .mode-creator-overlay .creator-main.variant-v3_overlay_result {
+      right: 82px;
+      top: 164px;
+      width: 700px;
+      min-height: 420px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="hook_problem"] .creator-mega-title {
+      max-width: 620px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="hook_problem"] .creator-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-main,
+    .mode-creator-overlay .creator-scene[data-group="tool_stack"] .creator-main,
+    .mode-creator-overlay .creator-scene[data-group="proof_standard"] .creator-main,
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-main {
+      backdrop-filter: blur(20px) saturate(165%);
+      -webkit-backdrop-filter: blur(20px) saturate(165%);
+    }
+    .mode-creator-overlay .creator-scene[data-group="tool_stack"] .creator-agent-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="tool_stack"] .creator-agent-card {
+      min-height: 120px;
+      padding: 14px 14px 12px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="tool_stack"] .creator-agent-role {
+      font-size: 18px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="tool_stack"] .creator-agent-name {
+      font-size: 24px;
+      line-height: 1.06;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-table {
+      display: none;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-shell {
+      margin-top: 22px;
+      display: grid;
+      gap: 16px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      align-items: stretch;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-card {
+      display: flex;
+      min-height: 144px;
+      padding: 20px 18px 18px;
+      border: 1px solid var(--hud-border);
+      border-top: 5px solid var(--hud-accent);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(8, 12, 20, 0.28), rgba(8, 12, 20, 0.14));
+      box-shadow: 0 0 22px var(--hud-glow);
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-step {
+      color: var(--hud-accent);
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-label {
+      margin-top: 14px;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 950;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-subline {
+      margin-top: 12px;
+      color: rgba(248, 250, 252, 0.78);
+      font-size: 18px;
+      line-height: 1.18;
+      font-weight: 800;
+    }
+    .mode-creator-overlay .creator-scene[data-group="workflow"] .creator-flow-arrow {
+      display: grid;
+      place-items: center;
+      color: var(--hud-accent-2);
+      text-align: center;
+      font-size: 32px;
+      font-weight: 950;
+      text-shadow: 0 0 20px var(--hud-glow);
+      line-height: 1;
+      margin: 0;
+      align-self: center;
+    }
+    .mode-creator-overlay .creator-scene[data-group="proof_standard"] .creator-main {
+      min-height: 430px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="proof_standard"] .creator-row {
+      min-height: 84px;
+      padding: 16px 22px;
+      font-size: 28px;
+      grid-template-columns: minmax(0, 1fr) minmax(112px, 144px);
+    }
+    .mode-creator-overlay .creator-scene[data-group="proof_standard"] .creator-row span:last-child {
+      min-width: 112px;
+      font-size: 22px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-main {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-cta-keyword {
+      font-size: 78px;
+      max-width: 620px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-cta-result {
+      font-size: 30px;
+      max-width: 620px;
+    }
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-cta-button,
+    .mode-creator-overlay .creator-scene[data-group="result_next_step"] .creator-cta-tag {
+      box-shadow: 0 0 18px var(--hud-glow);
+    }
+    .creator-flow-shell,
+    .creator-flow-grid,
+    .creator-flow-card,
+    .creator-flow-arrow {
+      display: none;
     }
     .vf-caption {
       position: absolute;
@@ -1199,9 +1432,13 @@
     function renderCreatorSegment(segment, index, component, props) {
       const el = document.createElement("section");
       el.id = `vf-segment-${index}`;
-      el.className = `creator-scene creator-${component.toLowerCase()} density-${segment.density || "medium"}`;
+      const variant = props.variant || segment.variant || "";
+      const variantClass = variant ? `variant-${variant}` : "";
+      el.className = `creator-scene creator-${component.toLowerCase()} density-${segment.density || "medium"} ${variantClass}`.trim();
       el.dataset.component = component;
       el.dataset.group = segment.semantic_group || segment.semantic_role || "";
+      el.dataset.variant = variant;
+      el.dataset.layoutFamily = props.layout_family || segment.layout_family || segment.layout_slot || "";
       el.dataset.start = String(segment.start);
       el.dataset.duration = String(segment.end - segment.start);
 
@@ -1209,9 +1446,17 @@
       const labelCn = props.label_cn || segment.label_cn || "内容系统";
       const step = props.step || segment.step || String(index + 1).padStart(2, "0");
       const stepLabel = props.step_label || segment.step_label || "STEP";
-      const layout = props.layout || segment.layout_slot || (component === "ThreeStepPipeline" ? "wide" : "right");
+      const layout = props.layout_family || props.layout || segment.layout_family || segment.layout_slot || (component === "ThreeStepPipeline" ? "wide" : "right");
       const mainClass = `layout-${layout}`;
+      const mainVariantClass = variantClass ? ` ${variantClass}` : "";
       const titleScale = Number(props.title_scale || segment.title_scale || 0.92);
+      const themeVars = {
+        "--hud-accent": props.accent || "var(--vf-cyan)",
+        "--hud-accent-2": props.accent_2 || "var(--vf-green)",
+        "--hud-panel-bg": props.panel_bg || "rgba(8, 12, 20, 0.34)",
+        "--hud-border": props.border || "rgba(103, 232, 249, 0.20)",
+        "--hud-glow": props.glow || "rgba(103, 232, 249, 0.14)"
+      };
 
       let main = "";
       if (component === "BigKineticTitle") {
@@ -1236,16 +1481,28 @@
         main = `<div class="creator-pipeline">${steps.slice(0, 3).map((stepName, stepIndex) => `<div class="creator-step-card ${stepIndex === 1 ? "active" : ""}"><div class="creator-step-num">0${stepIndex + 1}</div><div class="creator-step-name">${richText(stepName)}</div></div>`).join("")}</div>`;
       } else if (component === "DetailsTableOverlay") {
         const rows = safeList(props.rows, [["痛点", "9.2"], ["复用", "8.8"], ["转化", "8.5"]]);
-        main = `<div class="creator-table-title">${richText(props.title)}</div><div class="creator-table">${rows.slice(0, 4).map((row) => {
-          const score = safeText(row[1]);
-          return `<div class="creator-row ${score ? "" : "field-only"}"><span>${richText(row[0])}</span>${score ? `<span class="creator-score">${richText(row[1])}</span>` : ""}</div>`;
-        }).join("")}</div>`;
+        const flowSteps = safeList(props.flow_steps, []);
+        if (segment.semantic_group === "workflow" && flowSteps.length > 0) {
+          const visibleSteps = flowSteps.slice(0, 4);
+          main = `<div class="creator-table-title">${richText(props.title)}</div><div class="creator-flow-shell"><div class="creator-flow-grid">${visibleSteps.map((stepItem, stepIndex) => {
+            const label = typeof stepItem === "string" ? stepItem : (stepItem.label || stepItem.title || stepItem.name || "");
+            const subline = typeof stepItem === "string" ? "" : (stepItem.subline || stepItem.subtitle || stepItem.detail || "");
+            const card = `<div class="creator-flow-card"><div class="creator-flow-step">0${stepIndex + 1}</div><div class="creator-flow-label">${richText(label)}</div><div class="creator-flow-subline">${richText(subline)}</div></div>`;
+            const arrow = stepIndex < visibleSteps.length - 1 ? `<div class="creator-flow-arrow">→</div>` : "";
+            return `${card}${arrow}`;
+          }).join("")}</div></div>`;
+        } else {
+          main = `<div class="creator-table-title">${richText(props.title)}</div><div class="creator-table">${rows.slice(0, 4).map((row) => {
+            const score = safeText(row[1]);
+            return `<div class="creator-row ${score ? "" : "field-only"}"><span>${richText(row[0])}</span>${score ? `<span class="creator-score">${richText(row[1])}</span>` : ""}</div>`;
+          }).join("")}</div>`;
+        }
       } else if (component === "ScoringQuestionPanel") {
         const questions = safeList(props.questions, ["能解释痛点？", "能绑定产品？", "能带来回复？"]);
         main = `<div class="creator-table-title">${richText(props.title || "3个筛选问题")}</div><div class="creator-question-list">${questions.slice(0, 3).map((question) => `<div class="creator-question-row"><span class="creator-checkmark">✓</span><span>${richText(question)}</span></div>`).join("")}</div>`;
       } else if (component === "MultiAgentPanel") {
         const agents = safeList(props.agents, [["Hermes", "采集"], ["Obsidian", "沉淀"], ["llm-wiki", "检索"], ["HyperFrames", "包装"], ["Codex", "编排"]]);
-        main = `<div class="creator-table-title">${richText(props.title || "多 Agent 协作")}</div><div class="creator-agent-grid">${agents.slice(0, 5).map((agent, agentIndex) => `<div class="creator-agent-card"><div class="creator-agent-role">A${agentIndex + 1} · ${richText(Array.isArray(agent) ? agent[1] : "AGENT")}</div><div class="creator-agent-name">${richText(Array.isArray(agent) ? agent[0] : agent)}</div></div>`).join("")}</div>`;
+        main = `<div class="creator-table-title">${richText(props.title || "多 Agent 协作")}</div><div class="creator-agent-grid">${agents.slice(0, 5).map((agent, agentIndex) => `<div class="creator-agent-card"><div class="creator-agent-role"><span class="creator-mini-badge">A${agentIndex + 1}</span><span>${richText(Array.isArray(agent) ? agent[1] : "AGENT")}</span></div><div class="creator-agent-name">${richText(Array.isArray(agent) ? agent[0] : agent)}</div></div>`).join("")}</div>`;
       } else if (component === "ProofScreenshotOverlay") {
         const assetPath = safeAssetPath(props.asset_path);
         const proofShell = assetPath
@@ -1260,15 +1517,20 @@
         const buttonTokens = typeof props.button === "string"
           ? props.button.split(/[\/、，,]/g).map((token) => token.trim()).filter(Boolean)
           : [];
+        const statusBadge = props.status ? `<div class="creator-mini-badge">${safeText(props.status)}</div>` : "";
         const buttonMarkup = buttonTokens.length > 1
           ? `<div class="creator-cta-tags">${buttonTokens.map((token) => `<span class="creator-cta-tag">${richText(token)}</span>`).join("")}</div>`
           : (props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : "");
-        main = `<div class="creator-cta-keyword">${keywordMarkup}</div><div class="creator-cta-result">${richText(resultText)}</div>${buttonMarkup}`;
+        main = `${statusBadge}<div class="creator-cta-keyword">${keywordMarkup}</div><div class="creator-cta-result">${richText(resultText)}</div>${buttonMarkup}`;
       } else {
         main = `<div class="creator-table-title">${richText(props.title || props.label || "系统证明")}</div><div class="creator-subline">${richText(props.asset_status || props.result || "TODO_ASSET_REQUIRED")}</div>`;
       }
 
-      el.innerHTML = `<div class="creator-top-label"><div><div class="creator-label-en">${safeText(labelEn)}</div><div class="creator-label-cn">${safeText(labelCn)}</div></div></div><div class="creator-step-badge"><div class="creator-step-dot">${safeText(step).slice(0, 2)}</div><div class="creator-step-text">${safeText(stepLabel)}</div></div><div class="creator-main ${mainClass} component-${component}">${main}</div>`;
+      Object.entries(themeVars).forEach(([key, value]) => {
+        el.style.setProperty(key, value);
+      });
+      el.dataset.theme = props.theme || segment.semantic_group || segment.semantic_role || component.toLowerCase();
+      el.innerHTML = `<div class="creator-top-label"><div><div class="creator-label-en">${safeText(labelEn)}</div><div class="creator-label-cn">${safeText(labelCn)}</div></div></div><div class="creator-step-badge"><div class="creator-step-dot">${safeText(step).slice(0, 2)}</div><div class="creator-step-text">${safeText(stepLabel)}</div></div><div class="creator-main ${mainClass}${mainVariantClass} component-${component}">${main}</div>`;
       document.getElementById("vfStage").appendChild(el);
       return el;
     }
@@ -1365,14 +1627,21 @@
       const frame = document.getElementById("talkingFrame");
       const audio = document.getElementById("narration");
       const video = document.getElementById("talkingVideo");
+      const layoutMode = timeline.layout_policy?.mode || (timeline.mode === "talking_head_overlay" ? "talking_head" : "creator_overlay");
+      const audioMode = timeline.layout_policy?.audio_mode || (layoutMode === "talking_head" ? "talking_head" : "tts_preview");
 
       root.dataset.duration = String(timeline.duration);
-      root.classList.toggle("mode-talking", timeline.mode === "talking_head_overlay");
+      root.dataset.layoutMode = layoutMode;
+      root.dataset.audioMode = audioMode;
+      root.classList.toggle("mode-creator-overlay", layoutMode === "creator_overlay");
+      root.classList.toggle("mode-talking", layoutMode === "talking_head");
+      root.classList.toggle("mode-audio-tts-preview", audioMode === "tts_preview");
+      root.classList.toggle("mode-audio-talking-head", audioMode === "talking_head");
       root.classList.toggle("mode-v07", timeline.visual_pass === "V07_VISUAL_IMPACT_PASS");
       audio.dataset.duration = String(timeline.duration);
       if (video) video.dataset.duration = String(timeline.duration);
 
-      if (timeline.mode === "talking_head_overlay" && timeline.media.video && video) {
+      if (layoutMode === "talking_head" && timeline.media.video && video) {
         frame.style.display = "block";
         video.src = timeline.media.video;
         video.load();

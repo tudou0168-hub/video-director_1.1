@@ -5,9 +5,12 @@
   "duration": 45.048,
   "overlay_side": "right",
   "layout_policy": {
-    "mode": "tts_only",
+    "mode": "creator_overlay",
+    "audio_mode": "tts_preview",
+    "view_mode": "overlay",
     "overlay_side": "right",
-    "face_position": "center"
+    "face_position": "center",
+    "variant_mode": "v3_overlay_variants"
   },
   "media": {
     "audio": "assets/narration-master.wav",
@@ -523,17 +526,31 @@
         "label_en": "HOOK",
         "label_cn": "判断",
         "step_label": "HOOK",
-        "layout": "right",
+        "layout": "side_hero_overlay",
+        "layout_family": "side_hero_overlay",
         "step": "01",
         "display_lines": [
           "工具学习",
           "≠ 效率提升"
         ],
         "title_scale": 0.92,
+        "theme": "hook_problem",
+        "accent": "rgba(103, 232, 249, 0.96)",
+        "accent_2": "rgba(251, 191, 36, 0.96)",
+        "panel_bg": "rgba(8, 12, 20, 0.36)",
+        "border": "rgba(103, 232, 249, 0.24)",
+        "glow": "rgba(103, 232, 249, 0.18)",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_hero",
+        "variant_class": "variant-v3_overlay_hero",
+        "motion_preset": "hero_fade_lift"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_hero_overlay",
+      "layout_family": "side_hero_overlay",
+      "variant": "v3_overlay_hero",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "kinetic_title_in",
@@ -554,6 +571,7 @@
       "subtitleCN": "真正缺的是内容生产闭环",
       "hud_theme": "hook_problem",
       "caption_count": 4,
+      "motion_preset": "hero_fade_lift",
       "snapshotAt": 4
     },
     {
@@ -606,12 +624,29 @@
       "component_props": {
         "problem": "问题不在工具",
         "loss": "没有输入、处理、输出的连续链路",
+        "layout_family": "side_topic_card",
+        "label_en": "ROOT CAUSE",
+        "label_cn": "根因",
+        "step_label": "ROOT",
         "step": "02",
-        "layout": "right",
+        "theme": "root_cause",
+        "accent": "rgba(251, 113, 133, 0.96)",
+        "accent_2": "rgba(251, 191, 36, 0.90)",
+        "panel_bg": "rgba(8, 12, 20, 0.36)",
+        "border": "rgba(251, 113, 133, 0.20)",
+        "glow": "rgba(251, 113, 133, 0.16)",
+        "layout": "side_topic_card",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_topic",
+        "variant_class": "variant-v3_overlay_topic",
+        "motion_preset": "panel_stagger_in"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_topic_card",
+      "layout_family": "side_topic_card",
+      "variant": "v3_overlay_topic",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "alert_flash",
@@ -632,6 +667,7 @@
       "subtitleCN": "没有输入、处理、输出的连续链路",
       "hud_theme": "root_cause",
       "caption_count": 4,
+      "motion_preset": "panel_stagger_in",
       "snapshotAt": 11.05
     },
     {
@@ -701,30 +737,53 @@
       "component": "DetailsTableOverlay",
       "component_props": {
         "title": "内容生产闭环",
-        "rows": [
-          [
-            "采集",
-            "素材"
-          ],
-          [
-            "沉淀",
-            "要点"
-          ],
-          [
-            "编译",
-            "结构"
-          ],
-          [
-            "包装",
-            "成片"
-          ]
+        "layout_family": "side_process_panel",
+        "label_en": "FLOW",
+        "label_cn": "流程",
+        "step_label": "FLOW",
+        "flow_steps": [
+          {
+            "label": "采集",
+            "subline": "素材"
+          },
+          {
+            "label": "沉淀",
+            "subline": "要点"
+          },
+          {
+            "label": "编译",
+            "subline": "结构"
+          },
+          {
+            "label": "包装",
+            "subline": "成片"
+          }
         ],
         "step": "03",
-        "layout": "right",
+        "rows": [
+          [
+            "内容生产闭环",
+            "采集 → 沉淀 → 编译 → 包装"
+          ]
+        ],
+        "theme": "workflow",
+        "accent": "rgba(56, 225, 255, 0.96)",
+        "accent_2": "rgba(46, 232, 116, 0.92)",
+        "panel_bg": "rgba(8, 12, 20, 0.34)",
+        "border": "rgba(56, 225, 255, 0.22)",
+        "glow": "rgba(56, 225, 255, 0.16)",
+        "layout": "side_process_panel",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_process",
+        "variant_class": "variant-v3_overlay_process",
+        "motion_preset": "line_trace_draw"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_process_panel",
+      "layout_family": "side_process_panel",
+      "variant": "v3_overlay_process",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "node_cascade",
@@ -745,6 +804,7 @@
       "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
       "hud_theme": "workflow",
       "caption_count": 6,
+      "motion_preset": "line_trace_draw",
       "snapshotAt": 17.55
     },
     {
@@ -796,6 +856,7 @@
       "component": "MultiAgentPanel",
       "component_props": {
         "title": "工具链分工",
+        "layout_family": "side_tool_stack_panel",
         "agents": [
           [
             "Hermes",
@@ -819,11 +880,24 @@
           ]
         ],
         "step": "04",
-        "layout": "right",
+        "theme": "tool_stack",
+        "accent": "rgba(192, 132, 252, 0.96)",
+        "accent_2": "rgba(56, 225, 255, 0.92)",
+        "panel_bg": "rgba(8, 12, 20, 0.34)",
+        "border": "rgba(192, 132, 252, 0.22)",
+        "glow": "rgba(192, 132, 252, 0.16)",
+        "layout": "side_tool_stack_panel",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_tool_stack",
+        "variant_class": "variant-v3_overlay_tool_stack",
+        "motion_preset": "panel_stagger_in"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_tool_stack_panel",
+      "layout_family": "side_tool_stack_panel",
+      "variant": "v3_overlay_tool_stack",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "node_cascade",
@@ -844,6 +918,7 @@
       "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames / Codex 编排",
       "hud_theme": "tool_stack",
       "caption_count": 4,
+      "motion_preset": "panel_stagger_in",
       "snapshotAt": 25.4
     },
     {
@@ -886,6 +961,7 @@
       "component": "DetailsTableOverlay",
       "component_props": {
         "title": "30分钟成片检查",
+        "layout_family": "side_scorecard_panel",
         "rows": [
           [
             "输入",
@@ -901,11 +977,24 @@
           ]
         ],
         "step": "05",
-        "layout": "right",
+        "theme": "proof_standard",
+        "accent": "rgba(46, 232, 116, 0.96)",
+        "accent_2": "rgba(251, 191, 36, 0.92)",
+        "panel_bg": "rgba(8, 12, 20, 0.34)",
+        "border": "rgba(46, 232, 116, 0.22)",
+        "glow": "rgba(46, 232, 116, 0.16)",
+        "layout": "side_scorecard_panel",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_scorecard",
+        "variant_class": "variant-v3_overlay_scorecard",
+        "motion_preset": "score_pop_hold"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_scorecard_panel",
+      "layout_family": "side_scorecard_panel",
+      "variant": "v3_overlay_scorecard",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "line_scan",
@@ -926,6 +1015,7 @@
       "subtitleCN": "先看输入、处理、输出",
       "hud_theme": "proof_standard",
       "caption_count": 3,
+      "motion_preset": "score_pop_hold",
       "snapshotAt": 33.4
     },
     {
@@ -988,16 +1078,31 @@
         "keyword": "先跑通 1 条",
         "result": "可发布口播视频",
         "button": "音频 / 字幕 / HUD / 预览",
+        "layout_family": "side_result_panel",
+        "status": "READY",
         "step": "06",
         "display_lines": [
           "先跑通 1 条",
           "可发布口播视频"
         ],
-        "layout": "right",
+        "theme": "result_next_step",
+        "accent": "rgba(251, 191, 36, 0.96)",
+        "accent_2": "rgba(46, 232, 116, 0.92)",
+        "panel_bg": "rgba(8, 12, 20, 0.34)",
+        "border": "rgba(251, 191, 36, 0.24)",
+        "glow": "rgba(251, 191, 36, 0.18)",
+        "layout": "side_result_panel",
+        "layout_mode": "creator_overlay",
+        "audio_mode": "tts_preview",
         "overlay_side": "right",
-        "face_position": "center"
+        "face_position": "center",
+        "variant": "v3_overlay_result",
+        "variant_class": "variant-v3_overlay_result",
+        "motion_preset": "cta_rise"
       },
-      "layout_slot": "right",
+      "layout_slot": "side_result_panel",
+      "layout_family": "side_result_panel",
+      "variant": "v3_overlay_result",
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "cta_focus",
@@ -1018,6 +1123,7 @@
       "subtitleCN": "可发布口播视频",
       "hud_theme": "result_next_step",
       "caption_count": 5,
+      "motion_preset": "cta_rise",
       "snapshotAt": 41.024
     }
   ]

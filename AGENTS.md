@@ -4,7 +4,7 @@
 
 `video-director_1.1` 是 `Creator Overlay Pro` 的本地工程仓库，也是 `Audio-Master-Clock Driven Narration Overlay System` 的稳定主干。
 
-它的核心目标不是泛化软件开发，也不是把自己退化成“只支持已有真人视频包装”的狭义工具，而是稳定生产可复用、可验证、可交付的中文 Creator Overlay 样片：
+它的核心目标不是泛化软件开发，也不是把自己退化成“只支持已有真人视频包装”的狭义工具，而是稳定生产可复用、可验证、可交付的中文 Creator Overlay 样片。当前主线是 `creator_overlay`，`tts_preview` 只是无真人视频时的预览壳：
 
 ```text
 文案 / 口播稿 / TTS 音频 / 真人口播音频

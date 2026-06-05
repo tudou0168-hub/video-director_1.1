@@ -1,0 +1,69 @@
+{
+  "default_overlay_side": "right",
+  "groups": {
+    "hook_problem": {
+      "accent": "rgba(103, 232, 249, 0.96)",
+      "accent_2": "rgba(251, 191, 36, 0.96)",
+      "panel_bg": "rgba(8, 12, 20, 0.36)",
+      "border": "rgba(103, 232, 249, 0.24)",
+      "glow": "rgba(103, 232, 249, 0.18)"
+    },
+    "root_cause": {
+      "accent": "rgba(251, 113, 133, 0.96)",
+      "accent_2": "rgba(251, 191, 36, 0.90)",
+      "panel_bg": "rgba(8, 12, 20, 0.36)",
+      "border": "rgba(251, 113, 133, 0.20)",
+      "glow": "rgba(251, 113, 133, 0.16)"
+    },
+    "workflow": {
+      "accent": "rgba(56, 225, 255, 0.96)",
+      "accent_2": "rgba(46, 232, 116, 0.92)",
+      "panel_bg": "rgba(8, 12, 20, 0.34)",
+      "border": "rgba(56, 225, 255, 0.22)",
+      "glow": "rgba(56, 225, 255, 0.16)"
+    },
+    "tool_stack": {
+      "accent": "rgba(192, 132, 252, 0.96)",
+      "accent_2": "rgba(56, 225, 255, 0.92)",
+      "panel_bg": "rgba(8, 12, 20, 0.34)",
+      "border": "rgba(192, 132, 252, 0.22)",
+      "glow": "rgba(192, 132, 252, 0.16)"
+    },
+    "proof_standard": {
+      "accent": "rgba(46, 232, 116, 0.96)",
+      "accent_2": "rgba(251, 191, 36, 0.92)",
+      "panel_bg": "rgba(8, 12, 20, 0.34)",
+      "border": "rgba(46, 232, 116, 0.22)",
+      "glow": "rgba(46, 232, 116, 0.16)"
+    },
+    "result_next_step": {
+      "accent": "rgba(251, 191, 36, 0.96)",
+      "accent_2": "rgba(46, 232, 116, 0.92)",
+      "panel_bg": "rgba(8, 12, 20, 0.34)",
+      "border": "rgba(251, 191, 36, 0.24)",
+      "glow": "rgba(251, 191, 36, 0.18)"
+    }
+  },
+  "components": {
+    "BigKineticTitle": {
+      "title_scale_default": 0.92,
+      "title_scale_compact": 0.84,
+      "subtitle_size": 28
+    },
+    "MultiAgentPanel": {
+      "grid_columns": 2,
+      "card_radius": 12,
+      "badge_style": "small_chip"
+    },
+    "DetailsTableOverlay": {
+      "row_radius": 12,
+      "row_padding": [16, 18],
+      "value_style": "pill"
+    },
+    "CTABigEnding": {
+      "keyword_scale": 0.92,
+      "result_scale": 0.96,
+      "tag_style": "chip"
+    }
+  }
+}

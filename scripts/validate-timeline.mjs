@@ -52,7 +52,13 @@ const allowedSlots = [
   "impact-wide",
   "impact-table",
   "impact-checklist",
-  "impact-cta"
+  "impact-cta",
+  "side_hero_overlay",
+  "side_topic_card",
+  "side_process_panel",
+  "side_tool_stack_panel",
+  "side_scorecard_panel",
+  "side_result_panel"
 ];
 
 let previousEnd = 0;

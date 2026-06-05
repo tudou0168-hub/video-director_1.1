@@ -8,7 +8,7 @@
 
 一句话定位：
 
-> audio-master clock 驱动的 Creator Overlay 系统。
+> `creator_overlay` 驱动的中文 Creator Overlay 系统。
 
 ## 当前主线
 
@@ -39,14 +39,14 @@
 - 输入中文文案、口播稿或等价脚本。
 - 当前仓库已经具备从 Markdown 文案提取句段并生成 storyboard / timeline 的能力。
 - 未来会接入 TTS provider，把最终口播音频作为主时钟。
-- talking-head 不是主线，只是兼容入口。
+- 视觉主线仍然是 `creator_overlay`；`tts_preview` 只是无真人视频时的预览壳，不是全屏信息视频。
 
 ### 主入口 B：已有真人口播视频输入
 
 - 通过 `prepare:talking-head` 标准化已有真人口播视频。
 - 导出 `talking-head-input.mp4` 和 `talking-head-audio-master.wav`。
 - 这个入口只是兼容入口，最终和主入口 A 汇合到同一条 audio master clock 主线。
-- 在 TTS-only 模式下，`media.video` 可以为空，或由占位背景承担，不要求一定存在真人视频素材。
+- 在 `talking_head` 模式下，HUD 会按人脸位置锁定左右侧；在 `tts_preview` 模式下，`media.video` 可以为空，或由占位背景承担，但视觉逻辑仍然保持 Creator Overlay 侧边叠层。
 
 ## 输入 / 中间产物 / 输出
 
@@ -81,6 +81,7 @@
 - 对已有真人口播视频执行标准化，导出 audio master 相关素材。
 - 以 snapshot / inspect 作为 render 前门槛。
 - 维持中文字幕、HUD、safe-zone 和 QA 约束。
+- `creator_overlay`、`tts_preview`、`talking_head` 的分流已经清楚。
 - `docs/NARRATION_AUDIO_PIPELINE.md` 已定义最小 narration audio pipeline 契约。
 
 ## 当前缺口
@@ -105,7 +106,7 @@
 
 ## 和 `video-director-v3` 的关系
 
-`video-director-v3` 里的部分资产可以作为视觉、语义色、QA 和模板规则参考，但本仓库不是 V3 的完整落地副本。
+`video-director-v3` 里的部分资产可以作为视觉、语义色、QA 和模板规则参考，但本仓库不是 V3 的完整落地副本，也不是 V3 的全画布信息视频主线。
 
 适合的关系是：
 
@@ -122,6 +123,7 @@
 ## 禁止事项
 
 - 不把当前仓库缩回成“只支持已有真人视频包装”的系统
+- 不把当前仓库扩成 `video-director-script` 的全画布信息视频主线
 - 不做 script-to-video 的完整内容工厂
 - 不做 TTS provider 实现层开发
 - 不迁移 V3 大 pipeline

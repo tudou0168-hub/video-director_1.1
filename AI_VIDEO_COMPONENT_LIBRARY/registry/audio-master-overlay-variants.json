@@ -1,0 +1,53 @@
+{
+  "default_variant": "v3_overlay_topic",
+  "variants": {
+    "hook_problem": {
+      "variant": "v3_overlay_hero",
+      "layout_family": "side_hero_overlay",
+      "component": "BigKineticTitle",
+      "motion_preset": "hero_fade_lift",
+      "overlay_side": "right",
+      "panel_role": "hero"
+    },
+    "root_cause": {
+      "variant": "v3_overlay_topic",
+      "layout_family": "side_topic_card",
+      "component": "ProblemAlert",
+      "motion_preset": "panel_stagger_in",
+      "overlay_side": "right",
+      "panel_role": "topic"
+    },
+    "workflow": {
+      "variant": "v3_overlay_process",
+      "layout_family": "side_process_panel",
+      "component": "DetailsTableOverlay",
+      "motion_preset": "line_trace_draw",
+      "overlay_side": "right",
+      "panel_role": "process"
+    },
+    "tool_stack": {
+      "variant": "v3_overlay_tool_stack",
+      "layout_family": "side_tool_stack_panel",
+      "component": "MultiAgentPanel",
+      "motion_preset": "panel_stagger_in",
+      "overlay_side": "right",
+      "panel_role": "toolchain"
+    },
+    "proof_standard": {
+      "variant": "v3_overlay_scorecard",
+      "layout_family": "side_scorecard_panel",
+      "component": "DetailsTableOverlay",
+      "motion_preset": "score_pop_hold",
+      "overlay_side": "right",
+      "panel_role": "scorecard"
+    },
+    "result_next_step": {
+      "variant": "v3_overlay_result",
+      "layout_family": "side_result_panel",
+      "component": "CTABigEnding",
+      "motion_preset": "cta_rise",
+      "overlay_side": "right",
+      "panel_role": "result"
+    }
+  }
+}
