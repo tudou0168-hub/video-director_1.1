@@ -4,6 +4,10 @@ import path from "node:path";
 const root = path.resolve(new URL("../", import.meta.url).pathname);
 const file = process.argv[2] || path.resolve(root, "../timeline.json");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "registry/component-registry.json"), "utf8"));
+const layoutRulesPath = path.join(root, "registry/audio-master-layout-rules.json");
+const layoutRules = fs.existsSync(layoutRulesPath)
+  ? JSON.parse(fs.readFileSync(layoutRulesPath, "utf8"))
+  : {};
 const timeline = JSON.parse(fs.readFileSync(file, "utf8"));
 const errors = [];
 const warnings = [];
@@ -11,6 +15,32 @@ const warnings = [];
 const components = registry.components;
 const legacyMap = registry.legacy_visual_module_map || {};
 const allowedEnglish = ["AI", "HUD", "TTS", "Codex", "Hermes", "HyperFrames", "timeline", "Obsidian", "llm-wiki", "px"];
+
+const defaultMaxSeconds = 8.05;
+const groupMaxSeconds = {
+  hook_problem: 8.05,
+  root_cause: 8.05,
+  workflow: 14.05,
+  tool_stack: 14.05,
+  proof_standard: 8.05,
+  result_next_step: 10.05,
+  cta: 10.05,
+};
+
+for (const group of layoutRules.hud_groups || []) {
+  if (group?.key && typeof group.endTime === "number" && typeof group.startTime === "number") {
+    groupMaxSeconds[group.key] = Math.max(groupMaxSeconds[group.key] || 0, group.endTime - group.startTime + 0.05);
+  }
+}
+
+function resolveSemanticGroup(segment) {
+  return segment.semantic_group || segment.semantic_role || "default";
+}
+
+function getMaxSecondsForSegment(segment) {
+  const key = resolveSemanticGroup(segment);
+  return groupMaxSeconds[key] ?? defaultMaxSeconds;
+}
 
 function resolveComponent(segment) {
   return segment.component || legacyMap[segment.visual_module] || segment.visual_module;
@@ -45,11 +75,12 @@ for (const [index, segment] of (timeline.segments || []).entries()) {
   }
 }
 
-for (let i = 1; i < (timeline.segments || []).length; i += 1) {
-  const previous = timeline.segments[i - 1];
-  const current = timeline.segments[i];
-  if (current.start - previous.start > 8.05) {
-    warnings.push(`segments[${i}] starts more than 8s after previous visual change`);
+for (let i = 0; i < (timeline.segments || []).length; i += 1) {
+  const segment = timeline.segments[i];
+  const duration = Number(segment.end) - Number(segment.start);
+  const maxSeconds = getMaxSecondsForSegment(segment);
+  if (duration > maxSeconds) {
+    warnings.push(`segments[${i}] ${resolveSemanticGroup(segment)} lasts ${duration.toFixed(3)}s, above recommended ${maxSeconds.toFixed(3)}s`);
   }
 }
 

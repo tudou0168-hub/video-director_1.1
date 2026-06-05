@@ -139,11 +139,14 @@ samples/final_narration.md
 当前约定：
 
 - `compiled.timeline.json` 使用 `tts_result.duration` 作为总时长。
-- `segments` 来源于 `caption_beats.json`。
-- `snapshot_at` 从 `segments[].snapshotAt` 自动生成。
+- `caption_beats.json` 仍然保留句子级字幕节拍。
+- `compiled.timeline.json.segments` 现在按语义主题合并为 HUD 段，不再一条 caption 对应一条 HUD。
+- `caption_beats` 会继续保留在编译结果里，方便字幕信息完整落盘。
+- `snapshot_at` 从 HUD `segments[].snapshotAt` 自动生成。
 - `media.audio` 使用 `tts_result.audio_path`。
 - `media.video` 在这个最小 TTS 路径里可以设为 `null`，也可以由占位背景承担；它不要求真人口播视频一定存在。
 - talking-head 只是一条兼容入口，不是这条最小 TTS 主线的必需资产。
+- TTS-only 模式默认 `overlay_side = "right"`，所有 HUD 段位共享同一侧，不再左右切换。
 
 这个编译器只负责把 narration 音频结果转换成可验证 timeline，不负责 caption beats 之后的更复杂模板选择。
 
@@ -166,6 +169,14 @@ npx hyperframes inspect
 ```
 
 `snapshot:audio-master` 采用的是 45 秒内的固定采样点，优先服务 audio-master timeline 的预览验证，而不是旧的 60 秒样片节奏。
+
+当前 audio-master 样片的 HUD 节奏规则是：
+
+- 字幕继续按句子细分，保留在 `caption_beats.json` 和 `compiled.timeline.json.caption_beats`。
+- HUD 段位按语义主题粗分，建议控制在 5-7 段。
+- 单个 HUD segment 不低于 5 秒。
+- 工具链和 workflow 段应尽量保持 8-14 秒，避免同一主题频繁切换。
+- 同一条视频里 HUD 的 `overlay_side` 默认固定为右侧，不再左右跳动。
 
 如果 snapshot / inspect 都通过，并且希望输出第一条样片，可以直接执行：
 

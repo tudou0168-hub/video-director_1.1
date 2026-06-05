@@ -13,6 +13,7 @@ const outputDir = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/examples/au
 const captionBeatsPath = path.join(outputDir, "caption_beats.json");
 const compiledTimelinePath = path.join(outputDir, "compiled.timeline.json");
 const hudCopyRulesPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-hud-copy-rules.json");
+const layoutRulesPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-layout-rules.json");
 
 function fail(message) {
   console.error("audio master timeline compile failed:");
@@ -91,6 +92,39 @@ function loadHudCopyRules() {
 }
 
 const hudCopyRules = loadHudCopyRules();
+const defaultLayoutRules = {
+  default_overlay_side: "right",
+  default_face_position: "center",
+  min_hud_segment_seconds: 5,
+  recommended_tool_segment_seconds: [8, 14],
+  no_switch_within_seconds: 3,
+  hud_groups: [
+    { key: "hook_problem", startBeatIndex: 0, endBeatIndex: 3 },
+    { key: "root_cause", startBeatIndex: 4, endBeatIndex: 7 },
+    { key: "workflow", startBeatIndex: 8, endBeatIndex: 13 },
+    { key: "tool_stack", startBeatIndex: 14, endBeatIndex: 17 },
+    { key: "proof_standard", startBeatIndex: 18, endBeatIndex: 20 },
+    { key: "result_next_step", startBeatIndex: 21, endBeatIndex: 25 }
+  ]
+};
+
+function loadLayoutRules() {
+  if (!fs.existsSync(layoutRulesPath)) {
+    return clone(defaultLayoutRules);
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(layoutRulesPath, "utf8"));
+    return {
+      ...clone(defaultLayoutRules),
+      ...parsed,
+      hud_groups: Array.isArray(parsed.hud_groups) && parsed.hud_groups.length > 0 ? parsed.hud_groups : clone(defaultLayoutRules.hud_groups)
+    };
+  } catch (error) {
+    fail(`layout rules are not valid JSON: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+const layoutRules = loadLayoutRules();
 
 function semanticRoleFor(text, index, total) {
   if (index === 0) return "pain_hook";
@@ -153,8 +187,154 @@ function buildRoleCopy(role, index, sentence) {
   };
 }
 
-function componentFor(role) {
-  return (hudCopyRules[role] && hudCopyRules[role].component) || (hudCopyRules.problem && hudCopyRules.problem.component) || "TopicCard";
+function beatMidpoint(beat) {
+  return (beat.start + beat.end) / 2;
+}
+
+function hudGroupForBeat(beat) {
+  const midpoint = beatMidpoint(beat);
+  const groups = layoutRules.hud_groups || [];
+  const group = groups.find((item) => midpoint >= item.startTime && midpoint < item.endTime) || groups[groups.length - 1];
+  return group?.key || "result_next_step";
+}
+
+function componentForGroup(groupKey) {
+  return (hudCopyRules[groupKey] && hudCopyRules[groupKey].component)
+    || (hudCopyRules.result_next_step && hudCopyRules.result_next_step.component)
+    || (hudCopyRules.problem && hudCopyRules.problem.component)
+    || "TopicCard";
+}
+
+function buildGroupCopy(groupKey, index, sentence) {
+  const rule = hudCopyRules[groupKey] || hudCopyRules.result_next_step || hudCopyRules.problem || hudCopyRules.wrong_path;
+  if (!rule) {
+    fail(`missing HUD copy rule for group: ${groupKey}`);
+  }
+  const merged = clone(rule);
+  const step = String(index + 1).padStart(2, "0");
+  const componentProps = Object.assign({}, merged.component_props || {}, { step });
+
+  if (merged.component === "BigKineticTitle") {
+    componentProps.headline = merged.component_props?.headline || merged.primaryText || sentence;
+    componentProps.subline = merged.component_props?.subline || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "ProblemAlert") {
+    componentProps.problem = merged.component_props?.problem || merged.primaryText || sentence;
+    componentProps.loss = merged.component_props?.loss || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "DetailsTableOverlay") {
+    componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
+    componentProps.rows = merged.component_props?.rows || [[merged.primaryText || sentence, merged.subtitleCN || sentence]];
+  }
+
+  if (merged.component === "TopicCard") {
+    componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
+    componentProps.body = merged.component_props?.body || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "CTABigEnding") {
+    componentProps.keyword = merged.component_props?.keyword || merged.primaryText || sentence;
+    componentProps.result = merged.component_props?.result || merged.subtitleCN || sentence;
+    if (merged.component_props?.button) componentProps.button = merged.component_props.button;
+  }
+
+  if (merged.component === "KPIWidget") {
+    componentProps.value = merged.component_props?.value || "45s";
+    componentProps.label = merged.component_props?.label || merged.primaryText || sentence;
+    componentProps.unit = merged.component_props?.unit || merged.subtitleCN || "真实音频驱动";
+  }
+
+  if (merged.component === "MultiAgentPanel") {
+    componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
+    componentProps.agents = merged.component_props?.agents || [["Hermes", "采集素材"], ["Obsidian", "沉淀资料"], ["llm-wiki", "检索编译"], ["HyperFrames", "包装视频"]];
+  }
+
+  return {
+    ...merged,
+    component_props: componentProps,
+    step,
+    sentence
+  };
+}
+
+function buildHudSegments(beats, duration) {
+  const groups = [];
+  const groupConfigs = layoutRules.hud_groups || [];
+
+  beats.forEach((beat, index) => {
+    const groupKey = hudGroupForBeat(beat);
+    const captionItem = {
+      beat_id: beat.beat_id,
+      start: beat.start,
+      end: beat.end,
+      text: beat.text,
+      caption_line: beat.caption_line,
+      semantic_role: beat.semantic_role
+    };
+    const targetGroup = groupConfigs.find((item) => item.key === groupKey) || groupConfigs[groupConfigs.length - 1] || { key: groupKey };
+    let currentGroup = groups.find((item) => item.groupKey === groupKey);
+    if (!currentGroup) {
+      currentGroup = {
+        groupKey,
+        start: typeof targetGroup.startTime === "number" ? targetGroup.startTime : beat.start,
+        end: typeof targetGroup.endTime === "number" ? targetGroup.endTime : beat.end,
+        captionItems: []
+      };
+      groups.push(currentGroup);
+    }
+    currentGroup.captionItems.push(captionItem);
+  });
+
+  const overlaySide = layoutRules.default_overlay_side || "right";
+  const facePosition = layoutRules.default_face_position || "center";
+
+  return groups.map((group, index) => {
+    const start = typeof group.start === "number" ? group.start : group.captionItems[0].start;
+    const end = typeof group.end === "number" ? group.end : group.captionItems[group.captionItems.length - 1].end;
+    const durationSeconds = end - start;
+    if (durationSeconds < (layoutRules.min_hud_segment_seconds || 5)) {
+      fail(`hud segment ${group.groupKey} is too short: ${durationSeconds.toFixed(2)}s`);
+    }
+    const hudCopy = buildGroupCopy(group.groupKey, index, group.captionItems.map((item) => item.text).join(" / "));
+    const component = componentForGroup(group.groupKey);
+    const snapshotAt = Number((start + (durationSeconds / 2)).toFixed(3));
+    const firstCaption = group.captionItems[0]?.caption_line || group.captionItems[0]?.text || "";
+    return {
+      start: Number(start.toFixed(3)),
+      end: Number(end.toFixed(3)),
+      text: group.captionItems.map((item) => item.text).join(" / "),
+      caption_line: firstCaption,
+      caption_items: group.captionItems,
+      captions: group.captionItems.map((item) => item.caption_line),
+      visual_module: component,
+      component,
+      component_props: {
+        ...hudCopy.component_props,
+        layout: overlaySide,
+        overlay_side: overlaySide,
+        face_position: facePosition
+      },
+      layout_slot: overlaySide === "right" ? "right" : overlaySide,
+      overlay_side: overlaySide,
+      safe_zone: overlaySide === "right" ? "default" : overlaySide,
+      animation: hudCopy.animation || "panel_expand",
+      emphasis_keyword: hudCopy.primaryText || firstCaption.slice(-8),
+      density: hudCopy.density || "medium",
+      semantic_role: group.groupKey,
+      semantic_group: group.groupKey,
+      proof_point: hudCopy.proof_point || "先看问题，再看流程",
+      cta_type: hudCopy.cta_type || "none",
+      template: hudCopy.template || "TOPIC_CARD",
+      components: ["TopSectionLabel", "StepBadge", component, "BottomChineseSubtitle"],
+      primaryText: hudCopy.primaryText,
+      subtitleCN: hudCopy.subtitleCN,
+      hud_theme: group.groupKey,
+      caption_count: group.captionItems.length,
+      snapshotAt
+    };
+  });
 }
 
 function buildCaptionBeats(sentences, totalDuration) {
@@ -175,7 +355,8 @@ function buildCaptionBeats(sentences, totalDuration) {
       end: Number(end.toFixed(2)),
       text: sentence,
       caption_line: truncateCaption(sentence, 18),
-      semantic_role: semanticRoleFor(sentence, index, sentences.length)
+      semantic_role: semanticRoleFor(sentence, index, sentences.length),
+      hud_group: hudGroupForBeat(index)
     };
     beats.push(beat);
     start = end;
@@ -190,105 +371,26 @@ function buildCaptionBeats(sentences, totalDuration) {
 }
 
 function buildTimeline(beats, ttsResult, duration) {
-  const segments = beats.map((beat, index) => {
-    const semanticRole = beat.semantic_role;
-    const component = componentFor(semanticRole);
-    const snapshotAt = Number((beat.start + ((beat.end - beat.start) / 2)).toFixed(2));
-    const captionLine = beat.caption_line;
-    const hudCopy = buildRoleCopy(semanticRole, index, beat.text);
-    return {
-      start: beat.start,
-      end: beat.end,
-      text: beat.text,
-      caption_line: captionLine,
-      visual_module: component,
-      component,
-      component_props: hudCopy.component_props,
-      layout_slot:
-        semanticRole === "pain_hook"
-          ? "impact-left"
-          : semanticRole === "workflow" || semanticRole === "tool_stack" || semanticRole === "proof"
-            ? "impact-wide"
-          : semanticRole === "cta"
-            ? "impact-cta"
-            : semanticRole === "result"
-              ? "center"
-              : semanticRole === "wrong_path"
-                ? "left"
-                : "right",
-      safe_zone: "default",
-      animation:
-        semanticRole === "pain_hook"
-          ? "kinetic_title_in"
-          : semanticRole === "workflow" || semanticRole === "tool_stack"
-            ? "node_cascade"
-          : semanticRole === "cta"
-            ? "cta_focus"
-            : semanticRole === "result"
-              ? "count_up"
-              : semanticRole === "proof"
-                ? "line_scan"
-                : semanticRole === "problem" || semanticRole === "wrong_path"
-                  ? "alert_flash"
-                  : "panel_expand",
-      emphasis_keyword: hudCopy.primaryText || captionLine.slice(-8),
-      density: semanticRole === "pain_hook" || semanticRole === "cta" || semanticRole === "result" ? "high" : "medium",
-      semantic_role: semanticRole,
-      proof_point:
-        semanticRole === "cta"
-          ? "给出下一步"
-          : semanticRole === "result"
-            ? "给出结果锚点"
-            : semanticRole === "proof"
-              ? "给出判断标准"
-              : semanticRole === "tool_stack"
-                ? "给出工具分工"
-                : semanticRole === "workflow"
-                  ? "给出流程节点"
-                  : semanticRole === "problem"
-                    ? "给出根因"
-                    : semanticRole === "wrong_path"
-                      ? "指出错误努力"
-                      : "先看问题，再看流程",
-      cta_type: semanticRole === "cta" ? "comment_keyword" : "none",
-      template:
-        semanticRole === "pain_hook"
-          ? "BIG_TITLE_HOOK"
-          : semanticRole === "workflow"
-            ? "CONTENT_FLOW_TABLE"
-            : semanticRole === "tool_stack"
-              ? "TOOL_STACK_TABLE"
-              : semanticRole === "proof"
-                ? "PROOF_TABLE"
-                : semanticRole === "result"
-                  ? "RESULT_CARD"
-                  : semanticRole === "wrong_path"
-                    ? "WRONG_PATH_CARD"
-                    : semanticRole === "problem"
-                      ? "PROBLEM_ALERT"
-                      : semanticRole === "cta"
-                        ? "CTA_BIG_ENDING"
-                        : "TOPIC_CARD",
-      components: ["TopSectionLabel", "StepBadge", component, "BottomChineseSubtitle"],
-      primaryText: hudCopy.primaryText,
-      subtitleCN: hudCopy.subtitleCN,
-      hud_theme: semanticRole,
-      snapshotAt
-    };
-  });
-
+  const segments = buildHudSegments(beats, duration);
   const snapshot_at = segments.map((segment) => segment.snapshotAt);
   return {
     mode: "article_tts",
     width: 1920,
     height: 1080,
     duration,
+    overlay_side: layoutRules.default_overlay_side || "right",
+    layout_policy: {
+      mode: "tts_only",
+      overlay_side: layoutRules.default_overlay_side || "right",
+      face_position: layoutRules.default_face_position || "center"
+    },
     media: {
       audio: ttsResult.audio_path,
       video: null
     },
     product_id: "P008",
     recipe: "Audio_Master_Narration_Explainer",
+    caption_beats: beats,
     snapshot_at,
     segments
   };
