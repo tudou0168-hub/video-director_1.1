@@ -7,7 +7,7 @@
 它的核心目标不是泛化软件开发，也不是把自己退化成“只支持已有真人视频包装”的狭义工具，而是稳定生产可复用、可验证、可交付的中文 Creator Overlay 样片：
 
 ```text
-文案 / 口播稿 / TTS / 真人口播音频
+文案 / 口播稿 / TTS 音频 / 真人口播音频
 -> storyboard
 -> timeline.json
 -> HyperFrames HTML/CSS/GSAP runtime

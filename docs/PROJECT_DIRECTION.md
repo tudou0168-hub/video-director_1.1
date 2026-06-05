@@ -8,7 +8,7 @@
 
 一句话定位：
 
-> 口播稿 / TTS / 真人口播音频驱动的 Creator Overlay 系统。
+> audio-master clock 驱动的 Creator Overlay 系统。
 
 ## 当前主线
 
@@ -39,12 +39,14 @@
 - 输入中文文案、口播稿或等价脚本。
 - 当前仓库已经具备从 Markdown 文案提取句段并生成 storyboard / timeline 的能力。
 - 未来会接入 TTS provider，把最终口播音频作为主时钟。
+- talking-head 不是主线，只是兼容入口。
 
 ### 主入口 B：已有真人口播视频输入
 
 - 通过 `prepare:talking-head` 标准化已有真人口播视频。
 - 导出 `talking-head-input.mp4` 和 `talking-head-audio-master.wav`。
-- 这个入口和主入口 A 最终汇合到同一条 audio master clock 主线。
+- 这个入口只是兼容入口，最终和主入口 A 汇合到同一条 audio master clock 主线。
+- 在 TTS-only 模式下，`media.video` 可以为空，或由占位背景承担，不要求一定存在真人视频素材。
 
 ## 输入 / 中间产物 / 输出
 
@@ -99,7 +101,7 @@
 
 - `video-director_1.1` 不负责 script-to-video 的完整内容工厂。
 - `video-director_1.1` 不负责复杂多平台内容生产主线。
-- `video-director_1.1` 负责的是音频主时钟驱动的 Creator Overlay，不是完整内容工厂。
+- `video-director_1.1` 负责的是 audio-master clock 驱动的 Creator Overlay，不是完整内容工厂。
 
 ## 和 `video-director-v3` 的关系
 

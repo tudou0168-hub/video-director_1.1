@@ -1,0 +1,145 @@
+{
+  "pain_hook": {
+    "component": "BigKineticTitle",
+    "primaryText": "工具学习 ≠ 效率提升",
+    "subtitleCN": "真正缺的是内容生产闭环",
+    "component_props": {
+      "headline": "工具学习 ≠ 效率提升",
+      "subline": "真正缺的是内容生产闭环",
+      "label_en": "HOOK",
+      "label_cn": "判断",
+      "step_label": "HOOK",
+      "layout": "impact-left"
+    },
+    "layout_slot": "impact-left",
+    "animation": "kinetic_title_in",
+    "density": "high",
+    "template": "BIG_TITLE_HOOK",
+    "proof_point": "给出开场判断",
+    "cta_type": "none"
+  },
+  "wrong_path": {
+    "component": "TopicCard",
+    "primaryText": "错误努力",
+    "subtitleCN": "一直在学看起来很有用的东西",
+    "component_props": {
+      "title": "错误努力",
+      "body": "把时间消耗在无效学习上",
+      "label_en": "WRONG PATH",
+      "label_cn": "误区",
+      "step_label": "ERROR",
+      "layout": "left"
+    },
+    "layout_slot": "left",
+    "animation": "panel_expand",
+    "density": "medium",
+    "template": "WRONG_PATH_CARD",
+    "proof_point": "指出错误努力",
+    "cta_type": "none"
+  },
+  "problem": {
+    "component": "ProblemAlert",
+    "primaryText": "问题不在工具",
+    "subtitleCN": "没有输入、处理、输出的连续链路",
+    "component_props": {
+      "problem": "问题不在工具",
+      "loss": "没有输入、处理、输出的连续链路"
+    },
+    "layout_slot": "left",
+    "animation": "alert_flash",
+    "density": "medium",
+    "template": "PROBLEM_ALERT",
+    "proof_point": "给出根因",
+    "cta_type": "none"
+  },
+  "workflow": {
+    "component": "DetailsTableOverlay",
+    "primaryText": "内容生产闭环",
+    "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+    "component_props": {
+      "title": "内容生产闭环",
+      "rows": [
+        ["采集", "捞素材"],
+        ["沉淀", "整理要点"],
+        ["编译", "抽取结构"],
+        ["包装", "拼成片"]
+      ]
+    },
+    "layout_slot": "impact-wide",
+    "animation": "node_cascade",
+    "density": "medium",
+    "template": "CONTENT_FLOW_TABLE",
+    "proof_point": "给出流程节点",
+    "cta_type": "none"
+  },
+  "tool_stack": {
+    "component": "MultiAgentPanel",
+    "primaryText": "工具链分工",
+    "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+    "component_props": {
+      "title": "工具链分工",
+      "agents": [
+        ["Hermes", "采集素材"],
+        ["Obsidian", "沉淀资料"],
+        ["llm-wiki", "检索编译"],
+        ["HyperFrames", "包装视频"]
+      ]
+    },
+    "layout_slot": "impact-wide",
+    "animation": "node_cascade",
+    "density": "medium",
+    "template": "TOOL_STACK_PANEL",
+    "proof_point": "给出工具分工",
+    "cta_type": "none"
+  },
+  "proof": {
+    "component": "DetailsTableOverlay",
+    "primaryText": "30分钟成片检查",
+    "subtitleCN": "先看输入、处理、输出",
+    "component_props": {
+      "title": "30分钟成片检查",
+      "rows": [
+        ["输入", "文案"],
+        ["处理", "TTS + 字幕"],
+        ["输出", "预览视频"]
+      ]
+    },
+    "layout_slot": "impact-wide",
+    "animation": "line_scan",
+    "density": "medium",
+    "template": "PROOF_TABLE",
+    "proof_point": "给出判断标准",
+    "cta_type": "none"
+  },
+  "result": {
+    "component": "TopicCard",
+    "primaryText": "一条可发布口播视频",
+    "subtitleCN": "45s · 真实音频驱动",
+    "component_props": {
+      "title": "一条可发布口播视频",
+      "body": "45s · 真实音频驱动"
+    },
+    "layout_slot": "center",
+    "animation": "count_up",
+    "density": "high",
+    "template": "RESULT_CARD",
+    "proof_point": "给出结果锚点",
+    "cta_type": "none"
+  },
+  "cta": {
+    "component": "CTABigEnding",
+    "primaryText": "先跑通 1 条",
+    "subtitleCN": "再优化模板和视觉",
+    "component_props": {
+      "keyword": "先跑通 1 条",
+      "result": "再优化模板和视觉",
+      "button": "检查：音频、字幕、HUD、预览"
+    },
+    "layout_slot": "impact-cta",
+    "animation": "cta_focus",
+    "density": "high",
+    "template": "CTA_BIG_ENDING",
+    "proof_point": "给出下一步",
+    "cta_type": "comment_keyword"
+  }
+}

@@ -13,7 +13,7 @@
     "end": 4.59,
     "text": "还是没有真正提高效率",
     "caption_line": "还是没有真正提高效率",
-    "semantic_role": "explain"
+    "semantic_role": "problem"
   },
   {
     "beat_id": "B03",
@@ -21,7 +21,7 @@
     "end": 5.84,
     "text": "不是你不努力",
     "caption_line": "不是你不努力",
-    "semantic_role": "explain"
+    "semantic_role": "wrong_path"
   },
   {
     "beat_id": "B04",
@@ -29,7 +29,7 @@
     "end": 8.97,
     "text": "是你一直在学看起来很有用的东西",
     "caption_line": "是你一直在学看起来很有用的东西",
-    "semantic_role": "explain"
+    "semantic_role": "wrong_path"
   },
   {
     "beat_id": "B05",
@@ -37,7 +37,7 @@
     "end": 10.01,
     "text": "真正的问题",
     "caption_line": "真正的问题",
-    "semantic_role": "explain"
+    "semantic_role": "problem"
   },
   {
     "beat_id": "B06",
@@ -53,7 +53,7 @@
     "end": 13.55,
     "text": "每天收藏教程",
     "caption_line": "每天收藏教程",
-    "semantic_role": "explain"
+    "semantic_role": "wrong_path"
   },
   {
     "beat_id": "B08",
@@ -61,7 +61,7 @@
     "end": 14.59,
     "text": "时间被消耗",
     "caption_line": "时间被消耗",
-    "semantic_role": "explain"
+    "semantic_role": "wrong_path"
   },
   {
     "beat_id": "B09",
@@ -69,7 +69,7 @@
     "end": 15.84,
     "text": "结果没有沉淀",
     "caption_line": "结果没有沉淀",
-    "semantic_role": "workflow"
+    "semantic_role": "result"
   },
   {
     "beat_id": "B10",
@@ -109,7 +109,7 @@
     "end": 21.27,
     "text": "Hermes 负责捞素材",
     "caption_line": "Hermes 负责捞素材",
-    "semantic_role": "explain"
+    "semantic_role": "tool_stack"
   },
   {
     "beat_id": "B15",
@@ -117,7 +117,7 @@
     "end": 23.77,
     "text": "Obsidian 负责沉淀",
     "caption_line": "Obsidian 负责沉淀",
-    "semantic_role": "workflow"
+    "semantic_role": "tool_stack"
   },
   {
     "beat_id": "B16",
@@ -125,7 +125,7 @@
     "end": 26.27,
     "text": "llm-wiki 负责检索",
     "caption_line": "llm-wiki 负责检索",
-    "semantic_role": "explain"
+    "semantic_role": "tool_stack"
   },
   {
     "beat_id": "B17",
@@ -133,7 +133,7 @@
     "end": 28.15,
     "text": "Codex 负责改写",
     "caption_line": "Codex 负责改写",
-    "semantic_role": "explain"
+    "semantic_role": "tool_stack"
   },
   {
     "beat_id": "B18",
@@ -141,7 +141,7 @@
     "end": 31.28,
     "text": "HyperFrames 负责包装",
     "caption_line": "HyperFrames 负责包装",
-    "semantic_role": "explain"
+    "semantic_role": "tool_stack"
   },
   {
     "beat_id": "B19",
@@ -149,7 +149,7 @@
     "end": 32.74,
     "text": "判断标准很简单",
     "caption_line": "判断标准很简单",
-    "semantic_role": "explain"
+    "semantic_role": "proof"
   },
   {
     "beat_id": "B20",
@@ -157,7 +157,7 @@
     "end": 35.45,
     "text": "一篇内容能不能在 30 分钟内",
     "caption_line": "一篇内容能不能在 30 分钟内",
-    "semantic_role": "explain"
+    "semantic_role": "proof"
   },
   {
     "beat_id": "B21",
@@ -165,7 +165,7 @@
     "end": 37.95,
     "text": "变成一条可以发的口播视频",
     "caption_line": "变成一条可以发的口播视频",
-    "semantic_role": "explain"
+    "semantic_role": "result"
   },
   {
     "beat_id": "B22",
@@ -173,7 +173,7 @@
     "end": 38.78,
     "text": "如果不能",
     "caption_line": "如果不能",
-    "semantic_role": "explain"
+    "semantic_role": "problem"
   },
   {
     "beat_id": "B23",
@@ -181,7 +181,7 @@
     "end": 40.66,
     "text": "说明你缺的不是工具",
     "caption_line": "说明你缺的不是工具",
-    "semantic_role": "explain"
+    "semantic_role": "problem"
   },
   {
     "beat_id": "B24",

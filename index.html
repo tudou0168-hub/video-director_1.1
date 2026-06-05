@@ -946,7 +946,6 @@
 <body>
   <div id="root" data-composition-id="main" data-start="0" data-duration="45.048" data-width="1920" data-height="1080">
     <div id="talkingFrame">
-      <video id="talkingVideo" src="" muted playsinline preload="auto"></video>
     </div>
     <div class="vf-grid"></div>
     <div id="vfStage"></div>
@@ -1205,9 +1204,9 @@
       root.classList.toggle("mode-talking", timeline.mode === "talking_head_overlay");
       root.classList.toggle("mode-v07", timeline.visual_pass === "V07_VISUAL_IMPACT_PASS");
       audio.dataset.duration = String(timeline.duration);
-      video.dataset.duration = String(timeline.duration);
+      if (video) video.dataset.duration = String(timeline.duration);
 
-      if (timeline.mode === "talking_head_overlay" && timeline.media.video) {
+      if (timeline.mode === "talking_head_overlay" && timeline.media.video && video) {
         frame.style.display = "block";
         video.src = timeline.media.video;
         video.load();

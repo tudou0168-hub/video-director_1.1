@@ -13,13 +13,18 @@ test-assets/
 assets/**/*.mp4
 assets/**/*.mov
 assets/**/*.m4a
+assets/*.wav
+assets/*.mp3
+assets/tts_result.json
 assets/**/*.mp3
 assets/**/*.wav
 assets/**/*.png
 assets/tts_result.json
 outputs/
+review_frames/
 snapshots/
 QA/
+contact-sheet.jpg
 
 # Render scratch output
 renders/

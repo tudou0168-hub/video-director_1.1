@@ -1,13 +1,14 @@
 # Creator Overlay Pro
 
-`video-director_1.1` 是口播稿 / TTS / 真人口播音频驱动的 Creator Overlay 系统，也是 Creator Overlay Pro 的本地主干。
+`video-director_1.1` 是 audio-master clock 驱动的 Creator Overlay 系统，也是 Creator Overlay Pro 的本地主干。
 
-它的目标不是做通用文案生成视频系统，而是稳定把口播音频驱动的内容包装成可复用、可验证、可交付的中文 Creator Overlay 样片。
+它的目标不是做通用文案生成视频系统，而是稳定把口播稿 / TTS / 真人口播音频驱动的内容包装成可复用、可验证、可交付的中文 Creator Overlay 样片。
 
 ## 当前能力
 
 - 文案 / 口播稿输入
 - 已有真人口播视频输入
+- 文案 / 口播稿 / TTS 音频主时钟
 - 真人口播视频标准化为 30fps 横版素材
 - 中文底部字幕
 - 透明线框 HUD
@@ -20,17 +21,15 @@
 ## 项目主线
 
 ```text
-文案 / 口播稿
-→ 口播稿
-→ 男声 TTS
-→ 读取真实 TTS 音频时长
-→ timeline.duration = 真实音频时长
-→ 根据口播稿生成 caption beats
-→ 根据 caption / semantic beats 生成 HUD segments
-→ snapshot_at 从 segments 自动或一致生成
-→ snapshot
+final_narration.md
+→ tts:narration
+→ validate:tts-result
+→ compile:audio-master-timeline
+→ validate:audio-master-timeline
+→ promote:audio-master-timeline
+→ snapshot:audio-master
 → inspect
-→ render
+→ render:audio-master
 ```
 
 兼容入口：
@@ -42,7 +41,7 @@
 → 同样进入 audio master clock timeline
 ```
 
-这两条入口最终都必须进入 audio master clock。`render` 必须在 `snapshot` 和 `inspect` 之后执行。
+这两条入口最终都必须进入 audio master clock。`render` 必须在 `snapshot` 和 `inspect` 之后执行。`talking-head` 只是兼容入口，不是必需资产；在 TTS-only 模式下，`media.video` 可以为空或由占位背景承担。
 
 ## 边界声明
 
@@ -55,22 +54,31 @@
 
 - `timeline.duration` 必须来自最终口播音频或 TTS 音频的真实时长。
 - 字幕、HUD segments、`snapshot_at` 必须围绕真实音频时长生成。
-- 当前阶段尚未完整实现 TTS 生成链路，TTS 是下一阶段能力。
+- 当前阶段尚未完整实现通用口播改写到最终口播稿的完整内容工厂，但 TTS 音频主线已经具备最小接入能力。
 - 现阶段已有真人口播视频只是兼容入口，不是项目唯一入口。
 
 ## 快速验证
 
 ```bash
-npm run prepare:talking-head -- /path/to/talking-head.mov 60
-npm run compile:creator60
-cp AI_VIDEO_COMPONENT_LIBRARY/examples/creator_overlay_60s/compiled.timeline.json timeline.json
+npm run tts:narration
+npm run validate:tts-result
+npm run compile:audio-master-timeline
+npm run validate:audio-master-timeline
+npm run promote:audio-master-timeline:dry-run
+npm run validate:timeline-contract
+npm run check:creator-overlay
 npm run validate
 npm run validate:components
-npm run validate:proof-assets
-npm run validate:media-sync
-npx hyperframes lint
-npm run snapshot:creator60
+npm run snapshot:audio-master
 npx hyperframes inspect
+```
+
+### 兼容入口
+
+已有真人口播视频仍可通过 `prepare:talking-head` 标准化后进入同一条 audio master clock 主线。
+
+```bash
+npm run prepare:talking-head -- /path/to/talking-head.mov 60
 ```
 
 ## Render

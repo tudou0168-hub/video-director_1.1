@@ -142,7 +142,8 @@ samples/final_narration.md
 - `segments` 来源于 `caption_beats.json`。
 - `snapshot_at` 从 `segments[].snapshotAt` 自动生成。
 - `media.audio` 使用 `tts_result.audio_path`。
-- `media.video` 在这个最小 TTS 路径里暂时设为 `null`，因为它不是真人口播视频编排链路。
+- `media.video` 在这个最小 TTS 路径里可以设为 `null`，也可以由占位背景承担；它不要求真人口播视频一定存在。
+- talking-head 只是一条兼容入口，不是这条最小 TTS 主线的必需资产。
 
 这个编译器只负责把 narration 音频结果转换成可验证 timeline，不负责 caption beats 之后的更复杂模板选择。
 
@@ -218,6 +219,21 @@ outputs/samples/audio-master-creator-overlay-v01.mp4
 - 不提交媒体产物。
 
 ## 十二、验收标准
+
+## 十三、P8A HUD 语义分工
+
+在 audio-master timeline 里，`caption_line` 继续承担「口播字幕」职责，尽量贴近观众实际听到的原话。
+
+HUD 不再直接复制字幕，而是通过 `AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-hud-copy-rules.json` 把同一句口播投影成更高层的语义信息：
+
+- `pain_hook` / `problem` / `wrong_path` 负责判断、根因和错误努力。
+- `workflow` 负责流程节点和内容生产闭环。
+- `tool_stack` 负责工具分工。
+- `proof` 负责判断标准和检查清单。
+- `result` 负责结果锚点。
+- `cta` 负责下一步行动。
+
+这样做的目标是让字幕讲原话，HUD 讲结构，不再让两者重复。
 
 当未来链路完成时，至少应该满足：
 

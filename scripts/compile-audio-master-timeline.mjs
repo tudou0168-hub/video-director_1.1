@@ -12,6 +12,7 @@ const ttsResultPath = path.resolve(projectRoot, ttsResultPathArg);
 const outputDir = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/examples/audio_master");
 const captionBeatsPath = path.join(outputDir, "caption_beats.json");
 const compiledTimelinePath = path.join(outputDir, "compiled.timeline.json");
+const hudCopyRulesPath = path.join(projectRoot, "AI_VIDEO_COMPONENT_LIBRARY/registry/audio-master-hud-copy-rules.json");
 
 function fail(message) {
   console.error("audio master timeline compile failed:");
@@ -74,70 +75,86 @@ function truncateCaption(text, max = 18) {
   return cleaned.slice(0, max).replace(/[，,。！？!?；;：:、]+$/g, "");
 }
 
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function loadHudCopyRules() {
+  if (!fs.existsSync(hudCopyRulesPath)) {
+    return {};
+  }
+  try {
+    return JSON.parse(fs.readFileSync(hudCopyRulesPath, "utf8"));
+  } catch (error) {
+    fail(`hud copy rules are not valid JSON: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+const hudCopyRules = loadHudCopyRules();
+
 function semanticRoleFor(text, index, total) {
-  const lower = text.toLowerCase();
   if (index === 0) return "pain_hook";
   if (index === total - 1 || /回复|领取|下载|购买|关键词/.test(text)) return "cta";
-  if (/流程|节点|步骤|输入|处理|输出|采集|沉淀|编译|时长|音频|同步/.test(text) || lower.includes("flow")) return "workflow";
-  return "explain";
+  if (/一条可以发的口播视频|可发布口播视频|发布的口播视频|成片|结果/.test(text)) return "result";
+  if (/30\s*分钟|判断标准|检查清单|能不能|检查/.test(text)) return "proof";
+  if (/Hermes|Obsidian|llm-wiki|Codex|HyperFrames/.test(text) || /工具链/.test(text)) return "tool_stack";
+  if (/输入|处理|输出|流程|节点|步骤|采集|沉淀|编译|包装|闭环/.test(text)) return "workflow";
+  if (/不是你不努力|一直在学看起来很有用的东西|每天收藏教程|时间被消耗|结果没有沉淀/.test(text)) return "wrong_path";
+  if (/真正的问题|没有真正提高效率|缺的不是工具|不在工具|流程模板|真正的问题/.test(text)) return "problem";
+  return "problem";
+}
+
+function buildRoleCopy(role, index, sentence) {
+  const rule = hudCopyRules[role] || hudCopyRules.problem || hudCopyRules.wrong_path;
+  if (!rule) {
+    fail(`missing HUD copy rule for role: ${role}`);
+  }
+  const merged = clone(rule);
+  const step = String(index + 1).padStart(2, "0");
+  const componentProps = Object.assign({}, merged.component_props || {}, { step });
+
+  if (merged.component === "BigKineticTitle") {
+    componentProps.headline = merged.component_props?.headline || merged.primaryText || sentence;
+    componentProps.subline = merged.component_props?.subline || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "ProblemAlert") {
+    componentProps.problem = merged.component_props?.problem || merged.primaryText || sentence;
+    componentProps.loss = merged.component_props?.loss || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "DetailsTableOverlay") {
+    componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
+    componentProps.rows = merged.component_props?.rows || [[merged.primaryText || sentence, merged.subtitleCN || sentence]];
+  }
+
+  if (merged.component === "TopicCard") {
+    componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
+    componentProps.body = merged.component_props?.body || merged.subtitleCN || sentence;
+  }
+
+  if (merged.component === "CTABigEnding") {
+    componentProps.keyword = merged.component_props?.keyword || merged.primaryText || sentence;
+    componentProps.result = merged.component_props?.result || merged.subtitleCN || sentence;
+    if (merged.component_props?.button) componentProps.button = merged.component_props.button;
+  }
+
+  if (merged.component === "KPIWidget") {
+    componentProps.value = merged.component_props?.value || "45s";
+    componentProps.label = merged.component_props?.label || merged.primaryText || sentence;
+    componentProps.unit = merged.component_props?.unit || merged.subtitleCN || "真实音频驱动";
+  }
+
+  return {
+    ...merged,
+    component_props: componentProps,
+    step,
+    sentence
+  };
 }
 
 function componentFor(role) {
-  if (role === "pain_hook") return "BigKineticTitle";
-  if (role === "workflow") return "ThreeStepPipeline";
-  if (role === "cta") return "CTABigEnding";
-  return "TopicCard";
-}
-
-function componentPropsFor(component, captionLine, sentence, index) {
-  if (component === "BigKineticTitle") {
-    return {
-      headline: captionLine,
-      subline: "先看问题，再看流程",
-      label_en: "NARRATION",
-      label_cn: "口播入口",
-      step: String(index + 1).padStart(2, "0"),
-      step_label: "HOOK",
-      layout: "impact-left"
-    };
-  }
-  if (component === "ThreeStepPipeline") {
-    const steps = sentence
-      .split(/[、，,：:]/g)
-      .map((part) => part.trim())
-      .filter(Boolean)
-      .slice(0, 3);
-    while (steps.length < 3) steps.push(steps.length === 0 ? captionLine : `步骤${steps.length + 1}`);
-    return {
-      steps,
-      label_en: "AUDIO FLOW",
-      label_cn: "音频流程",
-      step: String(index + 1).padStart(2, "0"),
-      step_label: "FLOW",
-      layout: "impact-wide"
-    };
-  }
-  if (component === "CTABigEnding") {
-    const keyword = (sentence.match(/回复|领取|下载|购买|关键词|系统/) || ["领取"])[0];
-    return {
-      keyword,
-      result: sentence,
-      label_en: "NEXT STEP",
-      label_cn: "下一步",
-      step: String(index + 1).padStart(2, "0"),
-      step_label: "CTA",
-      layout: "impact-cta"
-    };
-  }
-  return {
-    title: "正确做法",
-    body: captionLine,
-    label_en: "EXPLAIN",
-    label_cn: "解释",
-    step: String(index + 1).padStart(2, "0"),
-    step_label: "EXPLAIN",
-    layout: "right"
-  };
+  return (hudCopyRules[role] && hudCopyRules[role].component) || (hudCopyRules.problem && hudCopyRules.problem.component) || "TopicCard";
 }
 
 function buildCaptionBeats(sentences, totalDuration) {
@@ -178,6 +195,7 @@ function buildTimeline(beats, ttsResult, duration) {
     const component = componentFor(semanticRole);
     const snapshotAt = Number((beat.start + ((beat.end - beat.start) / 2)).toFixed(2));
     const captionLine = beat.caption_line;
+    const hudCopy = buildRoleCopy(semanticRole, index, beat.text);
     return {
       start: beat.start,
       end: beat.end,
@@ -185,40 +203,76 @@ function buildTimeline(beats, ttsResult, duration) {
       caption_line: captionLine,
       visual_module: component,
       component,
-      component_props: componentPropsFor(component, captionLine, beat.text, index),
+      component_props: hudCopy.component_props,
       layout_slot:
         semanticRole === "pain_hook"
           ? "impact-left"
-          : semanticRole === "workflow"
+          : semanticRole === "workflow" || semanticRole === "tool_stack" || semanticRole === "proof"
             ? "impact-wide"
-            : semanticRole === "cta"
-              ? "impact-cta"
-              : "right",
+          : semanticRole === "cta"
+            ? "impact-cta"
+            : semanticRole === "result"
+              ? "center"
+              : semanticRole === "wrong_path"
+                ? "left"
+                : "right",
       safe_zone: "default",
       animation:
         semanticRole === "pain_hook"
           ? "kinetic_title_in"
-          : semanticRole === "workflow"
+          : semanticRole === "workflow" || semanticRole === "tool_stack"
             ? "node_cascade"
-            : semanticRole === "cta"
-              ? "cta_focus"
-              : "panel_expand",
-      emphasis_keyword: captionLine.slice(-8),
-      density: semanticRole === "pain_hook" || semanticRole === "cta" ? "high" : "medium",
+          : semanticRole === "cta"
+            ? "cta_focus"
+            : semanticRole === "result"
+              ? "count_up"
+              : semanticRole === "proof"
+                ? "line_scan"
+                : semanticRole === "problem" || semanticRole === "wrong_path"
+                  ? "alert_flash"
+                  : "panel_expand",
+      emphasis_keyword: hudCopy.primaryText || captionLine.slice(-8),
+      density: semanticRole === "pain_hook" || semanticRole === "cta" || semanticRole === "result" ? "high" : "medium",
       semantic_role: semanticRole,
-      proof_point: semanticRole === "cta" ? "关键词领取清单" : "音频主时钟对齐",
+      proof_point:
+        semanticRole === "cta"
+          ? "给出下一步"
+          : semanticRole === "result"
+            ? "给出结果锚点"
+            : semanticRole === "proof"
+              ? "给出判断标准"
+              : semanticRole === "tool_stack"
+                ? "给出工具分工"
+                : semanticRole === "workflow"
+                  ? "给出流程节点"
+                  : semanticRole === "problem"
+                    ? "给出根因"
+                    : semanticRole === "wrong_path"
+                      ? "指出错误努力"
+                      : "先看问题，再看流程",
       cta_type: semanticRole === "cta" ? "comment_keyword" : "none",
       template:
         semanticRole === "pain_hook"
           ? "BIG_TITLE_HOOK"
           : semanticRole === "workflow"
-            ? "THREE_STEP_PIPELINE"
-            : semanticRole === "cta"
-              ? "CTA_BIG_ENDING"
-              : "TOPIC_CARD",
+            ? "CONTENT_FLOW_TABLE"
+            : semanticRole === "tool_stack"
+              ? "TOOL_STACK_TABLE"
+              : semanticRole === "proof"
+                ? "PROOF_TABLE"
+                : semanticRole === "result"
+                  ? "RESULT_CARD"
+                  : semanticRole === "wrong_path"
+                    ? "WRONG_PATH_CARD"
+                    : semanticRole === "problem"
+                      ? "PROBLEM_ALERT"
+                      : semanticRole === "cta"
+                        ? "CTA_BIG_ENDING"
+                        : "TOPIC_CARD",
       components: ["TopSectionLabel", "StepBadge", component, "BottomChineseSubtitle"],
-      primaryText: captionLine,
-      subtitleCN: captionLine,
+      primaryText: hudCopy.primaryText,
+      subtitleCN: hudCopy.subtitleCN,
+      hud_theme: semanticRole,
       snapshotAt
     };
   });

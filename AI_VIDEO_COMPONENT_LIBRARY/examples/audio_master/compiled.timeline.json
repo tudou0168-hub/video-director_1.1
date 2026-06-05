@@ -46,21 +46,21 @@
       "visual_module": "BigKineticTitle",
       "component": "BigKineticTitle",
       "component_props": {
-        "headline": "为什么你学了很多 AI 工具",
-        "subline": "先看问题，再看流程",
-        "label_en": "NARRATION",
-        "label_cn": "口播入口",
-        "step": "01",
+        "headline": "工具学习 ≠ 效率提升",
+        "subline": "真正缺的是内容生产闭环",
+        "label_en": "HOOK",
+        "label_cn": "判断",
         "step_label": "HOOK",
-        "layout": "impact-left"
+        "layout": "impact-left",
+        "step": "01"
       },
       "layout_slot": "impact-left",
       "safe_zone": "default",
       "animation": "kinetic_title_in",
-      "emphasis_keyword": "很多 AI 工具",
+      "emphasis_keyword": "工具学习 ≠ 效率提升",
       "density": "high",
       "semantic_role": "pain_hook",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "先看问题，再看流程",
       "cta_type": "none",
       "template": "BIG_TITLE_HOOK",
       "components": [
@@ -69,8 +69,9 @@
         "BigKineticTitle",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "为什么你学了很多 AI 工具",
-      "subtitleCN": "为什么你学了很多 AI 工具",
+      "primaryText": "工具学习 ≠ 效率提升",
+      "subtitleCN": "真正缺的是内容生产闭环",
+      "hud_theme": "pain_hook",
       "snapshotAt": 1.25
     },
     {
@@ -78,34 +79,31 @@
       "end": 4.59,
       "text": "还是没有真正提高效率",
       "caption_line": "还是没有真正提高效率",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "ProblemAlert",
+      "component": "ProblemAlert",
       "component_props": {
-        "title": "正确做法",
-        "body": "还是没有真正提高效率",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "02",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "problem": "问题不在工具",
+        "loss": "没有输入、处理、输出的连续链路",
+        "step": "02"
       },
       "layout_slot": "right",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "没有真正提高效率",
+      "animation": "alert_flash",
+      "emphasis_keyword": "问题不在工具",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "problem",
+      "proof_point": "给出根因",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROBLEM_ALERT",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "ProblemAlert",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "还是没有真正提高效率",
-      "subtitleCN": "还是没有真正提高效率",
+      "primaryText": "问题不在工具",
+      "subtitleCN": "没有输入、处理、输出的连续链路",
+      "hud_theme": "problem",
       "snapshotAt": 3.54
     },
     {
@@ -116,31 +114,32 @@
       "visual_module": "TopicCard",
       "component": "TopicCard",
       "component_props": {
-        "title": "正确做法",
-        "body": "不是你不努力",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "03",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "错误努力",
+        "body": "把时间消耗在无效学习上",
+        "label_en": "WRONG PATH",
+        "label_cn": "误区",
+        "step_label": "ERROR",
+        "layout": "left",
+        "step": "03"
       },
-      "layout_slot": "right",
+      "layout_slot": "left",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "不是你不努力",
+      "animation": "alert_flash",
+      "emphasis_keyword": "错误努力",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "wrong_path",
+      "proof_point": "指出错误努力",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "WRONG_PATH_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
         "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "不是你不努力",
-      "subtitleCN": "不是你不努力",
+      "primaryText": "错误努力",
+      "subtitleCN": "一直在学看起来很有用的东西",
+      "hud_theme": "wrong_path",
       "snapshotAt": 5.21
     },
     {
@@ -151,31 +150,32 @@
       "visual_module": "TopicCard",
       "component": "TopicCard",
       "component_props": {
-        "title": "正确做法",
-        "body": "是你一直在学看起来很有用的东西",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "04",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "错误努力",
+        "body": "把时间消耗在无效学习上",
+        "label_en": "WRONG PATH",
+        "label_cn": "误区",
+        "step_label": "ERROR",
+        "layout": "left",
+        "step": "04"
       },
-      "layout_slot": "right",
+      "layout_slot": "left",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "起来很有用的东西",
+      "animation": "alert_flash",
+      "emphasis_keyword": "错误努力",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "wrong_path",
+      "proof_point": "指出错误努力",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "WRONG_PATH_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
         "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "是你一直在学看起来很有用的东西",
-      "subtitleCN": "是你一直在学看起来很有用的东西",
+      "primaryText": "错误努力",
+      "subtitleCN": "一直在学看起来很有用的东西",
+      "hud_theme": "wrong_path",
       "snapshotAt": 7.41
     },
     {
@@ -183,34 +183,31 @@
       "end": 10.01,
       "text": "真正的问题",
       "caption_line": "真正的问题",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "ProblemAlert",
+      "component": "ProblemAlert",
       "component_props": {
-        "title": "正确做法",
-        "body": "真正的问题",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "05",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "problem": "问题不在工具",
+        "loss": "没有输入、处理、输出的连续链路",
+        "step": "05"
       },
       "layout_slot": "right",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "真正的问题",
+      "animation": "alert_flash",
+      "emphasis_keyword": "问题不在工具",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "problem",
+      "proof_point": "给出根因",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROBLEM_ALERT",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "ProblemAlert",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "真正的问题",
-      "subtitleCN": "真正的问题",
+      "primaryText": "问题不在工具",
+      "subtitleCN": "没有输入、处理、输出的连续链路",
+      "hud_theme": "problem",
       "snapshotAt": 9.49
     },
     {
@@ -218,37 +215,48 @@
       "end": 12.3,
       "text": "是你的工作没有变成流程",
       "caption_line": "是你的工作没有变成流程",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "是你的工作没有变成流程",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "06",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "06"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "工作没有变成流程",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "是你的工作没有变成流程",
-      "subtitleCN": "是你的工作没有变成流程",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 11.16
     },
     {
@@ -259,31 +267,32 @@
       "visual_module": "TopicCard",
       "component": "TopicCard",
       "component_props": {
-        "title": "正确做法",
-        "body": "每天收藏教程",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "07",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "错误努力",
+        "body": "把时间消耗在无效学习上",
+        "label_en": "WRONG PATH",
+        "label_cn": "误区",
+        "step_label": "ERROR",
+        "layout": "left",
+        "step": "07"
       },
-      "layout_slot": "right",
+      "layout_slot": "left",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "每天收藏教程",
+      "animation": "alert_flash",
+      "emphasis_keyword": "错误努力",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "wrong_path",
+      "proof_point": "指出错误努力",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "WRONG_PATH_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
         "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "每天收藏教程",
-      "subtitleCN": "每天收藏教程",
+      "primaryText": "错误努力",
+      "subtitleCN": "一直在学看起来很有用的东西",
+      "hud_theme": "wrong_path",
       "snapshotAt": 12.93
     },
     {
@@ -294,31 +303,32 @@
       "visual_module": "TopicCard",
       "component": "TopicCard",
       "component_props": {
-        "title": "正确做法",
-        "body": "时间被消耗",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "08",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "错误努力",
+        "body": "把时间消耗在无效学习上",
+        "label_en": "WRONG PATH",
+        "label_cn": "误区",
+        "step_label": "ERROR",
+        "layout": "left",
+        "step": "08"
       },
-      "layout_slot": "right",
+      "layout_slot": "left",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "时间被消耗",
+      "animation": "alert_flash",
+      "emphasis_keyword": "错误努力",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "wrong_path",
+      "proof_point": "指出错误努力",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "WRONG_PATH_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
         "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "时间被消耗",
-      "subtitleCN": "时间被消耗",
+      "primaryText": "错误努力",
+      "subtitleCN": "一直在学看起来很有用的东西",
+      "hud_theme": "wrong_path",
       "snapshotAt": 14.07
     },
     {
@@ -326,37 +336,31 @@
       "end": 15.84,
       "text": "结果没有沉淀",
       "caption_line": "结果没有沉淀",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "TopicCard",
+      "component": "TopicCard",
       "component_props": {
-        "steps": [
-          "结果没有沉淀",
-          "步骤2",
-          "步骤3"
-        ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "09",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "title": "一条可发布口播视频",
+        "body": "45s · 真实音频驱动",
+        "step": "09"
       },
-      "layout_slot": "impact-wide",
+      "layout_slot": "center",
       "safe_zone": "default",
-      "animation": "node_cascade",
-      "emphasis_keyword": "结果没有沉淀",
-      "density": "medium",
-      "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "animation": "count_up",
+      "emphasis_keyword": "一条可发布口播视频",
+      "density": "high",
+      "semantic_role": "result",
+      "proof_point": "给出结果锚点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "RESULT_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "结果没有沉淀",
-      "subtitleCN": "结果没有沉淀",
+      "primaryText": "一条可发布口播视频",
+      "subtitleCN": "45s · 真实音频驱动",
+      "hud_theme": "result",
       "snapshotAt": 15.21
     },
     {
@@ -364,37 +368,48 @@
       "end": 17.72,
       "text": "我现在只看 3 个节点",
       "caption_line": "我现在只看 3 个节点",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "我现在只看 3 个节点",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "10",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "10"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "只看 3 个节点",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "我现在只看 3 个节点",
-      "subtitleCN": "我现在只看 3 个节点",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 16.78
     },
     {
@@ -402,37 +417,48 @@
       "end": 18.14,
       "text": "输入",
       "caption_line": "输入",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "输入",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "11",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "11"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "输入",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "输入",
-      "subtitleCN": "输入",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 17.93
     },
     {
@@ -440,37 +466,48 @@
       "end": 18.56,
       "text": "处理",
       "caption_line": "处理",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "处理",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "12",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "12"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "处理",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "处理",
-      "subtitleCN": "处理",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 18.35
     },
     {
@@ -478,37 +515,48 @@
       "end": 18.98,
       "text": "输出",
       "caption_line": "输出",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "输出",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "13",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "13"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "输出",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "输出",
-      "subtitleCN": "输出",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 18.77
     },
     {
@@ -516,34 +564,48 @@
       "end": 21.27,
       "text": "Hermes 负责捞素材",
       "caption_line": "Hermes 负责捞素材",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
       "component_props": {
-        "title": "正确做法",
-        "body": "Hermes 负责捞素材",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "14",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "工具链分工",
+        "agents": [
+          [
+            "Hermes",
+            "采集素材"
+          ],
+          [
+            "Obsidian",
+            "沉淀资料"
+          ],
+          [
+            "llm-wiki",
+            "检索编译"
+          ],
+          [
+            "HyperFrames",
+            "包装视频"
+          ]
+        ],
+        "step": "14"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "es 负责捞素材",
+      "animation": "node_cascade",
+      "emphasis_keyword": "工具链分工",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "tool_stack",
+      "proof_point": "给出工具分工",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "TOOL_STACK_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "MultiAgentPanel",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "Hermes 负责捞素材",
-      "subtitleCN": "Hermes 负责捞素材",
+      "primaryText": "工具链分工",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "hud_theme": "tool_stack",
       "snapshotAt": 20.13
     },
     {
@@ -551,37 +613,48 @@
       "end": 23.77,
       "text": "Obsidian 负责沉淀",
       "caption_line": "Obsidian 负责沉淀",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
       "component_props": {
-        "steps": [
-          "Obsidian 负责沉淀",
-          "步骤2",
-          "步骤3"
+        "title": "工具链分工",
+        "agents": [
+          [
+            "Hermes",
+            "采集素材"
+          ],
+          [
+            "Obsidian",
+            "沉淀资料"
+          ],
+          [
+            "llm-wiki",
+            "检索编译"
+          ],
+          [
+            "HyperFrames",
+            "包装视频"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "15",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "15"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "ian 负责沉淀",
+      "emphasis_keyword": "工具链分工",
       "density": "medium",
-      "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "tool_stack",
+      "proof_point": "给出工具分工",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "TOOL_STACK_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "MultiAgentPanel",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "Obsidian 负责沉淀",
-      "subtitleCN": "Obsidian 负责沉淀",
+      "primaryText": "工具链分工",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "hud_theme": "tool_stack",
       "snapshotAt": 22.52
     },
     {
@@ -589,34 +662,48 @@
       "end": 26.27,
       "text": "llm-wiki 负责检索",
       "caption_line": "llm-wiki 负责检索",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
       "component_props": {
-        "title": "正确做法",
-        "body": "llm-wiki 负责检索",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "16",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "工具链分工",
+        "agents": [
+          [
+            "Hermes",
+            "采集素材"
+          ],
+          [
+            "Obsidian",
+            "沉淀资料"
+          ],
+          [
+            "llm-wiki",
+            "检索编译"
+          ],
+          [
+            "HyperFrames",
+            "包装视频"
+          ]
+        ],
+        "step": "16"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "iki 负责检索",
+      "animation": "node_cascade",
+      "emphasis_keyword": "工具链分工",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "tool_stack",
+      "proof_point": "给出工具分工",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "TOOL_STACK_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "MultiAgentPanel",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "llm-wiki 负责检索",
-      "subtitleCN": "llm-wiki 负责检索",
+      "primaryText": "工具链分工",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "hud_theme": "tool_stack",
       "snapshotAt": 25.02
     },
     {
@@ -624,34 +711,48 @@
       "end": 28.15,
       "text": "Codex 负责改写",
       "caption_line": "Codex 负责改写",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
       "component_props": {
-        "title": "正确做法",
-        "body": "Codex 负责改写",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "17",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "工具链分工",
+        "agents": [
+          [
+            "Hermes",
+            "采集素材"
+          ],
+          [
+            "Obsidian",
+            "沉淀资料"
+          ],
+          [
+            "llm-wiki",
+            "检索编译"
+          ],
+          [
+            "HyperFrames",
+            "包装视频"
+          ]
+        ],
+        "step": "17"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "dex 负责改写",
+      "animation": "node_cascade",
+      "emphasis_keyword": "工具链分工",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "tool_stack",
+      "proof_point": "给出工具分工",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "TOOL_STACK_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "MultiAgentPanel",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "Codex 负责改写",
-      "subtitleCN": "Codex 负责改写",
+      "primaryText": "工具链分工",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "hud_theme": "tool_stack",
       "snapshotAt": 27.21
     },
     {
@@ -659,34 +760,48 @@
       "end": 31.28,
       "text": "HyperFrames 负责包装",
       "caption_line": "HyperFrames 负责包装",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "MultiAgentPanel",
+      "component": "MultiAgentPanel",
       "component_props": {
-        "title": "正确做法",
-        "body": "HyperFrames 负责包装",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "18",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "工具链分工",
+        "agents": [
+          [
+            "Hermes",
+            "采集素材"
+          ],
+          [
+            "Obsidian",
+            "沉淀资料"
+          ],
+          [
+            "llm-wiki",
+            "检索编译"
+          ],
+          [
+            "HyperFrames",
+            "包装视频"
+          ]
+        ],
+        "step": "18"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "mes 负责包装",
+      "animation": "node_cascade",
+      "emphasis_keyword": "工具链分工",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "tool_stack",
+      "proof_point": "给出工具分工",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "TOOL_STACK_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "MultiAgentPanel",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "HyperFrames 负责包装",
-      "subtitleCN": "HyperFrames 负责包装",
+      "primaryText": "工具链分工",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "hud_theme": "tool_stack",
       "snapshotAt": 29.71
     },
     {
@@ -694,34 +809,44 @@
       "end": 32.74,
       "text": "判断标准很简单",
       "caption_line": "判断标准很简单",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "title": "正确做法",
-        "body": "判断标准很简单",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "19",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "30分钟成片检查",
+        "rows": [
+          [
+            "输入",
+            "文案"
+          ],
+          [
+            "处理",
+            "TTS + 字幕"
+          ],
+          [
+            "输出",
+            "预览视频"
+          ]
+        ],
+        "step": "19"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "判断标准很简单",
+      "animation": "line_scan",
+      "emphasis_keyword": "30分钟成片检查",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "proof",
+      "proof_point": "给出判断标准",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROOF_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "判断标准很简单",
-      "subtitleCN": "判断标准很简单",
+      "primaryText": "30分钟成片检查",
+      "subtitleCN": "先看输入、处理、输出",
+      "hud_theme": "proof",
       "snapshotAt": 32.01
     },
     {
@@ -729,34 +854,44 @@
       "end": 35.45,
       "text": "一篇内容能不能在 30 分钟内",
       "caption_line": "一篇内容能不能在 30 分钟内",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "title": "正确做法",
-        "body": "一篇内容能不能在 30 分钟内",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "20",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "30分钟成片检查",
+        "rows": [
+          [
+            "输入",
+            "文案"
+          ],
+          [
+            "处理",
+            "TTS + 字幕"
+          ],
+          [
+            "输出",
+            "预览视频"
+          ]
+        ],
+        "step": "20"
       },
-      "layout_slot": "right",
+      "layout_slot": "impact-wide",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "在 30 分钟内",
+      "animation": "line_scan",
+      "emphasis_keyword": "30分钟成片检查",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "proof",
+      "proof_point": "给出判断标准",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROOF_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "一篇内容能不能在 30 分钟内",
-      "subtitleCN": "一篇内容能不能在 30 分钟内",
+      "primaryText": "30分钟成片检查",
+      "subtitleCN": "先看输入、处理、输出",
+      "hud_theme": "proof",
       "snapshotAt": 34.09
     },
     {
@@ -767,31 +902,28 @@
       "visual_module": "TopicCard",
       "component": "TopicCard",
       "component_props": {
-        "title": "正确做法",
-        "body": "变成一条可以发的口播视频",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "21",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "title": "一条可发布口播视频",
+        "body": "45s · 真实音频驱动",
+        "step": "21"
       },
-      "layout_slot": "right",
+      "layout_slot": "center",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "可以发的口播视频",
-      "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "animation": "count_up",
+      "emphasis_keyword": "一条可发布口播视频",
+      "density": "high",
+      "semantic_role": "result",
+      "proof_point": "给出结果锚点",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "RESULT_CARD",
       "components": [
         "TopSectionLabel",
         "StepBadge",
         "TopicCard",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "变成一条可以发的口播视频",
-      "subtitleCN": "变成一条可以发的口播视频",
+      "primaryText": "一条可发布口播视频",
+      "subtitleCN": "45s · 真实音频驱动",
+      "hud_theme": "result",
       "snapshotAt": 36.7
     },
     {
@@ -799,34 +931,31 @@
       "end": 38.78,
       "text": "如果不能",
       "caption_line": "如果不能",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "ProblemAlert",
+      "component": "ProblemAlert",
       "component_props": {
-        "title": "正确做法",
-        "body": "如果不能",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "22",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "problem": "问题不在工具",
+        "loss": "没有输入、处理、输出的连续链路",
+        "step": "22"
       },
       "layout_slot": "right",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "如果不能",
+      "animation": "alert_flash",
+      "emphasis_keyword": "问题不在工具",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "problem",
+      "proof_point": "给出根因",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROBLEM_ALERT",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "ProblemAlert",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "如果不能",
-      "subtitleCN": "如果不能",
+      "primaryText": "问题不在工具",
+      "subtitleCN": "没有输入、处理、输出的连续链路",
+      "hud_theme": "problem",
       "snapshotAt": 38.37
     },
     {
@@ -834,34 +963,31 @@
       "end": 40.66,
       "text": "说明你缺的不是工具",
       "caption_line": "说明你缺的不是工具",
-      "visual_module": "TopicCard",
-      "component": "TopicCard",
+      "visual_module": "ProblemAlert",
+      "component": "ProblemAlert",
       "component_props": {
-        "title": "正确做法",
-        "body": "说明你缺的不是工具",
-        "label_en": "EXPLAIN",
-        "label_cn": "解释",
-        "step": "23",
-        "step_label": "EXPLAIN",
-        "layout": "right"
+        "problem": "问题不在工具",
+        "loss": "没有输入、处理、输出的连续链路",
+        "step": "23"
       },
       "layout_slot": "right",
       "safe_zone": "default",
-      "animation": "panel_expand",
-      "emphasis_keyword": "明你缺的不是工具",
+      "animation": "alert_flash",
+      "emphasis_keyword": "问题不在工具",
       "density": "medium",
-      "semantic_role": "explain",
-      "proof_point": "音频主时钟对齐",
+      "semantic_role": "problem",
+      "proof_point": "给出根因",
       "cta_type": "none",
-      "template": "TOPIC_CARD",
+      "template": "PROBLEM_ALERT",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "TopicCard",
+        "ProblemAlert",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "说明你缺的不是工具",
-      "subtitleCN": "说明你缺的不是工具",
+      "primaryText": "问题不在工具",
+      "subtitleCN": "没有输入、处理、输出的连续链路",
+      "hud_theme": "problem",
       "snapshotAt": 39.72
     },
     {
@@ -869,37 +995,48 @@
       "end": 41.7,
       "text": "是流程模板",
       "caption_line": "是流程模板",
-      "visual_module": "ThreeStepPipeline",
-      "component": "ThreeStepPipeline",
+      "visual_module": "DetailsTableOverlay",
+      "component": "DetailsTableOverlay",
       "component_props": {
-        "steps": [
-          "是流程模板",
-          "步骤2",
-          "步骤3"
+        "title": "内容生产闭环",
+        "rows": [
+          [
+            "采集",
+            "捞素材"
+          ],
+          [
+            "沉淀",
+            "整理要点"
+          ],
+          [
+            "编译",
+            "抽取结构"
+          ],
+          [
+            "包装",
+            "拼成片"
+          ]
         ],
-        "label_en": "AUDIO FLOW",
-        "label_cn": "音频流程",
-        "step": "24",
-        "step_label": "FLOW",
-        "layout": "impact-wide"
+        "step": "24"
       },
       "layout_slot": "impact-wide",
       "safe_zone": "default",
       "animation": "node_cascade",
-      "emphasis_keyword": "是流程模板",
+      "emphasis_keyword": "内容生产闭环",
       "density": "medium",
       "semantic_role": "workflow",
-      "proof_point": "音频主时钟对齐",
+      "proof_point": "给出流程节点",
       "cta_type": "none",
-      "template": "THREE_STEP_PIPELINE",
+      "template": "CONTENT_FLOW_TABLE",
       "components": [
         "TopSectionLabel",
         "StepBadge",
-        "ThreeStepPipeline",
+        "DetailsTableOverlay",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "是流程模板",
-      "subtitleCN": "是流程模板",
+      "primaryText": "内容生产闭环",
+      "subtitleCN": "采集 → 沉淀 → 编译 → 包装",
+      "hud_theme": "workflow",
       "snapshotAt": 41.18
     },
     {
@@ -910,21 +1047,18 @@
       "visual_module": "CTABigEnding",
       "component": "CTABigEnding",
       "component_props": {
-        "keyword": "回复",
-        "result": "回复视频模板",
-        "label_en": "NEXT STEP",
-        "label_cn": "下一步",
-        "step": "25",
-        "step_label": "CTA",
-        "layout": "impact-cta"
+        "keyword": "先跑通 1 条",
+        "result": "再优化模板和视觉",
+        "button": "检查：音频、字幕、HUD、预览",
+        "step": "25"
       },
       "layout_slot": "impact-cta",
       "safe_zone": "default",
       "animation": "cta_focus",
-      "emphasis_keyword": "回复视频模板",
+      "emphasis_keyword": "先跑通 1 条",
       "density": "high",
       "semantic_role": "cta",
-      "proof_point": "关键词领取清单",
+      "proof_point": "给出下一步",
       "cta_type": "comment_keyword",
       "template": "CTA_BIG_ENDING",
       "components": [
@@ -933,8 +1067,9 @@
         "CTABigEnding",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "回复视频模板",
-      "subtitleCN": "回复视频模板",
+      "primaryText": "先跑通 1 条",
+      "subtitleCN": "再优化模板和视觉",
+      "hud_theme": "cta",
       "snapshotAt": 42.33
     },
     {
@@ -945,21 +1080,18 @@
       "visual_module": "CTABigEnding",
       "component": "CTABigEnding",
       "component_props": {
-        "keyword": "领取",
-        "result": "先领一张分镜检查清单",
-        "label_en": "NEXT STEP",
-        "label_cn": "下一步",
-        "step": "26",
-        "step_label": "CTA",
-        "layout": "impact-cta"
+        "keyword": "先跑通 1 条",
+        "result": "再优化模板和视觉",
+        "button": "检查：音频、字幕、HUD、预览",
+        "step": "26"
       },
       "layout_slot": "impact-cta",
       "safe_zone": "default",
       "animation": "cta_focus",
-      "emphasis_keyword": "一张分镜检查清单",
+      "emphasis_keyword": "先跑通 1 条",
       "density": "high",
       "semantic_role": "cta",
-      "proof_point": "关键词领取清单",
+      "proof_point": "给出下一步",
       "cta_type": "comment_keyword",
       "template": "CTA_BIG_ENDING",
       "components": [
@@ -968,8 +1100,9 @@
         "CTABigEnding",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "先领一张分镜检查清单",
-      "subtitleCN": "先领一张分镜检查清单",
+      "primaryText": "先跑通 1 条",
+      "subtitleCN": "再优化模板和视觉",
+      "hud_theme": "cta",
       "snapshotAt": 44
     }
   ]

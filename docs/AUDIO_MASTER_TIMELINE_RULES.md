@@ -13,6 +13,7 @@
 - `timeline.duration` 不是经验值。
 - `timeline.duration` 必须以最终 audio master 的真实时长为准。
 - 这个 audio master 可以来自已有真人口播视频，也可以来自未来的 TTS 音频。
+- talking-head 只是已有真人口播视频的兼容入口，不是 audio-master 主线的必需资产。
 - 如果音频发生变化，`timeline.duration` 必须随之更新。
 - 不能先写死 30 秒、60 秒再去裁剪内容适配时长。
 - 固定 30s / 60s recipe 只能作为 demo 或 legacy preset，不能作为正式主时钟。
