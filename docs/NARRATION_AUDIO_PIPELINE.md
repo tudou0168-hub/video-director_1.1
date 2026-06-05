@@ -166,6 +166,20 @@ npx hyperframes inspect
 
 `snapshot:audio-master` 采用的是 45 秒内的固定采样点，优先服务 audio-master timeline 的预览验证，而不是旧的 60 秒样片节奏。
 
+如果 snapshot / inspect 都通过，并且希望输出第一条样片，可以直接执行：
+
+```text
+npm run render:audio-master
+```
+
+对应的输出文件是：
+
+```text
+outputs/samples/audio-master-creator-overlay-v01.mp4
+```
+
+这一步只负责最终渲染，不改变 timeline、播放器或 HUD 规则。
+
 ## 十、当前 timeline 需要支持的字段
 
 当前 `timeline.json` 已经依赖这些字段来支持 audio master clock：

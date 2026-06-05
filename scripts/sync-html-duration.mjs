@@ -15,9 +15,10 @@ html = html.replace(/(<div id="root"[^>]*data-duration=")[^"]+("[^>]*>)/, `$1${d
 html = html.replace(/(<video id="talkingVideo"[^>]*data-duration=")[^"]+("[^>]*>)/, `$1${duration}$2`);
 html = html.replace(/(<audio id="narration"[^>]*data-duration=")[^"]+("[^>]*>)/, `$1${duration}$2`);
 
-if (timeline.media?.audio) {
-  html = html.replace(/(<audio id="narration"[^>]*src=")[^"]+("[^>]*>)/, `$1${timeline.media.audio}$2`);
-}
+const audioSrc = timeline.media?.audio || "";
+const videoSrc = timeline.media?.video || "";
+html = html.replace(/(<audio id="narration"[^>]*src=")[^"]*("[^>]*>)/, `$1${audioSrc}$2`);
+html = html.replace(/(<video id="talkingVideo"[^>]*src=")[^"]*("[^>]*>)/, `$1${videoSrc}$2`);
 
 fs.writeFileSync(htmlPath, html);
 console.log(`synced ${htmlPath} static duration to ${duration}s`);

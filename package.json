@@ -26,6 +26,7 @@
     "lint": "npx hyperframes lint",
     "snapshot:creator30": "npx hyperframes snapshot --at 1,6,14,22,29 --describe false",
     "snapshot:creator60": "npx hyperframes snapshot --at 1,6,14,24,32,40,48,56 --describe false",
-    "snapshot:audio-master": "npx hyperframes snapshot --at 1,8,15,21,29,36,43 --describe false"
+    "snapshot:audio-master": "npx hyperframes snapshot --at 1,8,15,21,29,36,43 --describe false",
+    "render:audio-master": "npx hyperframes render --quality standard --workers 1 --output outputs/samples/audio-master-creator-overlay-v01.mp4"
   }
 }
