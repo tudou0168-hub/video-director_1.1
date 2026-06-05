@@ -141,6 +141,7 @@ samples/final_narration.md
 - `compiled.timeline.json` 使用 `tts_result.duration` 作为总时长。
 - `caption_beats.json` 仍然保留句子级字幕节拍。
 - `compiled.timeline.json.segments` 现在按语义主题合并为 HUD 段，不再一条 caption 对应一条 HUD。
+- `compiled.timeline.json.captions` 与 `caption_beats` 作为独立字幕轨保留，前端字幕应优先读取独立 captions，而不是跟着 HUD segment 切换。
 - `caption_beats` 会继续保留在编译结果里，方便字幕信息完整落盘。
 - `snapshot_at` 从 HUD `segments[].snapshotAt` 自动生成。
 - `media.audio` 使用 `tts_result.audio_path`。

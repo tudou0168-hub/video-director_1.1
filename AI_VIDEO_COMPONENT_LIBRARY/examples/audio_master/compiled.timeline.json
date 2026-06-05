@@ -15,6 +15,216 @@
   },
   "product_id": "P008",
   "recipe": "Audio_Master_Narration_Explainer",
+  "captions": [
+    {
+      "beat_id": "B01",
+      "start": 0,
+      "end": 2.5,
+      "text": "为什么你学了很多 AI 工具",
+      "caption_line": "为什么你学了很多 AI 工具",
+      "semantic_role": "pain_hook"
+    },
+    {
+      "beat_id": "B02",
+      "start": 2.5,
+      "end": 4.59,
+      "text": "还是没有真正提高效率",
+      "caption_line": "还是没有真正提高效率",
+      "semantic_role": "problem"
+    },
+    {
+      "beat_id": "B03",
+      "start": 4.59,
+      "end": 5.84,
+      "text": "不是你不努力",
+      "caption_line": "不是你不努力",
+      "semantic_role": "wrong_path"
+    },
+    {
+      "beat_id": "B04",
+      "start": 5.84,
+      "end": 8.97,
+      "text": "是你一直在学看起来很有用的东西",
+      "caption_line": "是你一直在学看起来很有用的东西",
+      "semantic_role": "wrong_path"
+    },
+    {
+      "beat_id": "B05",
+      "start": 8.97,
+      "end": 10.01,
+      "text": "真正的问题",
+      "caption_line": "真正的问题",
+      "semantic_role": "problem"
+    },
+    {
+      "beat_id": "B06",
+      "start": 10.01,
+      "end": 12.3,
+      "text": "是你的工作没有变成流程",
+      "caption_line": "是你的工作没有变成流程",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B07",
+      "start": 12.3,
+      "end": 13.55,
+      "text": "每天收藏教程",
+      "caption_line": "每天收藏教程",
+      "semantic_role": "wrong_path"
+    },
+    {
+      "beat_id": "B08",
+      "start": 13.55,
+      "end": 14.59,
+      "text": "时间被消耗",
+      "caption_line": "时间被消耗",
+      "semantic_role": "wrong_path"
+    },
+    {
+      "beat_id": "B09",
+      "start": 14.59,
+      "end": 15.84,
+      "text": "结果没有沉淀",
+      "caption_line": "结果没有沉淀",
+      "semantic_role": "result"
+    },
+    {
+      "beat_id": "B10",
+      "start": 15.84,
+      "end": 17.72,
+      "text": "我现在只看 3 个节点",
+      "caption_line": "我现在只看 3 个节点",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B11",
+      "start": 17.72,
+      "end": 18.14,
+      "text": "输入",
+      "caption_line": "输入",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B12",
+      "start": 18.14,
+      "end": 18.56,
+      "text": "处理",
+      "caption_line": "处理",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B13",
+      "start": 18.56,
+      "end": 18.98,
+      "text": "输出",
+      "caption_line": "输出",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B14",
+      "start": 18.98,
+      "end": 21.27,
+      "text": "Hermes 负责捞素材",
+      "caption_line": "Hermes 负责捞素材",
+      "semantic_role": "tool_stack"
+    },
+    {
+      "beat_id": "B15",
+      "start": 21.27,
+      "end": 23.77,
+      "text": "Obsidian 负责沉淀",
+      "caption_line": "Obsidian 负责沉淀",
+      "semantic_role": "tool_stack"
+    },
+    {
+      "beat_id": "B16",
+      "start": 23.77,
+      "end": 26.27,
+      "text": "llm-wiki 负责检索",
+      "caption_line": "llm-wiki 负责检索",
+      "semantic_role": "tool_stack"
+    },
+    {
+      "beat_id": "B17",
+      "start": 26.27,
+      "end": 28.15,
+      "text": "Codex 负责改写",
+      "caption_line": "Codex 负责改写",
+      "semantic_role": "tool_stack"
+    },
+    {
+      "beat_id": "B18",
+      "start": 28.15,
+      "end": 31.28,
+      "text": "HyperFrames 负责包装",
+      "caption_line": "HyperFrames 负责包装",
+      "semantic_role": "tool_stack"
+    },
+    {
+      "beat_id": "B19",
+      "start": 31.28,
+      "end": 32.74,
+      "text": "判断标准很简单",
+      "caption_line": "判断标准很简单",
+      "semantic_role": "proof"
+    },
+    {
+      "beat_id": "B20",
+      "start": 32.74,
+      "end": 35.45,
+      "text": "一篇内容能不能在 30 分钟内",
+      "caption_line": "一篇内容能不能在 30 分钟内",
+      "semantic_role": "proof"
+    },
+    {
+      "beat_id": "B21",
+      "start": 35.45,
+      "end": 37.95,
+      "text": "变成一条可以发的口播视频",
+      "caption_line": "变成一条可以发的口播视频",
+      "semantic_role": "result"
+    },
+    {
+      "beat_id": "B22",
+      "start": 37.95,
+      "end": 38.78,
+      "text": "如果不能",
+      "caption_line": "如果不能",
+      "semantic_role": "problem"
+    },
+    {
+      "beat_id": "B23",
+      "start": 38.78,
+      "end": 40.66,
+      "text": "说明你缺的不是工具",
+      "caption_line": "说明你缺的不是工具",
+      "semantic_role": "problem"
+    },
+    {
+      "beat_id": "B24",
+      "start": 40.66,
+      "end": 41.7,
+      "text": "是流程模板",
+      "caption_line": "是流程模板",
+      "semantic_role": "workflow"
+    },
+    {
+      "beat_id": "B25",
+      "start": 41.7,
+      "end": 42.95,
+      "text": "回复视频模板",
+      "caption_line": "回复视频模板",
+      "semantic_role": "cta"
+    },
+    {
+      "beat_id": "B26",
+      "start": 42.95,
+      "end": 45.048,
+      "text": "先领一张分镜检查清单",
+      "caption_line": "先领一张分镜检查清单",
+      "semantic_role": "cta"
+    }
+  ],
   "caption_beats": [
     {
       "beat_id": "B01",
@@ -23,7 +233,7 @@
       "text": "为什么你学了很多 AI 工具",
       "caption_line": "为什么你学了很多 AI 工具",
       "semantic_role": "pain_hook",
-      "hud_group": "result_next_step"
+      "hud_group": "hook_problem"
     },
     {
       "beat_id": "B02",
@@ -32,7 +242,7 @@
       "text": "还是没有真正提高效率",
       "caption_line": "还是没有真正提高效率",
       "semantic_role": "problem",
-      "hud_group": "result_next_step"
+      "hud_group": "hook_problem"
     },
     {
       "beat_id": "B03",
@@ -41,7 +251,7 @@
       "text": "不是你不努力",
       "caption_line": "不是你不努力",
       "semantic_role": "wrong_path",
-      "hud_group": "result_next_step"
+      "hud_group": "hook_problem"
     },
     {
       "beat_id": "B04",
@@ -50,7 +260,7 @@
       "text": "是你一直在学看起来很有用的东西",
       "caption_line": "是你一直在学看起来很有用的东西",
       "semantic_role": "wrong_path",
-      "hud_group": "result_next_step"
+      "hud_group": "hook_problem"
     },
     {
       "beat_id": "B05",
@@ -59,7 +269,7 @@
       "text": "真正的问题",
       "caption_line": "真正的问题",
       "semantic_role": "problem",
-      "hud_group": "result_next_step"
+      "hud_group": "root_cause"
     },
     {
       "beat_id": "B06",
@@ -68,7 +278,7 @@
       "text": "是你的工作没有变成流程",
       "caption_line": "是你的工作没有变成流程",
       "semantic_role": "workflow",
-      "hud_group": "result_next_step"
+      "hud_group": "root_cause"
     },
     {
       "beat_id": "B07",
@@ -77,7 +287,7 @@
       "text": "每天收藏教程",
       "caption_line": "每天收藏教程",
       "semantic_role": "wrong_path",
-      "hud_group": "result_next_step"
+      "hud_group": "root_cause"
     },
     {
       "beat_id": "B08",
@@ -86,7 +296,7 @@
       "text": "时间被消耗",
       "caption_line": "时间被消耗",
       "semantic_role": "wrong_path",
-      "hud_group": "result_next_step"
+      "hud_group": "root_cause"
     },
     {
       "beat_id": "B09",
@@ -95,7 +305,7 @@
       "text": "结果没有沉淀",
       "caption_line": "结果没有沉淀",
       "semantic_role": "result",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B10",
@@ -104,7 +314,7 @@
       "text": "我现在只看 3 个节点",
       "caption_line": "我现在只看 3 个节点",
       "semantic_role": "workflow",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B11",
@@ -113,7 +323,7 @@
       "text": "输入",
       "caption_line": "输入",
       "semantic_role": "workflow",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B12",
@@ -122,7 +332,7 @@
       "text": "处理",
       "caption_line": "处理",
       "semantic_role": "workflow",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B13",
@@ -131,7 +341,7 @@
       "text": "输出",
       "caption_line": "输出",
       "semantic_role": "workflow",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B14",
@@ -140,7 +350,7 @@
       "text": "Hermes 负责捞素材",
       "caption_line": "Hermes 负责捞素材",
       "semantic_role": "tool_stack",
-      "hud_group": "result_next_step"
+      "hud_group": "workflow"
     },
     {
       "beat_id": "B15",
@@ -149,7 +359,7 @@
       "text": "Obsidian 负责沉淀",
       "caption_line": "Obsidian 负责沉淀",
       "semantic_role": "tool_stack",
-      "hud_group": "result_next_step"
+      "hud_group": "tool_stack"
     },
     {
       "beat_id": "B16",
@@ -158,7 +368,7 @@
       "text": "llm-wiki 负责检索",
       "caption_line": "llm-wiki 负责检索",
       "semantic_role": "tool_stack",
-      "hud_group": "result_next_step"
+      "hud_group": "tool_stack"
     },
     {
       "beat_id": "B17",
@@ -167,7 +377,7 @@
       "text": "Codex 负责改写",
       "caption_line": "Codex 负责改写",
       "semantic_role": "tool_stack",
-      "hud_group": "result_next_step"
+      "hud_group": "tool_stack"
     },
     {
       "beat_id": "B18",
@@ -176,7 +386,7 @@
       "text": "HyperFrames 负责包装",
       "caption_line": "HyperFrames 负责包装",
       "semantic_role": "tool_stack",
-      "hud_group": "result_next_step"
+      "hud_group": "tool_stack"
     },
     {
       "beat_id": "B19",
@@ -185,7 +395,7 @@
       "text": "判断标准很简单",
       "caption_line": "判断标准很简单",
       "semantic_role": "proof",
-      "hud_group": "result_next_step"
+      "hud_group": "proof_standard"
     },
     {
       "beat_id": "B20",
@@ -194,7 +404,7 @@
       "text": "一篇内容能不能在 30 分钟内",
       "caption_line": "一篇内容能不能在 30 分钟内",
       "semantic_role": "proof",
-      "hud_group": "result_next_step"
+      "hud_group": "proof_standard"
     },
     {
       "beat_id": "B21",
@@ -203,7 +413,7 @@
       "text": "变成一条可以发的口播视频",
       "caption_line": "变成一条可以发的口播视频",
       "semantic_role": "result",
-      "hud_group": "result_next_step"
+      "hud_group": "proof_standard"
     },
     {
       "beat_id": "B22",
@@ -766,10 +976,14 @@
       "visual_module": "CTABigEnding",
       "component": "CTABigEnding",
       "component_props": {
-        "keyword": "一条可发布口播视频",
-        "result": "先跑通 1 条",
+        "keyword": "先跑通 1 条",
+        "result": "可发布口播视频",
         "button": "检查：音频、字幕、HUD、预览",
         "step": "06",
+        "display_lines": [
+          "先跑通 1 条",
+          "可发布口播视频"
+        ],
         "layout": "right",
         "overlay_side": "right",
         "face_position": "center"
@@ -778,7 +992,7 @@
       "overlay_side": "right",
       "safe_zone": "default",
       "animation": "cta_focus",
-      "emphasis_keyword": "一条可发布口播视频",
+      "emphasis_keyword": "先跑通 1 条",
       "density": "high",
       "semantic_role": "result_next_step",
       "semantic_group": "result_next_step",
@@ -791,8 +1005,8 @@
         "CTABigEnding",
         "BottomChineseSubtitle"
       ],
-      "primaryText": "一条可发布口播视频",
-      "subtitleCN": "先跑通 1 条，再优化模板和视觉",
+      "primaryText": "先跑通 1 条",
+      "subtitleCN": "可发布口播视频",
       "hud_theme": "result_next_step",
       "caption_count": 5,
       "snapshotAt": 41.024

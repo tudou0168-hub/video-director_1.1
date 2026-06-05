@@ -487,6 +487,10 @@
       color: var(--vf-danger);
       text-shadow: 0 0 22px rgba(251, 113, 133, 0.30);
     }
+    .creator-emphasis.accent {
+      color: var(--vf-amber);
+      text-shadow: 0 0 24px rgba(251, 191, 36, 0.34);
+    }
     .creator-split {
       display: grid;
       grid-template-columns: 1fr 78px 1fr;
@@ -775,14 +779,19 @@
       box-shadow: 0 0 22px rgba(53, 245, 154, 0.45);
     }
     .mode-v07 .creator-mega-title {
-      font-size: 174px;
-      line-height: 0.94;
+      font-size: 142px;
+      line-height: 1.0;
       letter-spacing: 0;
       text-shadow: 0 10px 32px rgba(0, 0, 0, 0.72), 0 0 28px rgba(103, 232, 249, 0.30);
+      white-space: pre-line;
+      max-width: 720px;
+    }
+    .creator-mega-title-line {
+      display: block;
     }
     .mode-v07 .creator-bigkinetictitle .creator-subline {
       margin-top: 28px;
-      font-size: 48px;
+      font-size: 42px;
       line-height: 1.22;
       color: rgba(248, 250, 252, 0.90);
       font-weight: 900;
@@ -863,7 +872,7 @@
     }
     .mode-v07 .creator-detailstableoverlay .creator-table-title,
     .mode-v07 .creator-scoringquestionpanel .creator-table-title {
-      font-size: 104px;
+      font-size: 88px;
       line-height: 0.98;
     }
     .mode-v07 .creator-detailstableoverlay .creator-table {
@@ -874,26 +883,82 @@
       grid-template-columns: 1fr 160px;
       min-height: 92px;
       padding: 20px 28px;
-      font-size: 52px;
+      font-size: 42px;
       border-left-width: 6px;
     }
     .mode-v07 .creator-detailstableoverlay .creator-row.field-only {
       grid-template-columns: 1fr;
     }
+    .mode-v07 .creator-detailstableoverlay .creator-row span:first-child {
+      color: rgba(248, 250, 252, 0.94);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+    }
     .mode-v07 .creator-detailstableoverlay .creator-score {
       font-size: 36px;
+      color: var(--vf-green);
+    }
+    .mode-v07 .creator-scene[data-group="workflow"] .creator-table-title {
+      color: var(--vf-cyan);
+    }
+    .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-card {
+      border-color: rgba(103, 232, 249, 0.42);
+      box-shadow: 0 0 22px rgba(103, 232, 249, 0.08);
+    }
+    .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-role {
+      color: var(--vf-cyan);
+    }
+    .mode-v07 .creator-scene[data-group="proof_standard"] .creator-table-title {
+      color: var(--vf-green);
+      text-shadow: 0 0 24px rgba(53, 245, 154, 0.16);
+    }
+    .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row {
+      border-left-color: rgba(53, 245, 154, 0.76);
+    }
+    .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword {
+      color: var(--vf-amber);
+      text-shadow: 0 0 34px rgba(251, 191, 36, 0.32), 0 8px 28px rgba(0, 0, 0, 0.6);
+    }
+    .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-result {
+      color: rgba(248, 250, 252, 0.92);
+    }
+    .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-button {
+      border-color: rgba(53, 245, 154, 0.72);
+      color: #ecfff7;
+      background: rgba(53, 245, 154, 0.08);
+      box-shadow: 0 0 34px rgba(53, 245, 154, 0.12);
+    }
+    .mode-v07 .creator-scene[data-group="hook_problem"] .creator-mega-title {
+      max-width: 760px;
+    }
+    .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword-line {
+      display: block;
+    }
+    .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword-line.accent {
+      color: var(--vf-green);
+      text-shadow: 0 0 28px rgba(53, 245, 154, 0.32);
     }
     .mode-v07 .creator-ctabigending .creator-cta-keyword {
-      font-size: 166px;
-      line-height: 0.96;
+      font-size: 128px;
+      line-height: 1.0;
+      white-space: pre-line;
+      max-width: 760px;
     }
     .mode-v07 .creator-ctabigending .creator-cta-result {
-      font-size: 54px;
-      max-width: 840px;
+      font-size: 44px;
+      max-width: 780px;
     }
     .mode-v07 .creator-ctabigending .creator-cta-button {
       min-height: 92px;
       font-size: 44px;
+    }
+    .creator-cta-keyword-line {
+      display: block;
+    }
+    .creator-cta-keyword-line.accent {
+      color: var(--vf-amber);
+      text-shadow: 0 0 28px rgba(251, 191, 36, 0.34);
     }
     .mode-v07 .creator-scoringquestionpanel .creator-question-list {
       margin-top: 42px;
@@ -1004,6 +1069,7 @@
       const rules = [
         { pattern: /(5小时|40分钟|30分钟|10分钟|1条|3条|4个字段|3个问题|3到5源)/g, cls: "result" },
         { pattern: /(刷热点|假装工作|执行力|空白|损耗)/g, cls: "loss" },
+        { pattern: /(≠\s*效率提升|不等于效率提升)/g, cls: "accent" },
         { pattern: /(Hermes|Obsidian|llm-wiki|Codex|HyperFrames|AI)/g, cls: "tool" },
         { pattern: /(情报|筛选|痛点|产品|系统|复用|判断|清单)/g, cls: "" }
       ];
@@ -1057,6 +1123,7 @@
       el.id = `vf-segment-${index}`;
       el.className = `creator-scene creator-${component.toLowerCase()} density-${segment.density || "medium"}`;
       el.dataset.component = component;
+      el.dataset.group = segment.semantic_group || segment.semantic_role || "";
       el.dataset.start = String(segment.start);
       el.dataset.duration = String(segment.end - segment.start);
 
@@ -1097,7 +1164,10 @@
           : `<div class="creator-proof-shell"><div class="creator-proof-bar"></div><div class="creator-proof-line" style="width:92%"></div><div class="creator-proof-line" style="width:78%"></div><div class="creator-proof-line" style="width:86%"></div><div class="creator-proof-tag">${safeText(props.asset_status || "TODO_ASSET_REQUIRED")}</div></div>`;
         main = `<div class="creator-table-title">${richText(props.title || "真实输出证明")}</div>${proofShell}`;
       } else if (component === "CTABigEnding") {
-        main = `<div class="creator-cta-keyword">${richText(props.keyword)}</div><div class="creator-cta-result">${richText(props.result)}</div>${props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : ""}`;
+        const keywordMarkup = Array.isArray(props.display_lines) && props.display_lines.length > 0
+          ? props.display_lines.map((line, lineIndex) => `<span class="creator-cta-keyword-line ${lineIndex > 0 ? "accent" : ""}">${richText(line)}</span>`).join("")
+          : richText(props.keyword);
+        main = `<div class="creator-cta-keyword">${keywordMarkup}</div><div class="creator-cta-result">${richText(props.result)}</div>${props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : ""}`;
       } else {
         main = `<div class="creator-table-title">${richText(props.title || props.label || "系统证明")}</div><div class="creator-subline">${richText(props.asset_status || props.result || "TODO_ASSET_REQUIRED")}</div>`;
       }
@@ -1225,11 +1295,24 @@
       setupMedia(timeline);
 
       const tl = gsap.timeline({ paused: true });
+      const captionTrack = Array.isArray(timeline.captions) && timeline.captions.length > 0
+        ? timeline.captions
+        : (Array.isArray(timeline.caption_beats) && timeline.caption_beats.length > 0
+          ? timeline.caption_beats
+          : timeline.segments.map((segment) => ({
+              start: segment.start,
+              end: segment.end,
+              text: segment.text || segment.caption_line,
+              caption_line: segment.caption_line || segment.text || ""
+            })));
 
       timeline.segments.forEach((segment, index) => {
         const el = renderSegment(segment, index);
         animateSegment(tl, el, segment);
-        animateCaption(tl, segment.caption_line, segment.start, segment.end);
+      });
+
+      captionTrack.forEach((caption) => {
+        animateCaption(tl, caption.caption_line || caption.text || "", caption.start, caption.end);
       });
 
       tl.set({}, {}, timeline.duration);

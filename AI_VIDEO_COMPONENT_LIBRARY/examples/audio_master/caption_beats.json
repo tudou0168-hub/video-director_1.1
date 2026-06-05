@@ -6,7 +6,7 @@
     "text": "为什么你学了很多 AI 工具",
     "caption_line": "为什么你学了很多 AI 工具",
     "semantic_role": "pain_hook",
-    "hud_group": "result_next_step"
+    "hud_group": "hook_problem"
   },
   {
     "beat_id": "B02",
@@ -15,7 +15,7 @@
     "text": "还是没有真正提高效率",
     "caption_line": "还是没有真正提高效率",
     "semantic_role": "problem",
-    "hud_group": "result_next_step"
+    "hud_group": "hook_problem"
   },
   {
     "beat_id": "B03",
@@ -24,7 +24,7 @@
     "text": "不是你不努力",
     "caption_line": "不是你不努力",
     "semantic_role": "wrong_path",
-    "hud_group": "result_next_step"
+    "hud_group": "hook_problem"
   },
   {
     "beat_id": "B04",
@@ -33,7 +33,7 @@
     "text": "是你一直在学看起来很有用的东西",
     "caption_line": "是你一直在学看起来很有用的东西",
     "semantic_role": "wrong_path",
-    "hud_group": "result_next_step"
+    "hud_group": "hook_problem"
   },
   {
     "beat_id": "B05",
@@ -42,7 +42,7 @@
     "text": "真正的问题",
     "caption_line": "真正的问题",
     "semantic_role": "problem",
-    "hud_group": "result_next_step"
+    "hud_group": "root_cause"
   },
   {
     "beat_id": "B06",
@@ -51,7 +51,7 @@
     "text": "是你的工作没有变成流程",
     "caption_line": "是你的工作没有变成流程",
     "semantic_role": "workflow",
-    "hud_group": "result_next_step"
+    "hud_group": "root_cause"
   },
   {
     "beat_id": "B07",
@@ -60,7 +60,7 @@
     "text": "每天收藏教程",
     "caption_line": "每天收藏教程",
     "semantic_role": "wrong_path",
-    "hud_group": "result_next_step"
+    "hud_group": "root_cause"
   },
   {
     "beat_id": "B08",
@@ -69,7 +69,7 @@
     "text": "时间被消耗",
     "caption_line": "时间被消耗",
     "semantic_role": "wrong_path",
-    "hud_group": "result_next_step"
+    "hud_group": "root_cause"
   },
   {
     "beat_id": "B09",
@@ -78,7 +78,7 @@
     "text": "结果没有沉淀",
     "caption_line": "结果没有沉淀",
     "semantic_role": "result",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B10",
@@ -87,7 +87,7 @@
     "text": "我现在只看 3 个节点",
     "caption_line": "我现在只看 3 个节点",
     "semantic_role": "workflow",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B11",
@@ -96,7 +96,7 @@
     "text": "输入",
     "caption_line": "输入",
     "semantic_role": "workflow",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B12",
@@ -105,7 +105,7 @@
     "text": "处理",
     "caption_line": "处理",
     "semantic_role": "workflow",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B13",
@@ -114,7 +114,7 @@
     "text": "输出",
     "caption_line": "输出",
     "semantic_role": "workflow",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B14",
@@ -123,7 +123,7 @@
     "text": "Hermes 负责捞素材",
     "caption_line": "Hermes 负责捞素材",
     "semantic_role": "tool_stack",
-    "hud_group": "result_next_step"
+    "hud_group": "workflow"
   },
   {
     "beat_id": "B15",
@@ -132,7 +132,7 @@
     "text": "Obsidian 负责沉淀",
     "caption_line": "Obsidian 负责沉淀",
     "semantic_role": "tool_stack",
-    "hud_group": "result_next_step"
+    "hud_group": "tool_stack"
   },
   {
     "beat_id": "B16",
@@ -141,7 +141,7 @@
     "text": "llm-wiki 负责检索",
     "caption_line": "llm-wiki 负责检索",
     "semantic_role": "tool_stack",
-    "hud_group": "result_next_step"
+    "hud_group": "tool_stack"
   },
   {
     "beat_id": "B17",
@@ -150,7 +150,7 @@
     "text": "Codex 负责改写",
     "caption_line": "Codex 负责改写",
     "semantic_role": "tool_stack",
-    "hud_group": "result_next_step"
+    "hud_group": "tool_stack"
   },
   {
     "beat_id": "B18",
@@ -159,7 +159,7 @@
     "text": "HyperFrames 负责包装",
     "caption_line": "HyperFrames 负责包装",
     "semantic_role": "tool_stack",
-    "hud_group": "result_next_step"
+    "hud_group": "tool_stack"
   },
   {
     "beat_id": "B19",
@@ -168,7 +168,7 @@
     "text": "判断标准很简单",
     "caption_line": "判断标准很简单",
     "semantic_role": "proof",
-    "hud_group": "result_next_step"
+    "hud_group": "proof_standard"
   },
   {
     "beat_id": "B20",
@@ -177,7 +177,7 @@
     "text": "一篇内容能不能在 30 分钟内",
     "caption_line": "一篇内容能不能在 30 分钟内",
     "semantic_role": "proof",
-    "hud_group": "result_next_step"
+    "hud_group": "proof_standard"
   },
   {
     "beat_id": "B21",
@@ -186,7 +186,7 @@
     "text": "变成一条可以发的口播视频",
     "caption_line": "变成一条可以发的口播视频",
     "semantic_role": "result",
-    "hud_group": "result_next_step"
+    "hud_group": "proof_standard"
   },
   {
     "beat_id": "B22",

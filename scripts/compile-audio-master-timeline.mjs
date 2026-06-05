@@ -76,6 +76,19 @@ function truncateCaption(text, max = 18) {
   return cleaned.slice(0, max).replace(/[，,。！？!?；;：:、]+$/g, "");
 }
 
+function normalizeLines(lines) {
+  if (!Array.isArray(lines)) return [];
+  return lines.map((line) => String(line || "").trim()).filter(Boolean);
+}
+
+function applyDisplayLines(componentProps, merged) {
+  const displayLines = normalizeLines(merged.display_lines || merged.headline_lines || merged.keyword_lines);
+  if (displayLines.length > 0) {
+    componentProps.display_lines = displayLines;
+  }
+  return displayLines;
+}
+
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
@@ -179,6 +192,15 @@ function buildRoleCopy(role, index, sentence) {
     componentProps.unit = merged.component_props?.unit || merged.subtitleCN || "真实音频驱动";
   }
 
+  const displayLines = applyDisplayLines(componentProps, merged);
+  if (merged.component === "BigKineticTitle" && displayLines.length > 0) {
+    componentProps.headline = displayLines.join("\n");
+  }
+  if (merged.component === "CTABigEnding" && displayLines.length > 0) {
+    componentProps.keyword = displayLines[0] || componentProps.keyword;
+    componentProps.result = displayLines[1] || componentProps.result;
+  }
+
   return {
     ...merged,
     component_props: componentProps,
@@ -249,6 +271,15 @@ function buildGroupCopy(groupKey, index, sentence) {
   if (merged.component === "MultiAgentPanel") {
     componentProps.title = merged.component_props?.title || merged.primaryText || sentence;
     componentProps.agents = merged.component_props?.agents || [["Hermes", "采集素材"], ["Obsidian", "沉淀资料"], ["llm-wiki", "检索编译"], ["HyperFrames", "包装视频"]];
+  }
+
+  const displayLines = applyDisplayLines(componentProps, merged);
+  if (merged.component === "BigKineticTitle" && displayLines.length > 0) {
+    componentProps.headline = displayLines.join("\n");
+  }
+  if (merged.component === "CTABigEnding" && displayLines.length > 0) {
+    componentProps.keyword = displayLines[0] || componentProps.keyword;
+    componentProps.result = displayLines[1] || componentProps.result;
   }
 
   return {
@@ -356,8 +387,8 @@ function buildCaptionBeats(sentences, totalDuration) {
       text: sentence,
       caption_line: truncateCaption(sentence, 18),
       semantic_role: semanticRoleFor(sentence, index, sentences.length),
-      hud_group: hudGroupForBeat(index)
     };
+    beat.hud_group = hudGroupForBeat(beat);
     beats.push(beat);
     start = end;
   });
@@ -373,6 +404,14 @@ function buildCaptionBeats(sentences, totalDuration) {
 function buildTimeline(beats, ttsResult, duration) {
   const segments = buildHudSegments(beats, duration);
   const snapshot_at = segments.map((segment) => segment.snapshotAt);
+  const captions = beats.map(({ beat_id, start, end, text, caption_line, semantic_role }) => ({
+    beat_id,
+    start,
+    end,
+    text,
+    caption_line,
+    semantic_role
+  }));
   return {
     mode: "article_tts",
     width: 1920,
@@ -390,6 +429,7 @@ function buildTimeline(beats, ttsResult, duration) {
     },
     product_id: "P008",
     recipe: "Audio_Master_Narration_Explainer",
+    captions,
     caption_beats: beats,
     snapshot_at,
     segments

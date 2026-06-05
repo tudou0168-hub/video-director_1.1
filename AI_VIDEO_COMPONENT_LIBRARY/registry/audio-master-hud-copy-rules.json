@@ -3,6 +3,10 @@
     "component": "BigKineticTitle",
     "primaryText": "工具学习 ≠ 效率提升",
     "subtitleCN": "真正缺的是内容生产闭环",
+    "display_lines": [
+      "工具学习",
+      "≠ 效率提升"
+    ],
     "component_props": {
       "headline": "工具学习 ≠ 效率提升",
       "subline": "真正缺的是内容生产闭环",
@@ -206,11 +210,15 @@
   },
   "result_next_step": {
     "component": "CTABigEnding",
-    "primaryText": "一条可发布口播视频",
-    "subtitleCN": "先跑通 1 条，再优化模板和视觉",
+    "primaryText": "先跑通 1 条",
+    "subtitleCN": "可发布口播视频",
+    "display_lines": [
+      "先跑通 1 条",
+      "可发布口播视频"
+    ],
     "component_props": {
-      "keyword": "一条可发布口播视频",
-      "result": "先跑通 1 条",
+      "keyword": "先跑通 1 条",
+      "result": "可发布口播视频",
       "button": "检查：音频、字幕、HUD、预览"
     },
     "layout_slot": "right",
