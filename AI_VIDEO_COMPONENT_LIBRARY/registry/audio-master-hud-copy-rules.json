@@ -63,10 +63,10 @@
     "component_props": {
       "title": "内容生产闭环",
       "rows": [
-        ["采集", "捞素材"],
-        ["沉淀", "整理要点"],
-        ["编译", "抽取结构"],
-        ["包装", "拼成片"]
+        ["采集", "素材"],
+        ["沉淀", "要点"],
+        ["编译", "结构"],
+        ["包装", "成片"]
       ]
     },
     "layout_slot": "impact-wide",
@@ -79,14 +79,15 @@
   "tool_stack": {
     "component": "MultiAgentPanel",
     "primaryText": "工具链分工",
-    "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+    "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames / Codex 编排",
     "component_props": {
       "title": "工具链分工",
       "agents": [
-        ["Hermes", "采集素材"],
-        ["Obsidian", "沉淀资料"],
-        ["llm-wiki", "检索编译"],
-        ["HyperFrames", "包装视频"]
+        ["Hermes", "采集"],
+        ["Obsidian", "沉淀"],
+        ["llm-wiki", "检索"],
+        ["HyperFrames", "包装"],
+        ["Codex", "编排"]
       ]
     },
     "layout_slot": "impact-wide",
@@ -104,8 +105,8 @@
       "title": "30分钟成片检查",
       "rows": [
         ["输入", "文案"],
-        ["处理", "TTS + 字幕"],
-        ["输出", "预览视频"]
+        ["处理", "TTS+字幕"],
+        ["输出", "预览"]
       ]
     },
     "layout_slot": "impact-wide",
@@ -150,8 +151,12 @@
     "component": "BigKineticTitle",
     "primaryText": "工具学习 ≠ 效率提升",
     "subtitleCN": "真正缺的是内容生产闭环",
+    "display_lines": [
+      "工具学习",
+      "≠ 效率提升"
+    ],
     "component_props": {
-      "headline": "工具学习 ≠ 效率提升",
+      "headline": "工具学习\n≠ 效率提升",
       "subline": "真正缺的是内容生产闭环",
       "label_en": "HOOK",
       "label_cn": "判断",
@@ -219,7 +224,7 @@
     "component_props": {
       "keyword": "先跑通 1 条",
       "result": "可发布口播视频",
-      "button": "检查：音频、字幕、HUD、预览"
+      "button": "音频 / 字幕 / HUD / 预览"
     },
     "layout_slot": "right",
     "animation": "cta_focus",

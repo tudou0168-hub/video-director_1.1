@@ -89,6 +89,18 @@ function applyDisplayLines(componentProps, merged) {
   return displayLines;
 }
 
+function computeTitleScale(displayLines, fallback = 0.92) {
+  if (!Array.isArray(displayLines) || displayLines.length === 0) return fallback;
+  const longestLine = displayLines.reduce((max, line) => {
+    const len = String(line || "").replace(/\s+/g, "").length;
+    return Math.max(max, len);
+  }, 0);
+  if (longestLine >= 10) return 0.84;
+  if (longestLine >= 8) return 0.88;
+  if (longestLine >= 6) return 0.90;
+  return fallback;
+}
+
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
@@ -195,6 +207,7 @@ function buildRoleCopy(role, index, sentence) {
   const displayLines = applyDisplayLines(componentProps, merged);
   if (merged.component === "BigKineticTitle" && displayLines.length > 0) {
     componentProps.headline = displayLines.join("\n");
+    componentProps.title_scale = computeTitleScale(displayLines, 0.92);
   }
   if (merged.component === "CTABigEnding" && displayLines.length > 0) {
     componentProps.keyword = displayLines[0] || componentProps.keyword;
@@ -276,6 +289,7 @@ function buildGroupCopy(groupKey, index, sentence) {
   const displayLines = applyDisplayLines(componentProps, merged);
   if (merged.component === "BigKineticTitle" && displayLines.length > 0) {
     componentProps.headline = displayLines.join("\n");
+    componentProps.title_scale = computeTitleScale(displayLines, 0.92);
   }
   if (merged.component === "CTABigEnding" && displayLines.length > 0) {
     componentProps.keyword = displayLines[0] || componentProps.keyword;

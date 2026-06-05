@@ -424,7 +424,8 @@
     .mode-v07 .creator-main.layout-impact-left {
       left: 78px;
       right: auto;
-      width: 780px;
+      width: 820px;
+      padding: 34px 34px 30px;
     }
     .mode-v07 .creator-main.layout-impact-wide {
       left: 70px;
@@ -453,7 +454,7 @@
     .creator-mega-title {
       margin: 10px 0 0;
       font-size: 116px;
-      line-height: 1.02;
+      line-height: 0.98;
       font-weight: 950;
       letter-spacing: 0;
       color: #fff;
@@ -717,33 +718,54 @@
       letter-spacing: 0.06em;
     }
     .creator-cta-keyword {
-      font-size: 124px;
+      font-size: 96px;
       line-height: 1;
       color: var(--vf-amber);
       font-weight: 950;
       text-shadow: 0 0 34px rgba(251, 191, 36, 0.35), 0 8px 28px rgba(0, 0, 0, 0.6);
     }
     .creator-cta-result {
-      margin-top: 24px;
-      font-size: 42px;
-      line-height: 1.2;
+      margin-top: 18px;
+      font-size: 38px;
+      line-height: 1.18;
       color: #fff;
       font-weight: 900;
     }
     .creator-cta-button {
-      margin-top: 34px;
+      margin-top: 26px;
       display: inline-flex;
       align-items: center;
-      min-height: 76px;
-      padding: 0 34px;
+      min-height: 64px;
+      padding: 0 24px;
       border: 2px solid rgba(251, 191, 36, 0.82);
       border-radius: 8px;
       background: rgba(251, 191, 36, 0.10);
       color: #fff7cc;
-      font-size: 36px;
+      font-size: 30px;
       line-height: 1.15;
       font-weight: 950;
       box-shadow: 0 0 34px rgba(251, 191, 36, 0.22);
+    }
+    .creator-cta-tags {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 720px;
+    }
+    .creator-cta-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(103, 232, 249, 0.44);
+      background: rgba(103, 232, 249, 0.08);
+      color: rgba(236, 253, 255, 0.94);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.02em;
     }
     .creator-question-list {
       margin-top: 30px;
@@ -779,19 +801,41 @@
       box-shadow: 0 0 22px rgba(53, 245, 154, 0.45);
     }
     .mode-v07 .creator-mega-title {
-      font-size: 142px;
-      line-height: 1.0;
+      font-size: calc(64px * var(--hook-title-scale, 0.92));
+      line-height: 0.98;
       letter-spacing: 0;
       text-shadow: 0 10px 32px rgba(0, 0, 0, 0.72), 0 0 28px rgba(103, 232, 249, 0.30);
       white-space: pre-line;
-      max-width: 720px;
+      max-width: 760px;
     }
     .creator-mega-title-line {
       display: block;
+      width: max-content;
+    }
+    .creator-mega-title-line.accent {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 0.26em;
+      line-height: 1.0;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+      color: var(--vf-amber);
+      text-shadow: 0 0 28px rgba(251, 191, 36, 0.36);
+      flex-shrink: 0;
+    }
+    .creator-mega-title-op {
+      color: var(--vf-amber);
+      flex: 0 0 auto;
+    }
+    .creator-mega-title-text {
+      color: var(--vf-amber);
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
     .mode-v07 .creator-bigkinetictitle .creator-subline {
-      margin-top: 28px;
-      font-size: 42px;
+      margin-top: 24px;
+      font-size: 28px;
       line-height: 1.22;
       color: rgba(248, 250, 252, 0.90);
       font-weight: 900;
@@ -872,7 +916,7 @@
     }
     .mode-v07 .creator-detailstableoverlay .creator-table-title,
     .mode-v07 .creator-scoringquestionpanel .creator-table-title {
-      font-size: 88px;
+      font-size: 76px;
       line-height: 0.98;
     }
     .mode-v07 .creator-detailstableoverlay .creator-table {
@@ -880,10 +924,10 @@
       gap: 16px;
     }
     .mode-v07 .creator-detailstableoverlay .creator-row {
-      grid-template-columns: 1fr 160px;
+      grid-template-columns: minmax(0, 1fr) minmax(128px, 162px);
       min-height: 92px;
       padding: 20px 28px;
-      font-size: 42px;
+      font-size: 34px;
       border-left-width: 6px;
     }
     .mode-v07 .creator-detailstableoverlay .creator-row.field-only {
@@ -896,8 +940,10 @@
       word-break: keep-all;
     }
     .mode-v07 .creator-detailstableoverlay .creator-score {
-      font-size: 36px;
+      font-size: 30px;
       color: var(--vf-green);
+      white-space: nowrap;
+      justify-self: end;
     }
     .mode-v07 .creator-scene[data-group="workflow"] .creator-table-title {
       color: var(--vf-cyan);
@@ -906,8 +952,24 @@
       border-color: rgba(103, 232, 249, 0.42);
       box-shadow: 0 0 22px rgba(103, 232, 249, 0.08);
     }
+    .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-card {
+      min-height: 116px;
+      padding: 14px 14px 12px;
+    }
     .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-role {
       color: var(--vf-cyan);
+      font-size: 18px;
+    }
+    .mode-v07 .creator-scene[data-group="tool_stack"] .creator-agent-name {
+      margin-top: 12px;
+      font-size: 24px;
+      line-height: 1.08;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
     .mode-v07 .creator-scene[data-group="proof_standard"] .creator-table-title {
       color: var(--vf-green);
@@ -915,6 +977,9 @@
     }
     .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row {
       border-left-color: rgba(53, 245, 154, 0.76);
+    }
+    .mode-v07 .creator-scene[data-group="proof_standard"] .creator-row span:first-child {
+      color: rgba(248, 250, 252, 0.96);
     }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword {
       color: var(--vf-amber);
@@ -930,7 +995,12 @@
       box-shadow: 0 0 34px rgba(53, 245, 154, 0.12);
     }
     .mode-v07 .creator-scene[data-group="hook_problem"] .creator-mega-title {
-      max-width: 760px;
+      max-width: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      white-space: normal;
     }
     .mode-v07 .creator-scene[data-group="result_next_step"] .creator-cta-keyword-line {
       display: block;
@@ -940,18 +1010,26 @@
       text-shadow: 0 0 28px rgba(53, 245, 154, 0.32);
     }
     .mode-v07 .creator-ctabigending .creator-cta-keyword {
-      font-size: 128px;
-      line-height: 1.0;
+      font-size: 96px;
+      line-height: 0.98;
       white-space: pre-line;
-      max-width: 760px;
+      max-width: 680px;
+    }
+    .mode-v07 .creator-ctabigending .creator-cta-keyword-line {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .mode-v07 .creator-ctabigending .creator-cta-keyword-line:last-child {
+      margin-bottom: 0;
     }
     .mode-v07 .creator-ctabigending .creator-cta-result {
-      font-size: 44px;
-      max-width: 780px;
+      font-size: 36px;
+      max-width: 760px;
     }
     .mode-v07 .creator-ctabigending .creator-cta-button {
-      min-height: 92px;
-      font-size: 44px;
+      min-height: 72px;
+      font-size: 32px;
+      padding: 0 22px;
     }
     .creator-cta-keyword-line {
       display: block;
@@ -1133,11 +1211,22 @@
       const stepLabel = props.step_label || segment.step_label || "STEP";
       const layout = props.layout || segment.layout_slot || (component === "ThreeStepPipeline" ? "wide" : "right");
       const mainClass = `layout-${layout}`;
+      const titleScale = Number(props.title_scale || segment.title_scale || 0.92);
 
       let main = "";
       if (component === "BigKineticTitle") {
-        const headline = richText(props.headline);
-        main = `<div class="creator-mega-title">${headline}</div><div class="creator-subline">${richText(props.subline)}</div>`;
+        const headline = Array.isArray(props.display_lines) && props.display_lines.length > 0
+          ? props.display_lines.map((line, lineIndex) => {
+              const cleanLine = String(line || "").trim();
+              if (lineIndex > 0 && /≠/.test(cleanLine)) {
+                const [operator, ...restParts] = cleanLine.split(/\s+/);
+                const rest = restParts.join(" ") || cleanLine.replace(/^≠\s*/, "");
+                return `<span class="creator-mega-title-line accent"><span class="creator-mega-title-op">${safeText(operator || "≠")}</span><span class="creator-mega-title-text">${safeText(rest || "效率提升")}</span></span>`;
+              }
+              return `<span class="creator-mega-title-line ${lineIndex > 0 ? "accent" : ""}">${safeText(line)}</span>`;
+            }).join("")
+          : safeText(props.headline);
+        main = `<div class="creator-mega-title" style="--hook-title-scale:${titleScale}">${headline}</div><div class="creator-subline">${richText(props.subline)}</div>`;
       } else if (component === "MegaNumber") {
         main = `<div class="creator-cta-keyword">${richText(props.value)}</div><div class="creator-cta-result">${richText(props.label)}</div>`;
       } else if (component === "OptionSplitCard") {
@@ -1155,8 +1244,8 @@
         const questions = safeList(props.questions, ["能解释痛点？", "能绑定产品？", "能带来回复？"]);
         main = `<div class="creator-table-title">${richText(props.title || "3个筛选问题")}</div><div class="creator-question-list">${questions.slice(0, 3).map((question) => `<div class="creator-question-row"><span class="creator-checkmark">✓</span><span>${richText(question)}</span></div>`).join("")}</div>`;
       } else if (component === "MultiAgentPanel") {
-        const agents = safeList(props.agents, [["Hermes", "采集"], ["Codex", "产出"], ["Claude Code", "执行"], ["HyperFrames", "包装"]]);
-        main = `<div class="creator-table-title">${richText(props.title || "多 Agent 协作")}</div><div class="creator-agent-grid">${agents.slice(0, 4).map((agent, agentIndex) => `<div class="creator-agent-card"><div class="creator-agent-role">A${agentIndex + 1} · ${richText(Array.isArray(agent) ? agent[1] : "AGENT")}</div><div class="creator-agent-name">${richText(Array.isArray(agent) ? agent[0] : agent)}</div></div>`).join("")}</div>`;
+        const agents = safeList(props.agents, [["Hermes", "采集"], ["Obsidian", "沉淀"], ["llm-wiki", "检索"], ["HyperFrames", "包装"], ["Codex", "编排"]]);
+        main = `<div class="creator-table-title">${richText(props.title || "多 Agent 协作")}</div><div class="creator-agent-grid">${agents.slice(0, 5).map((agent, agentIndex) => `<div class="creator-agent-card"><div class="creator-agent-role">A${agentIndex + 1} · ${richText(Array.isArray(agent) ? agent[1] : "AGENT")}</div><div class="creator-agent-name">${richText(Array.isArray(agent) ? agent[0] : agent)}</div></div>`).join("")}</div>`;
       } else if (component === "ProofScreenshotOverlay") {
         const assetPath = safeAssetPath(props.asset_path);
         const proofShell = assetPath
@@ -1164,10 +1253,17 @@
           : `<div class="creator-proof-shell"><div class="creator-proof-bar"></div><div class="creator-proof-line" style="width:92%"></div><div class="creator-proof-line" style="width:78%"></div><div class="creator-proof-line" style="width:86%"></div><div class="creator-proof-tag">${safeText(props.asset_status || "TODO_ASSET_REQUIRED")}</div></div>`;
         main = `<div class="creator-table-title">${richText(props.title || "真实输出证明")}</div>${proofShell}`;
       } else if (component === "CTABigEnding") {
-        const keywordMarkup = Array.isArray(props.display_lines) && props.display_lines.length > 0
-          ? props.display_lines.map((line, lineIndex) => `<span class="creator-cta-keyword-line ${lineIndex > 0 ? "accent" : ""}">${richText(line)}</span>`).join("")
-          : richText(props.keyword);
-        main = `<div class="creator-cta-keyword">${keywordMarkup}</div><div class="creator-cta-result">${richText(props.result)}</div>${props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : ""}`;
+        const displayLines = Array.isArray(props.display_lines) ? props.display_lines.filter((line) => String(line || "").trim()) : [];
+        const keywordText = displayLines[0] || props.keyword;
+        const resultText = displayLines[1] || props.result;
+        const keywordMarkup = `<span class="creator-cta-keyword-line">${richText(keywordText)}</span>`;
+        const buttonTokens = typeof props.button === "string"
+          ? props.button.split(/[\/、，,]/g).map((token) => token.trim()).filter(Boolean)
+          : [];
+        const buttonMarkup = buttonTokens.length > 1
+          ? `<div class="creator-cta-tags">${buttonTokens.map((token) => `<span class="creator-cta-tag">${richText(token)}</span>`).join("")}</div>`
+          : (props.button ? `<div class="creator-cta-button">${richText(props.button)}</div>` : "");
+        main = `<div class="creator-cta-keyword">${keywordMarkup}</div><div class="creator-cta-result">${richText(resultText)}</div>${buttonMarkup}`;
       } else {
         main = `<div class="creator-table-title">${richText(props.title || props.label || "系统证明")}</div><div class="creator-subline">${richText(props.asset_status || props.result || "TODO_ASSET_REQUIRED")}</div>`;
       }

@@ -518,13 +518,18 @@
       "visual_module": "BigKineticTitle",
       "component": "BigKineticTitle",
       "component_props": {
-        "headline": "工具学习 ≠ 效率提升",
+        "headline": "工具学习\n≠ 效率提升",
         "subline": "真正缺的是内容生产闭环",
         "label_en": "HOOK",
         "label_cn": "判断",
         "step_label": "HOOK",
         "layout": "right",
         "step": "01",
+        "display_lines": [
+          "工具学习",
+          "≠ 效率提升"
+        ],
+        "title_scale": 0.92,
         "overlay_side": "right",
         "face_position": "center"
       },
@@ -699,19 +704,19 @@
         "rows": [
           [
             "采集",
-            "捞素材"
+            "素材"
           ],
           [
             "沉淀",
-            "整理要点"
+            "要点"
           ],
           [
             "编译",
-            "抽取结构"
+            "结构"
           ],
           [
             "包装",
-            "拼成片"
+            "成片"
           ]
         ],
         "step": "03",
@@ -794,19 +799,23 @@
         "agents": [
           [
             "Hermes",
-            "采集素材"
+            "采集"
           ],
           [
             "Obsidian",
-            "沉淀资料"
+            "沉淀"
           ],
           [
             "llm-wiki",
-            "检索编译"
+            "检索"
           ],
           [
             "HyperFrames",
-            "包装视频"
+            "包装"
+          ],
+          [
+            "Codex",
+            "编排"
           ]
         ],
         "step": "04",
@@ -832,7 +841,7 @@
         "BottomChineseSubtitle"
       ],
       "primaryText": "工具链分工",
-      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames",
+      "subtitleCN": "Hermes / Obsidian / llm-wiki / HyperFrames / Codex 编排",
       "hud_theme": "tool_stack",
       "caption_count": 4,
       "snapshotAt": 25.4
@@ -978,7 +987,7 @@
       "component_props": {
         "keyword": "先跑通 1 条",
         "result": "可发布口播视频",
-        "button": "检查：音频、字幕、HUD、预览",
+        "button": "音频 / 字幕 / HUD / 预览",
         "step": "06",
         "display_lines": [
           "先跑通 1 条",

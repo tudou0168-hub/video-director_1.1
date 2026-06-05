@@ -143,6 +143,7 @@ samples/final_narration.md
 - `compiled.timeline.json.segments` 现在按语义主题合并为 HUD 段，不再一条 caption 对应一条 HUD。
 - `compiled.timeline.json.captions` 与 `caption_beats` 作为独立字幕轨保留，前端字幕应优先读取独立 captions，而不是跟着 HUD segment 切换。
 - `caption_beats` 会继续保留在编译结果里，方便字幕信息完整落盘。
+- `captions` 里每条记录保留 `beat_id / start / end / text / caption_line / semantic_role`，用于字幕轨独立播放；HUD 继续只看 `segments`。
 - `snapshot_at` 从 HUD `segments[].snapshotAt` 自动生成。
 - `media.audio` 使用 `tts_result.audio_path`。
 - `media.video` 在这个最小 TTS 路径里可以设为 `null`，也可以由占位背景承担；它不要求真人口播视频一定存在。
@@ -244,6 +245,12 @@ HUD 不再直接复制字幕，而是通过 `AI_VIDEO_COMPONENT_LIBRARY/registry
 - `proof` 负责判断标准和检查清单。
 - `result` 负责结果锚点。
 - `cta` 负责下一步行动。
+
+视觉层约定：
+
+- `BigKineticTitle` 和 `CTABigEnding` 会优先读取 `display_lines`，用人工可控换行避免自动断句。
+- `CTABigEnding` 的底部检查项会尽量拆成短标签，不再写成长句。
+- `MultiAgentPanel` 会优先显示短职责词，工具名与职责分层展示，避免中文被挤成竖排。
 
 这样做的目标是让字幕讲原话，HUD 讲结构，不再让两者重复。
 
